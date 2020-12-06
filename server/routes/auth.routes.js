@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt")
 
 const User = require("../models/user.model")
 
+
 router.post('/signup', (req, res) => {
 
     const { email, password } = req.body
@@ -38,21 +39,18 @@ router.post('/signup', (req, res) => {
 })
 
 
-
-
-
 router.post('/login', (req, res, next) => {
 
     passport.authenticate('local', (err, theUser, failureDetails) => {
 
         if (err) {
-            res.status(500).json({ message: 'Error authenticating user' });
-            return;
+            res.status(500).json({ message: 'Error authenticating user' })
+            return
         }
 
         if (!theUser) {
             res.status(401).json(failureDetails);
-            return;
+            return
         }
 
         req.login(theUser, err => err ? res.status(500).json({ message: 'Session error' }) : res.status(200).json(theUser))
@@ -61,10 +59,9 @@ router.post('/login', (req, res, next) => {
 })
 
 
-
 router.post('/logout', (req, res) => {
     req.logout()
-    res.status(200).json({ message: 'Log out success!' });
+    res.status(200).json({ message: 'Log out success!' })
 })
 
 

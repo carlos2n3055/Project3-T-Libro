@@ -8,7 +8,6 @@ const corsOptions = {
         cb(null, originIsWhitelisted)
     },
     credentials: true
-
 }
 
 

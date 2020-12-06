@@ -37,6 +37,11 @@ router.post('/newBook', (req, res) => {
 
 router.put('/editBook/:book_id', (req, res) => {
 
+    if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
+        res.status(404).json({ message: 'Invalid ID' })
+        return
+    }
+
     Book
         .findByIdAndUpdate(req.params.book_id, req.body)
         .then(response => res.json(response))
@@ -45,6 +50,10 @@ router.put('/editBook/:book_id', (req, res) => {
 
 router.delete('/deleteBook/:book_id', (req, res) => {
 
+    if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
+        res.status(404).json({ message: 'Invalid ID' })
+        return
+    }
 
     Book
         .findByIdAndDelete(req.params.book_id, req.body)

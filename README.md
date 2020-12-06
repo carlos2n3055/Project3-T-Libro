@@ -68,48 +68,46 @@ La Base URL de la aplicacion de los libros es `http://localhost:3000`, con los s
 
 ##### SRC
   
-  * Components
-  
- 	 + pages
- 	 	+ Book-details
- 	 		+ Book-details.js
- 	 		+ Book-details.css
- 	 		
- 	 	+ Book-edit
- 	 		+ Book-edit.js
- 	 		+ Book-edit.css
- 	 		
- 	 	+ Book-form
- 	 		+ Book-form.js
- 	 		
- 	 	+ Book-list
- 	 		+ Book-list.js
- 	 		+ Book-list.css
- 	 		+ Book-card.js
- 	 		
- 	 	+ Signup
- 			+ Signup.js
- 			
- 	 	+ Login
- 	 		+ Login.js
- 	 		
- 	 	+ Profile
- 	 		+ Profile.js
- 	 		+ User-edit.js
- 	 		
- 	 + layout
- 	 	+ Navigation
- 	 		+ Navigation.js	
- 	 		
-     	+ Footer
-     		+ Footer.js
-     		
- 	 + shared
+* Components
+
+  + pages
+    + Book-details
+      + Book-details.js
+      + Book-details.css
+    
+    + Book-edit
+      + Book-edit.js
+      + Book-edit.css
+    
+    + Book-form
+      + Book-form.js
+      
+    + Book-list
+      + Book-list.js
+      + Book-list.css
+      + Book-card.js
+    
+    + Signup
+      + Signup.js
+      
+    + Login
+      + Login.js
+      
+    + Profile
+      + Profile.js
+      + User-edit.js
+    
+  + layout
+    + Navigation
+      + Navigation.js	
+    
+    + Footer
+      + Footer.js
+      
+  + shared
  	 
 * service
 
 	+ auth.service.js
 	+ book.service.js
 	+ user.server.js
-	
-             

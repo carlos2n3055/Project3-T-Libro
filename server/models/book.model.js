@@ -4,67 +4,63 @@ const Schema = mongoose.Schema
 const bookSchema = new Schema({
 
     title: {
-
         type: String,
         required: true,
         trim: true
     },
+
     author: {
-
         type: String,
         required: true,
         trim: true
     },
+
     description: {
-
         type: String,
         required: true,
         trim: true
     },
-    image: {
 
+    image: {
         type: String
     },
+
     photos: {
-
         type: [String]
-
     },
-    status: {
 
+    status: {
         type: String,
         enum: ['1', '2', '3', '4', '5'],
         required: true
-
     },
+
     exchange: {
-
         type: Boolean
     },
+
     sale: {
-
         type: Boolean
     },
-    price: {
 
+    price: {
         type: Number
     },
+
     owner: {
-
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: "User"
     },
-    comments: [{
 
-        type: String,
-        trim: true
-
-    }]
+    comments: [
+        {
+            type: String,
+            trim: true
+        }
+    ]
 
 }, {
-
     timestamps: true
-
 })
 
 
