@@ -4,9 +4,9 @@ import BooksService from '../../../service/books.service'
 
 import BookCard from './Book-card'
 //import Loader from './../../shared/Spinner/Loader'
-//import CoasterForm from './../Coaster-form/Coaster-form'
+import BookForm from './../Book-form/Book-form'
 
-import { Container, Row } from 'react-bootstrap'
+import { Container, Row, Button, Modal } from 'react-bootstrap'
 
 
 import './Book-list.css'
@@ -16,9 +16,10 @@ class BookList extends Component {
     constructor() {
         super()
         this.state = {
-            books: undefined
-            //showModal: false
+            books: undefined,
+            showModal: false
         }
+
         this.booksService = new BooksService()
     }
 
@@ -31,7 +32,7 @@ class BookList extends Component {
             .catch(err => console.log(err))
     }
 
-    //handleModal = visible => this.setState({ showModal: visible })
+    handleModal = visible => this.setState({ showModal: visible })
 
     render() {
         return (
@@ -40,7 +41,9 @@ class BookList extends Component {
 
                     <h1>Listado de libros</h1>
 
-                    {/* {this.props.loggedUser && <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Crear nueva montaña rusa</Button>} */}
+                    {<Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Crear un nuevo libro</Button>}
+
+                    {/* //this.props.loggedUser && */}
 
                     <Row>
                         {
@@ -56,15 +59,18 @@ class BookList extends Component {
                 </Container>
 
 
-                {/* <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
                     <Modal.Body>
-                        <CoasterForm closeModal={() => this.handleModal(false)} updateList={this.refreshCoasters} loggedUser={this.props.loggedUser} />
+                        <BookForm closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} />
                     </Modal.Body>
-                </Modal> */}
+                </Modal>
 
             </>
         )
     }
 }
 
-export default BookList 
+export default BookList
+
+
+//loggedUser = { this.props.loggedUser }

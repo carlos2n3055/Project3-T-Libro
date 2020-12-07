@@ -36,11 +36,13 @@ const bookSchema = new Schema({
     },
 
     exchange: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     sale: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     price: {

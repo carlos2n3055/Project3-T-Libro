@@ -8,7 +8,7 @@ const User = require("../models/user.model")
 
 router.post('/signup', (req, res) => {
 
-    const { email, password } = req.body
+    const { name, lastname, img, email, password } = req.body
 
     if (!email || !password) {
         res.status(400).json({ message: 'Rellena todos los campos' })
@@ -32,7 +32,7 @@ router.post('/signup', (req, res) => {
             const hashPass = bcrypt.hashSync(password, salt)
 
             User
-                .create({ email, password: hashPass })
+                .create({ name, lastname, img, email, password: hashPass })
                 .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Login error' }) : res.status(200).json(newUser)))
                 .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
         })
