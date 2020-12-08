@@ -30,9 +30,9 @@ class Signup extends Component {
 
         this.authService
             .signup(this.state)
-            .then(theLoggedInUser => {
-                this.props.storeUser(theLoggedInUser.data)
-                this.props.history.push('/inicio-sesion') // cambiar para redirigir a profile
+            .then(() => {
+
+                this.props.history.push('/inicio-sesion')
             })
             .catch(err => console.log(err))
     }
@@ -62,11 +62,6 @@ class Signup extends Component {
                             <Form.Group controlId="lastname">
                                 <Form.Label>Apellido</Form.Label>
                                 <Form.Control type="text" name="lastname" value={this.state.lastname} onChange={this.handleInputChange} />
-                            </Form.Group>
-
-                            <Form.Group controlId="img">
-                                <Form.Label>Imagen de perfil</Form.Label>
-                                <Form.Control type="text" name="img" value={this.state.img} onChange={this.handleInputChange} />
                             </Form.Group>
 
                             <Form.Group controlId="email">

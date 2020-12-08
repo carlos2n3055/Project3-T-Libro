@@ -23,8 +23,8 @@ module.exports = app => {
 
     app.use(flash())
 
-    passport.use(new LocalStrategy({ passReqToCallback: true }, (req, email, password, next) => {
-        User.findOne({ email })
+    passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, username, password, next) => {
+        User.findOne({ email: username })
             .then(user => {
                 if (!user) {
                     return next(null, false, { message: "Wrong email" })

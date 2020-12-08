@@ -8,7 +8,7 @@ const User = require("../models/user.model")
 
 router.post('/signup', (req, res) => {
 
-    const { name, lastname, img, email, password } = req.body
+    const { name, lastname, email, password } = req.body
 
     if (!email || !password) {
         res.status(400).json({ message: 'Rellena todos los campos' })
@@ -23,6 +23,7 @@ router.post('/signup', (req, res) => {
     User
         .findOne({ email })
         .then(foundUser => {
+
             if (foundUser) {
                 res.status(400).json({ message: 'El usuario ya existe' })
                 return
@@ -32,15 +33,16 @@ router.post('/signup', (req, res) => {
             const hashPass = bcrypt.hashSync(password, salt)
 
             User
-                .create({ name, lastname, img, email, password: hashPass })
-                .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Login error' }) : res.status(200).json(newUser)))
+                .create({ name, lastname, email, password: hashPass })
+                .then((newUser) => res.status(200).json(newUser))
                 .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
+
+
         })
 })
 
 
 router.post('/login', (req, res, next) => {
-    console.log(req.body)
 
     passport.authenticate('local', (err, theUser, failureDetails) => {
 
