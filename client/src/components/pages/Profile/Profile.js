@@ -2,7 +2,7 @@ import { Container } from 'react-bootstrap'
 
 
 const Profile = ({ user }) => {
-    console.log(user)
+    // console.log(user)
 
     return (
 

@@ -15,9 +15,9 @@ class BookForm extends Component {
                 title: '',
                 author: '',
                 description: '',
-                image: '',
+                image: undefined,       // Para poner una imagen por defecto en el nuevo libro sino se especifica una.
                 photos: '',
-                status: [],
+                status: '1',            // Pone por defecto Status = "1" en caso de no seleccionar nada en la valoración del libro.
                 exchange: false,
                 sale: false,
                 price: '',
@@ -27,21 +27,20 @@ class BookForm extends Component {
         this.booksService = new BooksService()
     }
 
+
     handleInputChange = e => {
 
         const { name } = e.target
 
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
 
-        this.setState({ [name]: value })
+        this.setState({ [name]: value } )
     }
+
 
     handleSubmit = e => {
 
         e.preventDefault()
-
-        this.state.image = this.state.image ? this.state.image : undefined      // Para poner una imagen por defecto en el nuevo libro sino se especifica una.
-        this.state.status = this.state.status === [] ? this.state.status : "1"      // Pone Status = "1" en caso de no seleccionar nada en la valoración del libro.
 
         this.booksService
             .saveBook(this.state)
@@ -120,6 +119,7 @@ class BookForm extends Component {
         )
     }
 }
+
 
 
 export default BookForm

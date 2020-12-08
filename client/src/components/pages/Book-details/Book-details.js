@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import BooksService from '../../../service/books.service'
 
-import star from './star.png'
-
-import './Book-details.css'
-
+import starGold from './starGold.png'
+import starGrey from './starGrey.png'
 
 //import Loader from './../../shared/Spinner/Loader'
 
 import { Container, Row, Col } from 'react-bootstrap'
+import './Book-details.css'
 
 import { Link } from 'react-router-dom'
 
@@ -26,6 +25,7 @@ class BookDetails extends Component {
         this.booksService = new BooksService()
     }
 
+
     componentDidMount = () => {
 
         const book_id = this.props.match.params.book_id
@@ -36,49 +36,18 @@ class BookDetails extends Component {
             .catch(err => console.log(err))
     }
 
-    // renderSwitch() {
-    //     switch (this.state.book.status) {
-    //         case "3":
-    //             return
-    //             <Row className="star">
-    //                 <img src={star} alt={this.state.book.status} />
-    //                 <img src={star} alt={this.state.book.status} />
-    //                 <img src={star} alt={this.state.book.status} />
-    //             </Row>
-            
-    
-    //         case "1":
-    //             return
-    //             <Row className="star">
-    //                 <img src={star} alt={this.state.book.status} />
-    //             </Row>
-        
-            
-    //         default:
-    //             return
-    //             <h1>nada</h1>
-                
-                                    
-    //         }
-    // }
-    
 
     render() {
 
         return (
 
-
-
             <Container className="book-details">
-
-
 
                 {this.state.book
                     ?
                     <>
                         <h1>{this.state.book.title}</h1>
                         <p>{this.state.book.author}</p>
-
 
                         <Row>
                             <Col md={{ span: 6, offset: 1 }} >
@@ -94,16 +63,16 @@ class BookDetails extends Component {
                                 <p>{this.state.book.description}</p>
 
                                 <hr />
-
-                                {/* <div>
-                                {this.renderSwitch()}
-                                </div> */}
     
                                 {
                                     this.state.book.status === "1" 
                                         ?
                                         <Row className="star">
-                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
                                         </Row>
                                         
                                         :
@@ -111,8 +80,11 @@ class BookDetails extends Component {
                                     this.state.book.status === "2" 
                                         ?
                                         <Row className="star">
-                                            <img src={star} alt={this.state.book.status} />
-                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
                                         </Row>
                                         
                                         :
@@ -120,9 +92,11 @@ class BookDetails extends Component {
                                     this.state.book.status === "3" 
                                         ?
                                         <Row className="star">
-                                            <img src={star} alt={this.state.book.status} />
-                                            <img src={star} alt={this.state.book.status} />
-                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
                                         </Row>
                                         
                                         :
@@ -130,10 +104,11 @@ class BookDetails extends Component {
                                     this.state.book.status === "4" 
                                         ?
                                         <Row className="star">
-                                            <img src={star} alt={this.state.book.status} />
-                                            <img src={star} alt={this.state.book.status} />
-                                            <img src={star} alt={this.state.book.status} />
-                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
                                         </Row>
                                         
                                         :
@@ -141,16 +116,22 @@ class BookDetails extends Component {
                                     this.state.book.status === "5"
                                         ?
                                         <Row className="star">
-                                            <img src={star} alt={this.state.book.status} />
-                                            <img src={star} alt={this.state.book.status} />
-                                            <img src={star} alt={this.state.book.status} />
-                                            <img src={star} alt={this.state.book.status} />
-                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
+                                            <img src={starGold} alt={this.state.book.status} />
                                         </Row>
                         
                                         :
 
-                                        <p>Este libro no tiene valoración</p>
+                                        <Row className="star">
+                                            <img src={starGrey} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
+                                            <img src={starGrey} alt={this.state.book.status} />
+                                        </Row>
                                 }
 
                                 <p>Comentarios: {this.state.book.comments}</p>
