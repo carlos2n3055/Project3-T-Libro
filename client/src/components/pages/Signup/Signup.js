@@ -32,7 +32,7 @@ class Signup extends Component {
             .signup(this.state)
             .then(theLoggedInUser => {
                 this.props.storeUser(theLoggedInUser.data)
-                this.props.history.push('/inicio-sesion')
+                this.props.history.push('/inicio-sesion') // cambiar para redirigir a profile
             })
             .catch(err => console.log(err))
     }

@@ -25,9 +25,11 @@ class Login extends Component {
 
         e.preventDefault()
 
+
         this.authService
             .login(this.state)
             .then(theLoggedInUser => {
+                
                 this.props.storeUser(theLoggedInUser.data)
                 this.props.history.push('/perfil')
             })
