@@ -41,10 +41,8 @@ class BookList extends Component {
 
                     <h1>Listado de libros</h1>
 
-                    {<Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Crear un nuevo libro</Button>}
-
-                    {/* //this.props.loggedUser && */}
-
+                    {this.props.loggedUser && <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Crear un nuevo libro</Button>}
+                    
                     <Row>
                         {
                             this.state.books
@@ -61,7 +59,7 @@ class BookList extends Component {
 
                 <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
                     <Modal.Body>
-                        <BookForm closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} />
+                        <BookForm closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} />
                     </Modal.Body>
                 </Modal>
 

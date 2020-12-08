@@ -28,7 +28,7 @@ router.get('/getOneBook/:book_id', (req, res) => {
 })
 
 router.post('/newBook', (req, res) => {
-
+    console.log(req.body)
     Book
         .create(req.body)
         .then(response => res.json(response))

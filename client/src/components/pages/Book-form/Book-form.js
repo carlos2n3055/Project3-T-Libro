@@ -12,16 +12,16 @@ class BookForm extends Component {
         super(props)
 
         this.state = {
-            title: '',
-            author: '',
-            description: '',
-            image: '',
-            photos: '',
-            status: [],
-            exchange: false,
-            sale: false,
-            price: '',
-            owner: this.props.loggedUser ? this.props.loggedUser._id : ''
+                title: '',
+                author: '',
+                description: '',
+                image: '',
+                photos: '',
+                status: [],
+                exchange: false,
+                sale: false,
+                price: '',
+                owner: this.props.loggedUser ? this.props.loggedUser._id : ''
         }
 
         this.booksService = new BooksService()
@@ -39,6 +39,9 @@ class BookForm extends Component {
     handleSubmit = e => {
 
         e.preventDefault()
+
+        this.state.image = this.state.image ? this.state.image : undefined      // Para poner una imagen por defecto en el nuevo libro sino se especifica una.
+        this.state.status = this.state.status === [] ? this.state.status : "1"      // Pone Status = "1" en caso de no seleccionar nada en la valoración del libro.
 
         this.booksService
             .saveBook(this.state)
@@ -60,7 +63,7 @@ class BookForm extends Component {
                 <Form onSubmit={this.handleSubmit}>
 
                     <Form.Group controlId="title">
-                        <Form.Label>Nombre</Form.Label>
+                        <Form.Label>Titulo</Form.Label>
                         <Form.Control type="text" name="title" value={this.state.title} onChange={this.handleInputChange} />
                     </Form.Group>
 
@@ -74,7 +77,6 @@ class BookForm extends Component {
                         <Form.Control type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
                     </Form.Group>
 
-
                     <Form.Group controlId="image">
                         <Form.Label>Imagen (URL)</Form.Label>
                         <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange} />
@@ -85,10 +87,10 @@ class BookForm extends Component {
                         <Form.Control type="text" name="photos" value={this.state.photos} onChange={this.handleInputChange} />
                     </Form.Group>
 
-
                     <Form.Group controlId="status">
-                        <Form.Label>Valoracion</Form.Label>
-                        <Form.Control type="text" name="status" value={this.state.status} onChange={this.handleInputChange} as="select" >
+                        <Form.Label>Valoración</Form.Label>
+                        <Form.Control type="text" name="status" onChange={this.handleInputChange} as="select" >
+                            <option>Seleccione:</option>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -97,16 +99,13 @@ class BookForm extends Component {
                         </Form.Control>
                     </Form.Group>
 
-
                     <Form.Group controlId="exchange">
                         <Form.Check type="checkbox" name="exchange" checked={this.state.exchange} onChange={this.handleInputChange} label="Intercambio de libro" />
                     </Form.Group>
 
-
                     <Form.Group controlId="sale">
                         <Form.Check type="checkbox" name="sale" checked={this.state.sale} onChange={this.handleInputChange} label="Venta de libro" />
                     </Form.Group>
-
 
                     <Form.Group controlId="price">
                         <Form.Label>Precio</Form.Label>
@@ -121,5 +120,6 @@ class BookForm extends Component {
         )
     }
 }
+
 
 export default BookForm

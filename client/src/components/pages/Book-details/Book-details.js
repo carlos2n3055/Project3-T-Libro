@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import BooksService from '../../../service/books.service'
 
+import star from './star.png'
+
 import './Book-details.css'
 
 
@@ -34,6 +36,33 @@ class BookDetails extends Component {
             .catch(err => console.log(err))
     }
 
+    // renderSwitch() {
+    //     switch (this.state.book.status) {
+    //         case "3":
+    //             return
+    //             <Row className="star">
+    //                 <img src={star} alt={this.state.book.status} />
+    //                 <img src={star} alt={this.state.book.status} />
+    //                 <img src={star} alt={this.state.book.status} />
+    //             </Row>
+            
+    
+    //         case "1":
+    //             return
+    //             <Row className="star">
+    //                 <img src={star} alt={this.state.book.status} />
+    //             </Row>
+        
+            
+    //         default:
+    //             return
+    //             <h1>nada</h1>
+                
+                                    
+    //         }
+    // }
+    
+
     render() {
 
         return (
@@ -47,7 +76,8 @@ class BookDetails extends Component {
                 {this.state.book
                     ?
                     <>
-                        <h1>Detalles {this.state.book.title}</h1>
+                        <h1>{this.state.book.title}</h1>
+                        <p>{this.state.book.author}</p>
 
 
                         <Row>
@@ -59,15 +89,69 @@ class BookDetails extends Component {
 
                             <Col md={4}>
 
-                                <h3>Detalles</h3>
-
-                                <p>{this.state.book.author}</p>
+                                <h3>Descripción</h3>
 
                                 <p>{this.state.book.description}</p>
 
                                 <hr />
 
-                                <p>Valoracion: {this.state.book.status} </p>
+                                {/* <div>
+                                {this.renderSwitch()}
+                                </div> */}
+    
+                                {
+                                    this.state.book.status === "1" 
+                                        ?
+                                        <Row className="star">
+                                            <img src={star} alt={this.state.book.status} />
+                                        </Row>
+                                        
+                                        :
+
+                                    this.state.book.status === "2" 
+                                        ?
+                                        <Row className="star">
+                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={star} alt={this.state.book.status} />
+                                        </Row>
+                                        
+                                        :
+                                            
+                                    this.state.book.status === "3" 
+                                        ?
+                                        <Row className="star">
+                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={star} alt={this.state.book.status} />
+                                        </Row>
+                                        
+                                        :
+                            
+                                    this.state.book.status === "4" 
+                                        ?
+                                        <Row className="star">
+                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={star} alt={this.state.book.status} />
+                                        </Row>
+                                        
+                                        :
+                                                    
+                                    this.state.book.status === "5"
+                                        ?
+                                        <Row className="star">
+                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={star} alt={this.state.book.status} />
+                                            <img src={star} alt={this.state.book.status} />
+                                        </Row>
+                        
+                                        :
+
+                                        <p>Este libro no tiene valoración</p>
+                                }
 
                                 <p>Comentarios: {this.state.book.comments}</p>
 

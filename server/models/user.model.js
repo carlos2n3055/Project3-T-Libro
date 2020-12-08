@@ -17,7 +17,7 @@ const userSchema = new Schema({
 
     img: {
         type: String,
-        default: 'https://blog.netsarang.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'
+        default: 'https://res.cloudinary.com/dc9ajab1i/image/upload/v1607452188/project3/userDefault.png'
     },
 
     email: {
