@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import BooksService from '../../../service/books.service'
+import BookEdit from './../Book-edit/Book-edit'
 
 import starGold from './starGold.png'
 import starGrey from './starGrey.png'
 
 //import Loader from './../../shared/Spinner/Loader'
 
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import './Book-details.css'
 
 import { Link } from 'react-router-dom'
@@ -19,7 +20,8 @@ class BookDetails extends Component {
 
         super()
         this.state = {
-            book: undefined
+            book: undefined,
+            showModal: false
         }
 
         this.booksService = new BooksService()
@@ -37,7 +39,12 @@ class BookDetails extends Component {
     }
 
 
+    handleModal = visible => this.setState({ showModal: visible })
+
+
     render() {
+
+        const book_id = this.props.match.params.book_id
 
         return (
 
@@ -136,6 +143,8 @@ class BookDetails extends Component {
 
                                 <p>Comentarios: {this.state.book.comments}</p>
 
+                                <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Editar</Button>
+                                {/* <Link to={`/libros/editar/${book_id}`} className="btn btn-sm btn-dark">Editar</Link> */}
                                 <Link to="/libros" className="btn btn-sm btn-dark">Intercambiar</Link>
                                 <Link to="/libros" className="btn btn-sm btn-dark">Comprar</Link>
                                 <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
@@ -150,6 +159,11 @@ class BookDetails extends Component {
                     <h1>Error</h1>
                 }
 
+                <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                    <Modal.Body>
+                        <BookEdit closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} book_id={book_id}/>
+                    </Modal.Body>
+                </Modal>
 
 
             </Container>

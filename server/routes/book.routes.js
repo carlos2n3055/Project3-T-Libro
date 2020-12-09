@@ -5,6 +5,10 @@ const mongoose = require('mongoose')
 const Book = require('../models/book.model')
 
 
+// ----- ENDPOINTS BOOKS -----
+
+
+// Muestra la lista de los libros (GET)
 router.get('/getAllBooks', (req, res) => {
 
     Book
@@ -14,6 +18,7 @@ router.get('/getAllBooks', (req, res) => {
 })
 
 
+// Muestra los detalles de un libro (GET)
 router.get('/getOneBook/:book_id', (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
@@ -27,6 +32,8 @@ router.get('/getOneBook/:book_id', (req, res) => {
         .catch(err => res.status(500).json(err))
 })
 
+
+// Guarda en la BBDD un nuevo libro (POST)
 router.post('/newBook', (req, res) => {
     
     Book
@@ -35,6 +42,8 @@ router.post('/newBook', (req, res) => {
         .catch(err => res.status(500).json(err))
 })
 
+
+// Edita en la BBDD un libro (PUT)
 router.put('/editBook/:book_id', (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
@@ -48,6 +57,8 @@ router.put('/editBook/:book_id', (req, res) => {
         .catch(err => res.status(500).json(err))
 })
 
+
+// Borra de la BBDD un libro (DELETE)
 router.delete('/deleteBook/:book_id', (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
@@ -60,6 +71,7 @@ router.delete('/deleteBook/:book_id', (req, res) => {
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
+
 
 
 module.exports = router

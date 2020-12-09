@@ -95,25 +95,13 @@ const users = [
         name: 'Heyling',
         lastname: 'Marquez',
         email: 'heyling@gmail.com',
-        password: '12345'
+        password: '$2b$10$05g191.DJlT0YOl9UrvFc.jnCfbZJ7glexq0gecIv8IVCzxGZmAVK'
     },
     {
         name: 'Carlos',
-        lastname: 'Martin-Salas',
+        lastname: 'Martín-Salas Larena',
         email: 'carlos@gmail.com',
-        password: '12345'
-    },
-    {
-        name: 'Ana',
-        lastname: 'Davila',
-        email: 'ana@gmail.com',
-        password: '12345'
-    },
-    {
-        name: 'Miguel',
-        lastname: 'Perez',
-        email: 'miguel@gmail.com',
-        password: '12345'
+        password: '$2b$10$0bjjb2xIe6OaOMYQbhLhM.GP.X/QZrbpn6BPcM2IuTthE88UuWqeu'
     }
 ]
 

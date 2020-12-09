@@ -60,7 +60,7 @@ class Signup extends Component {
                             </Form.Group>
 
                             <Form.Group controlId="lastname">
-                                <Form.Label>Apellido</Form.Label>
+                                <Form.Label>Apellidos</Form.Label>
                                 <Form.Control type="text" name="lastname" value={this.state.lastname} onChange={this.handleInputChange} />
                             </Form.Group>
 

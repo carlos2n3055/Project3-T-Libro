@@ -6,6 +6,10 @@ const bcrypt = require("bcrypt")
 const User = require("../models/user.model")
 
 
+// ----- ENPOINTS AUTH -----
+
+
+// Añade un usuario en la BBDD (POST)
 router.post('/signup', (req, res) => {
 
     const { name, lastname, email, password } = req.body
@@ -36,12 +40,11 @@ router.post('/signup', (req, res) => {
                 .create({ name, lastname, email, password: hashPass })
                 .then((newUser) => res.status(200).json(newUser))
                 .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
-
-
         })
 })
 
 
+// Iinicio de sesión (POST)
 router.post('/login', (req, res, next) => {
 
     passport.authenticate('local', (err, theUser, failureDetails) => {
@@ -52,7 +55,7 @@ router.post('/login', (req, res, next) => {
         }
 
         if (!theUser) {
-            res.status(401).json(failureDetails);
+            res.status(401).json(failureDetails)
             return
         }
 
@@ -62,13 +65,16 @@ router.post('/login', (req, res, next) => {
 })
 
 
+// Cierra la sesión del usuario (POST)
 router.post('/logout', (req, res) => {
     req.logout()
     res.status(200).json({ message: 'Log out success!' })
 })
 
 
+// Comprueba si hay una sesión iniciada (GET)
 router.get('/loggedin', (req, res) => req.isAuthenticated() ? res.status(200).json(req.user) : res.status(403).json({ message: 'Unauthorized' }))
+
 
 
 module.exports = router

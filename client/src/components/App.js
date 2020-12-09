@@ -9,6 +9,7 @@ import Navigation from './layout/Navigation/Navigation'
 import BookList from './pages/Books-list/Books-list'
 import BookDetails from './pages/Book-details/Book-details'
 import BookForm from './pages/Book-form/Book-form'
+import BookEdit from './pages/Book-edit/Book-edit'
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Profile from './pages/Profile/Profile'
@@ -55,8 +56,9 @@ class App extends Component {
           <Switch>
 
             <Route path="/libros" exact render={() => <BookList loggedUser={this.state.loggedInUser}/>} />
-            <Route path="/libros/:book_id" render={props => <BookDetails {...props} />} />
+            <Route path="/libros/:book_id" exact render={props => <BookDetails {...props} />} />
             <Route path="/crear" render={() => <BookForm />} />
+            <Route path="/libros/editar/:book_id" exact render={props => <BookEdit {...props} />} />
             <Route path="/registro" render={props => <Signup storeUser={this.setTheUser} {...props} />} />
             <Route path="/inicio-sesion" render={props => <Login storeUser={this.setTheUser} {...props} />} />
             <Route path="/perfil" render={() => this.state.loggedInUser ? <Profile user={this.state.loggedInUser} /> : <Redirect to="/inicio-sesion" />} />

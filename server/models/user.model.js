@@ -32,7 +32,7 @@ const userSchema = new Schema({
         trim: true
     },
 
-    book: [
+    books: [
         {
             type: Schema.Types.ObjectId,
             ref: "Book",

@@ -6,6 +6,10 @@ const User = require('../models/user.model')
 const Book = require('../models/book.model')
 
 
+// ----- ENDPOINTS USER -----
+
+
+// Muestra la lista de todos los usuarios (GET)
 router.get('/getAllUsers', (req, res) => {
 
     User
@@ -15,6 +19,7 @@ router.get('/getAllUsers', (req, res) => {
 })
 
 
+// Muestra los datos de un usuario (GET)
 router.get('/getOneUser/:user_id', (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(req.params.user_id)) {
@@ -30,6 +35,7 @@ router.get('/getOneUser/:user_id', (req, res) => {
 })
 
 
+// Actualiza los datos de un usuario en la BBDD (PUT)
 router.put('/editUser/:user_id', (req, res) => {
 
     User
@@ -37,6 +43,7 @@ router.put('/editUser/:user_id', (req, res) => {
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
+
 
 
 module.exports = router
