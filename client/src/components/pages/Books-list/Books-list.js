@@ -71,4 +71,3 @@ class BookList extends Component {
 export default BookList
 
 
-//loggedUser = { this.props.loggedUser }

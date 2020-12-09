@@ -31,9 +31,7 @@ class BookForm extends Component {
     handleInputChange = e => {
 
         const { name } = e.target
-
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
-
         this.setState({ [name]: value } )
     }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import BooksService from '../../../service/books.service'
 import BookEdit from './../Book-edit/Book-edit'
+import CommentForm from './../Comment-form/Comment-form'
 
 import starGold from './starGold.png'
 import starGrey from './starGrey.png'
@@ -141,7 +142,8 @@ class BookDetails extends Component {
                                         </Row>
                                 }
 
-                                <p>Comentarios: {this.state.book.comments}</p>
+                                <CommentForm book_id={book_id} />
+                                 {/* user_id={user_id} */}
 
                                 <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Editar</Button>
                                 {/* <Link to={`/libros/editar/${book_id}`} className="btn btn-sm btn-dark">Editar</Link> */}
@@ -159,11 +161,11 @@ class BookDetails extends Component {
                     <h1>Error</h1>
                 }
 
-                <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                {/* <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
                     <Modal.Body>
                         <BookEdit closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} book_id={book_id}/>
                     </Modal.Body>
-                </Modal>
+                </Modal> */}
 
 
             </Container>
