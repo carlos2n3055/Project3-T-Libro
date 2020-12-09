@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BooksService from '../../../service/books.service'
+import CommentsService from '../../../service/comments.service'
 
 import BookEdit from './../Book-edit/Book-edit'
 import CommentForm from './../Comment-form/Comment-form'
@@ -13,6 +14,7 @@ import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import './Book-details.css'
 
 import { Link } from 'react-router-dom'
+import CommentService from '../../../service/comments.service'
 
 
 
@@ -21,13 +23,15 @@ class BookDetails extends Component {
     constructor(props) {
 
         super(props)
-console.log(props)
+
         this.state = {
             book: undefined,
-            showModal: false
+            showModal: false,
+            comments: []
         }
 
         this.booksService = new BooksService()
+        this.commentsService = new CommentService()
     }
 
 
@@ -39,6 +43,21 @@ console.log(props)
             .getBook(book_id)
             .then(res => this.setState({ book: res.data }))
             .catch(err => console.log(err))
+        
+        this.commentsService
+            .getComments()
+            .then(res => {
+                console.log('RES DATAAAAAAAAA')
+                console.log(res.data)
+                let result = res.data.filter({ book: "5fcd2b6368500f17bec72697" })
+                console.log('CONSOLE LOG DE FILTER')
+                console.log (result)
+                this.setState([{ comments: res.data }])
+                console.log(this.state.comments)
+            })
+    
+            .catch(err => console.log(err))
+        
     }
 
     //   .getBook(book_id)({ book: "book_id"})
@@ -54,7 +73,8 @@ console.log(props)
 
         const book_id = this.props.match.params.book_id
         const user_id = this.props.match.params.user_id
-
+        console.log('000000000000000')
+        console.log(this.state)
         return (
 
             <Container className="book-details">
@@ -71,7 +91,7 @@ console.log(props)
                                 <img src={this.state.book.image} alt={this.state.book.title} />
                                 
                                 <h1>COMENTARIOS:</h1>
-
+                                <p>{this.state.comments.description}</p>
 
 
 

@@ -44,14 +44,19 @@ router.post('/newBook', (req, res) => {
 
 
 // Edita en la BBDD un libro (PUT)
-router.put('/editBook/:book_id', (req, res) => {
+router.put('/editBook', (req, res) => {
+    // router.put('/editBook/:book_id', (req, res) => {
+    console.log('ESTAMOS AQUI en REQ.BODY')
+    console.log(req.body)
+    console.log(req.params)
 
-    if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
+    // if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
+    //     res.status(404).json({ message: 'Invalid ID' })
+    //     return
+    // }
 
     Book
+        // .findByIdAndUpdate(req.params.book_id, req.body.book)
         .findByIdAndUpdate(req.params.book_id, req.body)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))

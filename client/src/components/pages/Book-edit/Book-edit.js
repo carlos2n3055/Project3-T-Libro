@@ -7,12 +7,12 @@ import { Form, Button } from 'react-bootstrap'
 class BookEdit extends Component {
 
     constructor(props) {
+
         super(props)
-        // this.state = {
-        //     book: undefined
-        // }
+
         this.state = {
             book: {
+                _id: '',
                 title: '',
                 author: '',
                 description: '',
@@ -23,9 +23,9 @@ class BookEdit extends Component {
                 sale: false,
                 price: '',
                 owner: this.props.loggedUser ? this.props.loggedUser._id : ''
+                
             }  
         }
-
         this.booksService = new BooksService()
     }
 
@@ -36,11 +36,7 @@ class BookEdit extends Component {
 
         this.booksService
             .getBook(book_id)
-            .then(res => { 
-                 this.setState({ book: res.data })
-          
-            })
-               
+            .then(res => this.setState({ book: res.data }))
             .catch(err => console.log(err))
     }
 
@@ -78,11 +74,14 @@ class BookEdit extends Component {
 
 
     handleSubmit = e => {
-        
+        const prueba = { ...this.state.book }
         e.preventDefault()
 
+        
+        console.log('POR AQUIIIIIIIIII')
+        console.log(prueba)
         this.booksService
-            .editBook(this.state)
+            .editBook(prueba)
             .then(res => {
                 this.props.updateList()
                 this.props.closeModal()
@@ -92,7 +91,8 @@ class BookEdit extends Component {
 
 
     render() {
-
+//  console.log('ESTE ES EL THIS.STATE')
+//         console.log(this.state)
         return (
             
             <>
