@@ -15,7 +15,7 @@ class CommentForm extends Component {
 
             description: '',
             book: this.props.match.params.book_id ? this.props.match.params.book_id : '',  // ESTO FUNCIONAAAAA
-            owner: this.props.loggedUser ? this.props.loggedUser._id : ''
+            user: this.props.loggedUser ? this.props.loggedUser._id : ''
         }
 
         this.commentsService = new CommentsService()

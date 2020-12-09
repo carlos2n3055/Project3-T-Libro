@@ -47,7 +47,7 @@ class BookDetails extends Component {
         this.commentsService
             .getComments()
             .then(res => {
-                let result = res.data.filter(elm => elm.book === book_id)
+                let result = res.data.filter(elm => elm.book._id === book_id)
 
                 console.log('RESULTADO DEL RES.DATA')
                 console.log (res.data)

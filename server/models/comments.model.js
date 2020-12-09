@@ -8,7 +8,7 @@ const commentsSchema = new Schema({
         trim: true
     },
 
-    owner: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: "User"
     },

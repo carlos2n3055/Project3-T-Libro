@@ -13,6 +13,8 @@ router.get('/getAllComments', (req, res) => {
 
     Comments
         .find()
+        .populate('book')
+        .populate('user')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
