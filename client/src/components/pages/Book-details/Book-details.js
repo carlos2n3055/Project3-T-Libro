@@ -47,12 +47,17 @@ class BookDetails extends Component {
         this.commentsService
             .getComments()
             .then(res => {
-                console.log('RES DATAAAAAAAAA')
-                console.log(res.data)
-                let result = res.data.filter({ book: "5fcd2b6368500f17bec72697" })
-                console.log('CONSOLE LOG DE FILTER')
-                console.log (result)
-                this.setState([{ comments: res.data }])
+                let result = res.data.filter(elm => elm.book === book_id)
+
+                console.log('RESULTADO DEL RES.DATA')
+                console.log (res.data)
+
+                console.log('RESULTADO DEL FILTER')
+                console.log(result)
+
+                this.setState({ comments: result[0].description })
+
+                console.log('THIS STATE COMMENTS')
                 console.log(this.state.comments)
             })
     
@@ -91,7 +96,7 @@ class BookDetails extends Component {
                                 <img src={this.state.book.image} alt={this.state.book.title} />
                                 
                                 <h1>COMENTARIOS:</h1>
-                                <p>{this.state.comments.description}</p>
+                                <p>{this.state.comments}</p>
 
 
 

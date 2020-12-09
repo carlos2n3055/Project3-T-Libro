@@ -3,23 +3,21 @@ const Schema = mongoose.Schema
 
 const commentsSchema = new Schema({
 
-description: [
-        {
-            type: String,
-            trim: true
-        }
-    ],
+    description: {
+        type: String,
+        trim: true
+    },
 
-owner: {
-    type: Schema.Types.ObjectId,
-    ref: "User"
-},
- 
-book: {
-    type: Schema.Types.ObjectId,
-    ref: "Book"
-},
-
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
+    
+    book: {
+        type: Schema.Types.ObjectId,
+        ref: "Book"
+    }
+    
 }, {
     timestamps: true
 })
