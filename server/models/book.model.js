@@ -55,6 +55,7 @@ const bookSchema = new Schema({
         ref: "User"
     },
 
+    // SI FUNCIONAN LOS COMMENTS SIN ESTO, BORRARLO AL FINAL
     // comments: [
     //     {
     //     type: Schema.Types.ObjectId,
@@ -65,6 +66,7 @@ const bookSchema = new Schema({
 }, {
     timestamps: true
 })
+
 
 
 const Book = mongoose.model('Book', bookSchema)

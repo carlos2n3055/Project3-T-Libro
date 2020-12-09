@@ -7,8 +7,6 @@ import BookCard from './Book-card'
 import BookForm from './../Book-form/Book-form'
 
 import { Container, Row, Button, Modal } from 'react-bootstrap'
-
-
 import './Book-list.css'
 
 class BookList extends Component {

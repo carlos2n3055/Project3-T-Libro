@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+
 import BooksService from '../../../service/books.service'
 import CommentsService from '../../../service/comments.service'
 
@@ -13,9 +15,6 @@ import starGrey from './starGrey.png'
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import './Book-details.css'
 
-import { Link } from 'react-router-dom'
-import CommentService from '../../../service/comments.service'
-
 
 
 class BookDetails extends Component {
@@ -27,11 +26,11 @@ class BookDetails extends Component {
         this.state = {
             book: undefined,
             showModal: false,
-            comments: []
+            comments: undefined
         }
 
         this.booksService = new BooksService()
-        this.commentsService = new CommentService()
+        this.commentsService = new CommentsService()
     }
 
 
@@ -47,28 +46,23 @@ class BookDetails extends Component {
         this.commentsService
             .getComments()
             .then(res => {
-                let result = res.data.filter(elm => elm.book._id === book_id)
+                let commentsBook = res.data.filter(elm => elm.book._id === book_id)
 
-                console.log('RESULTADO DEL RES.DATA')
+                console.log('DEBAJO DE ESTE COMENTARIO ESTA EL RES.DATA')
                 console.log (res.data)
 
-                console.log('RESULTADO DEL FILTER')
-                console.log(result)
+                console.log('DEBAJO DE ESTE COMENTARIO ESTÁ EL RESULTADO DEL FILTER')
+                console.log(commentsBook)
 
-                this.setState({ comments: result[0].description })
+                this.setState({ comments: commentsBook })
 
-                console.log('THIS STATE COMMENTS')
+                console.log('DEBAJO DE ESTE COMENTARIO ESTÁ EL THIS.STATE.COMMENTS')
                 console.log(this.state.comments)
             })
     
             .catch(err => console.log(err))
         
     }
-
-    //   .getBook(book_id)({ book: "book_id"})
-
-
-
 
 
     handleModal = visible => this.setState({ showModal: visible })
@@ -78,8 +72,10 @@ class BookDetails extends Component {
 
         const book_id = this.props.match.params.book_id
         const user_id = this.props.match.params.user_id
-        console.log('000000000000000')
+
+        console.log('DEBAJO DE ESTE COMENTARIO ESTÁ EL THIS.ESTATE')
         console.log(this.state)
+
         return (
 
             <Container className="book-details">
@@ -96,7 +92,9 @@ class BookDetails extends Component {
                                 <img src={this.state.book.image} alt={this.state.book.title} />
                                 
                                 <h1>COMENTARIOS:</h1>
-                                <p>{this.state.comments}</p>
+                                {/* <p>{this.state.comments}</p> */}
+                                {/* {this.state.comments.map(elm => <div>{elm.description}</div>)} */}
+
 
 
 

@@ -12,9 +12,8 @@ class CommentForm extends Component {
         super(props)
         
         this.state = {
-
             description: '',
-            book: this.props.match.params.book_id ? this.props.match.params.book_id : '',  // ESTO FUNCIONAAAAA
+            book: this.props.match.params.book_id ? this.props.match.params.book_id : '',
             user: this.props.loggedUser ? this.props.loggedUser._id : ''
         }
 
@@ -32,17 +31,17 @@ class CommentForm extends Component {
         this.commentsService
             .saveComment(this.state)
             .then(res => this.setState({ comment: res.data }))
-                // this.props.closeModal()
+                // this.props.closeModal()         // POR SI QUEREMOS HACER UN MODAL CON EL COMENTARIO.
             // })
             .catch(err => console.log(err))
     }
 
 
     render() {
-console.log(this.props)
+
         return (
             <>
-                <h1>Crear comentario</h1>
+                <h4>Crear comentario</h4>
                 <hr />
 
                 <Form onSubmit={this.handleSubmit}>
