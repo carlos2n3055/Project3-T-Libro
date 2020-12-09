@@ -54,10 +54,11 @@ class BookDetails extends Component {
                 console.log('DEBAJO DE ESTE COMENTARIO ESTÁ EL RESULTADO DEL FILTER')
                 console.log(commentsBook)
 
-                this.setState({ comments: commentsBook })
+                this.setState({ comments: commentsBook })  //Actualiza el State con los comments
 
                 console.log('DEBAJO DE ESTE COMENTARIO ESTÁ EL THIS.STATE.COMMENTS')
                 console.log(this.state.comments)
+                console.log(this.state.comments[0].description)
             })
     
             .catch(err => console.log(err))
@@ -73,11 +74,11 @@ class BookDetails extends Component {
         const book_id = this.props.match.params.book_id
         const user_id = this.props.match.params.user_id
 
-        console.log('DEBAJO DE ESTE COMENTARIO ESTÁ EL THIS.ESTATE')
-        console.log(this.state)
+        console.log('DEBAJO DE ESTE COMENTARIO ESTÁ EL THIS.ESTATE.COMMENTS LINEA 78')
+        console.log(this.state.comments)
 
         return (
-
+            
             <Container className="book-details">
 
                 {this.state.book
@@ -92,11 +93,15 @@ class BookDetails extends Component {
                                 <img src={this.state.book.image} alt={this.state.book.title} />
                                 
                                 <h1>COMENTARIOS:</h1>
-                                {/* <p>{this.state.comments}</p> */}
-                                {/* {this.state.comments.map(elm => <div>{elm.description}</div>)} */}
 
-
-
+                                {this.state.comments
+                                    ?
+                                    <>
+                                        {this.state.comments.map(elm => <p>{elm.description}. <small>({elm.user.name})</small></p>)}
+                                    </>
+                                    :
+                                    <p>Sin comentarios</p>
+                                    }
 
                             </Col>
 
