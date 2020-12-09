@@ -10,10 +10,10 @@ description: [
         }
     ],
 
-// owner: {
-//     type: Schema.Types.ObjectId,
-//     ref: "User"
-// },
+owner: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+},
  
 book: {
     type: Schema.Types.ObjectId,

@@ -56,7 +56,7 @@ class App extends Component {
           <Switch>
 
             <Route path="/libros" exact render={() => <BookList loggedUser={this.state.loggedInUser}/>} />
-            <Route path="/libros/:book_id" exact render={props => <BookDetails {...props} />} />
+            <Route path="/libros/:book_id" exact render={props => <BookDetails {...props} loggedUser={this.state.loggedInUser}/>} />
             <Route path="/crear" render={() => <BookForm />} />
             <Route path="/libros/editar/:book_id" exact render={props => <BookEdit {...props} />} />
             <Route path="/registro" render={props => <Signup storeUser={this.setTheUser} {...props} />} />

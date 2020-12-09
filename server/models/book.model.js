@@ -55,12 +55,12 @@ const bookSchema = new Schema({
         ref: "User"
     },
 
-    comments: [
-        {
-            type: String,
-            trim: true
-        }
-    ]
+    // comments: [
+    //     {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Comments"
+    //     }
+    // ]
 
 }, {
     timestamps: true

@@ -10,12 +10,12 @@ class CommentForm extends Component {
     constructor(props) {
         
         super(props)
-
+        
         this.state = {
 
             description: '',
-            book: this.props.book_id ? this.props.book_id : ''  // ESTO FUNCIONAAAAA
-            // owner: this.props.loggedUser ? this.props.loggedUser_id : ''
+            book: this.props.match.params.book_id ? this.props.match.params.book_id : '',  // ESTO FUNCIONAAAAA
+            owner: this.props.loggedUser ? this.props.loggedUser._id : ''
         }
 
         this.commentsService = new CommentsService()
@@ -39,7 +39,7 @@ class CommentForm extends Component {
 
 
     render() {
-
+console.log(this.props)
         return (
             <>
                 <h1>Crear comentario</h1>

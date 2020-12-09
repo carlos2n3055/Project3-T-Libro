@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BooksService from '../../../service/books.service'
+
 import BookEdit from './../Book-edit/Book-edit'
 import CommentForm from './../Comment-form/Comment-form'
 
@@ -17,9 +18,10 @@ import { Link } from 'react-router-dom'
 
 class BookDetails extends Component {
 
-    constructor() {
+    constructor(props) {
 
-        super()
+        super(props)
+console.log(props)
         this.state = {
             book: undefined,
             showModal: false
@@ -39,6 +41,11 @@ class BookDetails extends Component {
             .catch(err => console.log(err))
     }
 
+    //   .getBook(book_id)({ book: "book_id"})
+
+
+
+
 
     handleModal = visible => this.setState({ showModal: visible })
 
@@ -46,6 +53,7 @@ class BookDetails extends Component {
     render() {
 
         const book_id = this.props.match.params.book_id
+        const user_id = this.props.match.params.user_id
 
         return (
 
@@ -61,6 +69,11 @@ class BookDetails extends Component {
                             <Col md={{ span: 6, offset: 1 }} >
 
                                 <img src={this.state.book.image} alt={this.state.book.title} />
+                                
+                                <h1>COMENTARIOS:</h1>
+
+
+
 
                             </Col>
 
@@ -142,8 +155,7 @@ class BookDetails extends Component {
                                         </Row>
                                 }
 
-                                <CommentForm book_id={book_id} />
-                                 {/* user_id={user_id} */}
+                                <CommentForm {...this.props}/>
 
                                 <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Editar</Button>
                                 {/* <Link to={`/libros/editar/${book_id}`} className="btn btn-sm btn-dark">Editar</Link> */}
@@ -161,13 +173,14 @@ class BookDetails extends Component {
                     <h1>Error</h1>
                 }
 
-                {/* <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
                     <Modal.Body>
                         <BookEdit closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} book_id={book_id}/>
                     </Modal.Body>
-                </Modal> */}
+                </Modal>
 
 
+                
             </Container>
         )
     }
