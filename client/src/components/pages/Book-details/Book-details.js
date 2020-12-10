@@ -26,6 +26,7 @@ class BookDetails extends Component {
         this.state = {
             book: undefined,
             showModal: false,
+            showModalComments: false,
             comments: undefined
         }
         this.booksService = new BooksService()
@@ -50,6 +51,18 @@ class BookDetails extends Component {
             })
             .catch(err => console.log(err))
     }
+
+
+    refreshComments = () => {
+
+        this.commentsService
+            .getComments()
+            .then(res => this.setState({ comments: res.data }))
+            .catch(err => console.log(err))
+    }
+
+
+    handleModalComments = visible => this.setState({ showModalComments: visible })
 
 
     handleModal = visible => this.setState({ showModal: visible })
@@ -165,34 +178,32 @@ class BookDetails extends Component {
                                             <img src={starGrey} alt={this.state.book.status} />
                                         </Row>
                                 }
-
-                                <CommentForm {...this.props}/>
-
-                                <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Editar</Button>
                                 
-                                {/* {this.props.loggedUser
+
+                                {this.props.loggedUser ? <Button onClick={() => this.handleModalComments(true)} variant="dark" size="sm">Crear comentario</Button> : <></>}
+                                
+
+                                {this.props.loggedUser
                                     ?
-                                
-                                    {this.state.book.owner === this.props.loggedUser._id
+                                    this.state.book.owner === this.props.loggedUser._id
                                     ?
                                         <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Editar</Button>
                                     :
                                     <></>
-                                    }
-
                                     :
                                     <></>
                                 }
-                                 */}
+                                
 
-                                {this.state.book.exchange === true
+                                {this.state.book.exchange === true && this.props.loggedUser
                                     ?
                                         <Link to="/libros" className="btn btn-sm btn-dark">Intercambiar</Link>
                                     :
                                     <></>
                                 }
 
-                                {this.state.book.sale === true
+                                
+                                {this.state.book.sale === true && this.props.loggedUser
                                     ?
                                         <Link to="/libros" className="btn btn-sm btn-dark">Comprar</Link>
                                     :
@@ -210,7 +221,6 @@ class BookDetails extends Component {
                     :
 
                     <h1>Cargando...</h1>
-
                 }
 
                 <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
@@ -218,7 +228,16 @@ class BookDetails extends Component {
                     <Modal.Body>
                         <BookEdit closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} book_id={book_id} />
                     </Modal.Body>
-                    
+
+                </Modal>
+
+
+                <Modal show={this.state.showModalComments} onHide={() => this.handleModalComments(false)}>
+
+                    <Modal.Body>
+                        <CommentForm {...this.props} closeModal={() => this.handleModalComments(false)} updateListComments={this.refreshComments} />
+                    </Modal.Body>
+                
                 </Modal>
 
             </Container>
