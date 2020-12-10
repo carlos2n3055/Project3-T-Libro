@@ -16,8 +16,7 @@ const books = [
         status: '5',
         exchange: true,
         sale: true,
-        price: 15,
-        comments: 'Excelente libro'
+        price: 15
     },
     {
         title: 'El dominio mental',
@@ -28,8 +27,7 @@ const books = [
         status: '5',
         exchange: true,
         sale: true,
-        price: 12,
-        comments: 'Te abre la mente, es imprescindible, un libro que todo el mundo debería leer.'
+        price: 12
     },
     {
         title: 'Los Futbolisimos',
@@ -40,8 +38,7 @@ const books = [
         status: '4',
         exchange: true,
         sale: true,
-        price: 6,
-        comments: 'Mantiene a los niños super entretenidos'
+        price: 6
     },
     {
         title: 'Patria',
@@ -52,8 +49,7 @@ const books = [
         status: '3',
         exchange: true,
         sale: true,
-        price: 8,
-        comments: 'Un libro para mantener la historia presente'
+        price: 8
     },
     {
         title: 'Pideme lo que quieras',
@@ -64,8 +60,7 @@ const books = [
         status: '3',
         exchange: true,
         sale: true,
-        price: 4,
-        comments: 'Muy bueno'
+        price: 4
     },
     {
         title: 'Espia de Dios',
@@ -76,8 +71,51 @@ const books = [
         status: '4',
         exchange: true,
         sale: true,
-        price: 8,
-        comments: 'Muy bueno'
+        price: 8
+    },
+    {
+        title: 'Cocodrilo ( de la cuna a la luna )',
+        author: 'Antonio Rubio',
+        description: 'La colección De la cuna a la luna está dirigida a niños y niñas de 0 a 3 años de edad, para quienes se han diseñado especialmente estos pictogramas poéticos o poegramas; un término acuñado para designar una nueva modalidad de poesía pictográfica basada en la búsqueda de un ritmo de lectura que ayude a educar el ojo y endulzar el oído, del pequeño lector, como explica Antonio Rubio. Por su parte, Óscar Villán -Premio Nacional de Ilustración 1999- elabora la propuesta estética de estos cinco libros. Su trabajo es totalmente artesanal, con pinceladas y tonalidades de color fácilmente apreciables, hasta el punto de que las texturas pueden casi palparse. La imagen resalta sobre un fondo claro; el dibujo es sencillo y reconocible, con el toque personal de Villán. Colección "De la cuna a la luna". Poema acumulativo para ser leído y recitado, de color en color. Se inicia con un extravagante cocodrilo verde verde verde, que se sube en un baúl, que se sube en un castillo, que se sube...',
+        image: 'https://imagessl1.casadellibro.com/a/l/t7/11/9788493378011.jpg',
+        photos: '',
+        status: '4',
+        exchange: true,
+        sale: false,
+        price: 0
+    },
+    {
+        title: 'Enamorate de los hermanos Di Bianco',
+        author: 'Mercedes Ron',
+        description: 'Kamila Hamilton vuelve a tener a sus dos mejores amigos en su vida. El problema es que Taylor y Thiago Di Bianco ya no son simples amigos. Ahora son mucho más. Thiago y sus ojos verdes la dejan sin respiración. Taylor y sus ojos azules jamás la decepcionarán. Los hermanos han crecido y junto a ellos lo que siente Kamila. Y ahora que su vida se desmorona por momentos, su familia se desintegra y sus amigas le dan la espalda, los necesitará más que nunca... a los dos. ¿Cómo reaccionará Kami cuando Thiago bese otros labios? ¿Será capaz de proteger a Taylor de sus propios sentimientos? ¿Cuánto tiempo más podrá mantener el pasado bajo llave?',
+        image: 'https://imagessl4.casadellibro.com/a/l/t5/14/9788418038914.jpg',
+        photos: '',
+        status: '4',
+        exchange: false,
+        sale: true,
+        price: 5
+    },
+    {
+        title: 'Destino (Saga de almas oscuras)',
+        author: 'Maria Martinez',
+        description: 'Primera entrega de la serie «Almas Oscuras», la trilogía vampírica del momento que te enamorará. Desde hace siglos, vampiros y licántropos mantienen un pacto que protege a los humanos de un mundo de peligro y oscuridad.William es uno de ellos, un vampiro temible y letal. El único de su especie inmune al sol. Ese don lo convierte en un ser especial. En la esperanza que su raza necesita. En la llave que los renegados persiguen para liberarse de su maldición.Un pacto. Un secreto.Una venganza. No es fácil librarse de las tinieblas cuando forman parte de tu alma.',
+        image: 'https://imagessl2.casadellibro.com/a/l/t5/52/9788417421052.jpg',
+        photos: '',
+        status: '4',
+        exchange: true,
+        sale: true,
+        price: 8
+    },
+    {
+        title: 'Padre Rico, Padre Pobre',
+        author: 'Robert T Kiyosaki',
+        description: 'Padre rico, padre pobre te ayudará a... derribar el mito de que necesitas tener ingresos elevados para hacerte rico... desafiar la creencia de que tu casa es una inversión... demostrar a los padres por qué no deben confiar en el sistema escolar para que sus hijos aprendan a manejar el dinero... definir de una vez y para siempre qué es una inversión, y qué es una obligación... saber qué debes enseñar a tus hijos sobre el dinero para que tengan éxito financiero en el futuro. Robert T. Kiyosaki ha transformado radicalmente la forma en que millones de personas alrededor del mundo perciben el concepto del dinero. Con perspectivas que contradicen el conocimiento convencional, Robert, también conocido como el «maestro» millonario, se ha ganado una gran reputación por hablar claro, ser irreverente y tener valor. Es reconocido en todo el mundo como un defensor apasionado de la educación financiera.',
+        image: 'https://imagessl5.casadellibro.com/a/l/t5/25/9788466332125.jpg',
+        photos: '',
+        status: '4',
+        exchange: true,
+        sale: false,
+        price: 0
     }
 ]
 
