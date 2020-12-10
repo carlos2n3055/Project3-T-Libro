@@ -168,22 +168,20 @@ class BookDetails extends Component {
 
                                 <CommentForm {...this.props}/>
 
-                                <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Editar</Button>
+                                {/* <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Editar</Button> */}
                                 
-                                {/* {this.props.loggedUser
+                                {this.props.loggedUser
                                     ?
                                 
-                                    {this.state.book.owner === this.props.loggedUser._id
+                                    this.state.book.owner === this.props.loggedUser._id
                                     ?
                                         <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Editar</Button>
                                     :
                                     <></>
-                                    }
-
                                     :
                                     <></>
                                 }
-                                 */}
+                                
 
                                 {this.state.book.exchange === true
                                     ?
