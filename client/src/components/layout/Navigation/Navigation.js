@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { Navbar, Nav } from 'react-bootstrap'
 import './Navigation.css'
-import logo from './logo.jpg'
+import logo from './logo.png'
 
 import AuthService from './../../../service/auth.service'
 
@@ -39,10 +39,9 @@ class Navigation extends Component {
                         <img
                             alt="Logotipo"
                             src={logo}
-                            width="30"
-                            height="30"
+                            height="40"
                             className="d-inline-block align-top"
-                        />{' '}T-LIBRO
+                        />
 
                     </Navbar.Brand>
 
