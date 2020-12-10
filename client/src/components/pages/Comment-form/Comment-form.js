@@ -28,7 +28,10 @@ class CommentForm extends Component {
 
         this.commentsService
             .saveComment(this.state)
-            .then(res => this.setState({ comment: res.data }))
+            .then(res => { 
+                this.setState({ comment: res.data })
+                this.props.closeModal()
+            })
             .catch(err => console.log(err))
     }
 
