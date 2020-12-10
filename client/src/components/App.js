@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Navigation from './layout/Navigation/Navigation'
+import Footer from './layout/Footer/Footer'
 import BookList from './pages/Books-list/Books-list'
 import BookDetails from './pages/Book-details/Book-details'
 import BookForm from './pages/Book-form/Book-form'
@@ -63,6 +64,8 @@ class App extends Component {
           </Switch>
 
         </main>
+
+        <Footer />
 
       </>
 

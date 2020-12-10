@@ -1,0 +1,20 @@
+footer {
+    background-color: #2c698d;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin: auto 20px;
+    color: #98B5C7;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #A5E9E9;
+
+}
