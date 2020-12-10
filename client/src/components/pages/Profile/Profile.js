@@ -2,7 +2,6 @@ import { Container } from 'react-bootstrap'
 
 
 const Profile = ({ user }) => {
-    // console.log(user)
 
     return (
 
@@ -12,9 +11,10 @@ const Profile = ({ user }) => {
 
             <img src={user.img} />
 
-
         </Container>
     )
 }
+
+
 
 export default Profile

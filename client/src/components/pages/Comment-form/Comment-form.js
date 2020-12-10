@@ -5,18 +5,16 @@ import CommentsService from '../../../service/comments.service'
 import { Form, Button } from 'react-bootstrap'
 
 
+
 class CommentForm extends Component {
 
     constructor(props) {
-        
         super(props)
-        
         this.state = {
             description: '',
             book: this.props.match.params.book_id ? this.props.match.params.book_id : '',
             user: this.props.loggedUser ? this.props.loggedUser._id : ''
         }
-
         this.commentsService = new CommentsService()
     }
 
@@ -31,8 +29,6 @@ class CommentForm extends Component {
         this.commentsService
             .saveComment(this.state)
             .then(res => this.setState({ comment: res.data }))
-                // this.props.closeModal()         // POR SI QUEREMOS HACER UN MODAL CON EL COMENTARIO.
-            // })
             .catch(err => console.log(err))
     }
 
@@ -42,6 +38,7 @@ class CommentForm extends Component {
         return (
             <>
                 <h4>Crear comentario</h4>
+
                 <hr />
 
                 <Form onSubmit={this.handleSubmit}>

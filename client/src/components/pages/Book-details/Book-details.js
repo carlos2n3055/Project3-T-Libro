@@ -10,7 +10,7 @@ import CommentForm from './../Comment-form/Comment-form'
 import starGold from './starGold.png'
 import starGrey from './starGrey.png'
 
-//import Loader from './../../shared/Spinner/Loader'
+//import Loader from './../../shared/Spinner/Loader'  // SI DA TIEMPO PONER SPINNER
 
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import './Book-details.css'
@@ -28,7 +28,6 @@ class BookDetails extends Component {
             showModal: false,
             comments: undefined
         }
-
         this.booksService = new BooksService()
         this.commentsService = new CommentsService()
     }
@@ -47,22 +46,9 @@ class BookDetails extends Component {
             .getComments()
             .then(res => {
                 let commentsBook = res.data.filter(elm => elm.book._id === book_id)
-
-                console.log('DEBAJO DE ESTE COMENTARIO ESTA EL RES.DATA')
-                console.log (res.data)
-
-                console.log('DEBAJO DE ESTE COMENTARIO ESTÁ EL RESULTADO DEL FILTER')
-                console.log(commentsBook)
-
-                this.setState({ comments: commentsBook })  //Actualiza el State con los comments
-
-                console.log('DEBAJO DE ESTE COMENTARIO ESTÁ EL THIS.STATE.COMMENTS')
-                console.log(this.state.comments)
-                console.log(this.state.comments[0].description)
+                this.setState({ comments: commentsBook })
             })
-    
             .catch(err => console.log(err))
-        
     }
 
 
@@ -72,10 +58,6 @@ class BookDetails extends Component {
     render() {
 
         const book_id = this.props.match.params.book_id
-        const user_id = this.props.match.params.user_id
-
-        console.log('DEBAJO DE ESTE COMENTARIO ESTÁ EL THIS.ESTATE.COMMENTS LINEA 78')
-        console.log(this.state.comments)
 
         return (
             
@@ -88,6 +70,7 @@ class BookDetails extends Component {
                         <p>{this.state.book.author}</p>
 
                         <Row>
+
                             <Col md={{ span: 6, offset: 1 }} >
 
                                 <img src={this.state.book.image} alt={this.state.book.title} />
@@ -186,32 +169,63 @@ class BookDetails extends Component {
                                 <CommentForm {...this.props}/>
 
                                 <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Editar</Button>
-                                {/* <Link to={`/libros/editar/${book_id}`} className="btn btn-sm btn-dark">Editar</Link> */}
-                                <Link to="/libros" className="btn btn-sm btn-dark">Intercambiar</Link>
-                                <Link to="/libros" className="btn btn-sm btn-dark">Comprar</Link>
-                                <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
+                                
+                                {/* {this.props.loggedUser
+                                    ?
+                                
+                                    {this.state.book.owner === this.props.loggedUser._id
+                                    ?
+                                        <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Editar</Button>
+                                    :
+                                    <></>
+                                    }
 
+                                    :
+                                    <></>
+                                }
+                                 */}
+
+                                {this.state.book.exchange === true
+                                    ?
+                                        <Link to="/libros" className="btn btn-sm btn-dark">Intercambiar</Link>
+                                    :
+                                    <></>
+                                }
+
+                                {this.state.book.sale === true
+                                    ?
+                                        <Link to="/libros" className="btn btn-sm btn-dark">Comprar</Link>
+                                    :
+                                    <></>
+                                }
+                                
+                                <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
+                                
                             </Col>
 
                         </Row>
+
                     </>
 
                     :
 
-                    <h1>Error</h1>
+                    <h1>Cargando...</h1>
+
                 }
 
                 <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                    
                     <Modal.Body>
-                        <BookEdit closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} book_id={book_id}/>
+                        <BookEdit closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} book_id={book_id} />
                     </Modal.Body>
+                    
                 </Modal>
 
-
-                
             </Container>
         )
     }
 }
+
+
 
 export default BookDetails

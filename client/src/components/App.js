@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css';
+import './App.css'
 
 import React, { Component } from 'react'
 
@@ -14,8 +14,6 @@ import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Profile from './pages/Profile/Profile'
 
-
-
 import AuthServices from './../service/auth.service'
 
 
@@ -27,8 +25,8 @@ class App extends Component {
     super()
     this.state = { loggedInUser: undefined }
     this.authServices = new AuthServices
-
   }
+
 
   componentDidMount = () => {
 
@@ -38,10 +36,11 @@ class App extends Component {
       .catch(err => this.setTheUser(undefined))
   }
 
+
   setTheUser = user => this.setState({ loggedInUser: user }, () => console.log('El nuevo estado de App es:', this.state))
 
-  render() {
 
+  render() {
 
     return (
 
@@ -49,14 +48,12 @@ class App extends Component {
 
         <Navigation storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />
 
-
-
         <main>
 
           <Switch>
 
-            <Route path="/libros" exact render={() => <BookList loggedUser={this.state.loggedInUser}/>} />
-            <Route path="/libros/:book_id" exact render={props => <BookDetails {...props} loggedUser={this.state.loggedInUser}/>} />
+            <Route path="/libros" exact render={() => <BookList loggedUser={this.state.loggedInUser} />} />
+            <Route path="/libros/:book_id" exact render={props => <BookDetails {...props} loggedUser={this.state.loggedInUser} />} />
             <Route path="/crear" render={() => <BookForm />} />
             <Route path="/libros/editar/:book_id" exact render={props => <BookEdit {...props} />} />
             <Route path="/registro" render={props => <Signup storeUser={this.setTheUser} {...props} />} />
@@ -69,10 +66,12 @@ class App extends Component {
 
       </>
 
-    );
+    )
+
   }
+
 }
 
-export default App;
 
 
+export default App

@@ -5,6 +5,7 @@ import BooksService from '../../../service/books.service'
 import { Form, Button } from 'react-bootstrap'
 
 
+
 class BookForm extends Component {
 
     constructor(props) {
@@ -15,15 +16,14 @@ class BookForm extends Component {
                 title: '',
                 author: '',
                 description: '',
-                image: undefined,       // Para poner una imagen por defecto en el nuevo libro sino se especifica una.
+                image: undefined,
                 photos: '',
-                status: '1',            // Pone por defecto Status = "1" en caso de no seleccionar nada en la valoración del libro.
+                status: '1',
                 exchange: false,
                 sale: false,
                 price: '',
                 owner: this.props.loggedUser ? this.props.loggedUser._id : ''
         }
-
         this.booksService = new BooksService()
     }
 
@@ -55,6 +55,7 @@ class BookForm extends Component {
         return (
             <>
                 <h1>Crear nuevo libro</h1>
+
                 <hr />
 
                 <Form onSubmit={this.handleSubmit}>

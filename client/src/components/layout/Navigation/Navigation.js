@@ -6,8 +6,8 @@ import logo from './logo.jpg'
 import AuthService from './../../../service/auth.service'
 
 
-class Navigation extends Component {
 
+class Navigation extends Component {
 
     constructor() {
 
@@ -15,12 +15,14 @@ class Navigation extends Component {
         this.authService = new AuthService()
     }
 
+
     logOut = () => {
         this.authService
             .logout()
             .then(res => this.props.storeUser(undefined))
             .catch(err => console.log(err))
     }
+
 
     render() {
 
@@ -73,7 +75,6 @@ class Navigation extends Component {
                                     </Link>
 
                                 </>
-
                         }
 
                         <Link to="/perfil">
@@ -86,10 +87,11 @@ class Navigation extends Component {
 
                 </Navbar.Collapse>
 
-            </Navbar >
+            </Navbar>
         )
     }
 }
+
 
 
 export default Navigation

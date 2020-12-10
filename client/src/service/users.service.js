@@ -12,5 +12,4 @@ export default class UserService {
     getUsers = () => this.apiHandler.get('/getAllUsers')
     getUser = userId => this.apiHandler.get(`/getOneUser/${userId}`)
     editUser = userId => this.apiHandler.put(`/editUser/${userId}`)
-
 }

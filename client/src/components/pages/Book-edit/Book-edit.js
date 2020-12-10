@@ -4,6 +4,7 @@ import BooksService from '../../../service/books.service'
 import { Form, Button } from 'react-bootstrap'
 
 
+
 class BookEdit extends Component {
 
     constructor(props) {
@@ -12,18 +13,15 @@ class BookEdit extends Component {
 
         this.state = {
             book: {
-                _id: '',
                 title: '',
                 author: '',
                 description: '',
-                image: undefined,       // Para poner una imagen por defecto en el nuevo libro sino se especifica una.
+                image: undefined,
                 photos: '',
-                status: '1',            // Pone por defecto Status = "1" en caso de no seleccionar nada en la valoración del libro.
+                status: '1',
                 exchange: false,
                 sale: false,
-                price: '',
-                owner: this.props.loggedUser ? this.props.loggedUser._id : ''
-                
+                price: ''
             }  
         }
         this.booksService = new BooksService()
@@ -41,58 +39,27 @@ class BookEdit extends Component {
     }
 
 
-     handleInputChange = e => {
-        console.log(e.target)
+    handleInputChange = e => {
+
         const { name } = e.target
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
-        this.setState({ book: { [name]: value } } )
+        this.setState({ book: { ...this.state.book, [name]: value }})
     }
 
 
-    // componentDidUpdate(prevProps) {
-    //     // if (Object.keys(prevProps.book).length <= 0 && Object.keys(this.props.book).length > 0) {
-    //     //     const book = this.props.book.filter(book => book._id == this.props.match.params.id)[0]
-    //     if (this.props.book !== prevProps.book) {
-    //         this.setState(this.props.book)
-    //     }
-    //         // this.setState({
-    //         //     id: book._id,
-    //         //     title: book.title,
-    //         //     author: book.author,
-    //         //     description: book.description,
-    //         //     image: book.image,
-    //         //     photos: book.photos,
-    //         //     status: book.status,
-    //         //     exchange: book.exchange,
-    //         //     sale: book.sale,
-    //         //     price: book.price,
-    //         //     owner: book.owner,
-    //         //     book
-    //         // })
-    //     // }
-    // }
-
-
     handleSubmit = e => {
-        const prueba = { ...this.state.book }
+    
         e.preventDefault()
 
-        
-        console.log('POR AQUIIIIIIIIII')
-        console.log(prueba)
         this.booksService
-            .editBook(prueba)
-            .then(res => {
-                this.props.updateList()
-                this.props.closeModal()
-            })
+            .editBook(this.props.book_id, this.state.book)
+            .then(res => this.props.closeModal())
             .catch(err => console.log(err))
     }
 
 
     render() {
-//  console.log('ESTE ES EL THIS.STATE')
-//         console.log(this.state)
+
         return (
             
             <>
@@ -139,8 +106,8 @@ class BookEdit extends Component {
                                         <option>3</option>
                                         <option>4</option>
                                         <option>5</option>
-                                </Form.Control>
-                                <p><small>Valoración actual: {this.state.book.status}</small></p>
+                                    </Form.Control>
+                                    <p><small>Valoración actual: {this.state.book.status}</small></p>
                                 </Form.Group>
 
                                 <Form.Group controlId="exchange">
@@ -158,17 +125,15 @@ class BookEdit extends Component {
 
                                 <Button variant="dark" type="submit">Guardar cambios</Button>
 
-                            </Form>
+                        </Form>
 
                     </>
 
                     :
 
-                    <h1>error</h1>
+                    <h1>Cargando...</h1>
                 }
             </>
-                
-            
         )
     }
 }

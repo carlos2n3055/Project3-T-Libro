@@ -53,15 +53,7 @@ const bookSchema = new Schema({
     owner: {
         type: Schema.Types.ObjectId,
         ref: "User"
-    },
-
-    // SI FUNCIONAN LOS COMMENTS SIN ESTO, BORRARLO AL FINAL
-    // comments: [
-    //     {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "Comments"
-    //     }
-    // ]
+    }
 
 }, {
     timestamps: true

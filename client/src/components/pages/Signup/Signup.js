@@ -4,12 +4,11 @@ import AuthService from './../../../service/auth.service'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
 
+
 class Signup extends Component {
 
     constructor() {
-
         super()
-
         this.state = {
             name: '',
             lastname: '',
@@ -17,12 +16,12 @@ class Signup extends Component {
             email: '',
             password: ''
         }
-
         this.authService = new AuthService()
-
     }
 
+
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
+
 
     handleSubmit = e => {
 
@@ -30,10 +29,7 @@ class Signup extends Component {
 
         this.authService
             .signup(this.state)
-            .then(() => {
-
-                this.props.history.push('/inicio-sesion')
-            })
+            .then(() => this.props.history.push('/inicio-sesion'))
             .catch(err => console.log(err))
     }
 
@@ -86,5 +82,7 @@ class Signup extends Component {
         )
     }
 }
+
+
 
 export default Signup

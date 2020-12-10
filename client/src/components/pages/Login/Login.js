@@ -8,18 +8,17 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 class Login extends Component {
 
     constructor() {
-
         super()
-
         this.state = {
             email: '',
             password: ''
         }
-
         this.authService = new AuthService()
     }
 
+
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
+
 
     handleSubmit = e => {
 
@@ -46,6 +45,7 @@ class Login extends Component {
                     <Col md={{ span: 6, offset: 3 }}>
 
                         <h1>Inicio de sesión</h1>
+
                         <hr />
 
                         <Form onSubmit={this.handleSubmit}>
@@ -72,5 +72,7 @@ class Login extends Component {
         )
     }
 }
+
+
 
 export default Login

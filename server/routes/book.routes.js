@@ -18,6 +18,16 @@ router.get('/getAllBooks', (req, res) => {
 })
 
 
+// Guarda en la BBDD un nuevo libro (POST)
+router.post('/newBook', (req, res) => {
+    
+    Book
+        .create(req.body)
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
+
 // Muestra los detalles de un libro (GET)
 router.get('/getOneBook/:book_id', (req, res) => {
 
@@ -33,31 +43,18 @@ router.get('/getOneBook/:book_id', (req, res) => {
 })
 
 
-// Guarda en la BBDD un nuevo libro (POST)
-router.post('/newBook', (req, res) => {
-    
-    Book
-        .create(req.body)
-        .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
-})
-
-
 // Edita en la BBDD un libro (PUT)
-router.put('/editBook', (req, res) => {
-    // router.put('/editBook/:book_id', (req, res) => {
-    console.log('ESTAMOS AQUI en REQ.BODY')
-    console.log(req.body)
-    console.log(req.params)
+router.put('/editBook/:book_id', (req, res) => {
 
-    // if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
-    //     res.status(404).json({ message: 'Invalid ID' })
-    //     return
-    // }
+    const id = req.params.book_id
+
+    if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
+        res.status(404).json({ message: 'Invalid ID' })
+        return
+    }
 
     Book
-        // .findByIdAndUpdate(req.params.book_id, req.body.book)
-        .findByIdAndUpdate(req.params.book_id, req.body)
+        .findByIdAndUpdate(id, req.body)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
