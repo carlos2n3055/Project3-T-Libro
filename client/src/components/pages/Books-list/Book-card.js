@@ -13,10 +13,6 @@ const BookCard = ({ title, author, image, _id, owner }) => {
 
             <Card className="book-card text-center">
 
-                {/* <Link to={`/libros/${_id}`}>
-                    <Card.Img variant="top" src={image} />
-                </Link> */}
-
                 <Card.Img variant="top" src={image} />
 
                 <Card.Body>
