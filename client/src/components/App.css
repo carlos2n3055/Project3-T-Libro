@@ -1,4 +1,24 @@
 html {
     min-height: 100%;
     position: relative;
+    background-color: #e3f6f5;
+}
+
+main {
+    background-color: #e3f6f5;
+}
+
+
+.paddingTop70 {
+    padding-top: 70px;
+}
+
+
+.btn {
+    background-color: #272643;
+    color: white;
+}
+
+.btn:hover {
+    color: white;
 }

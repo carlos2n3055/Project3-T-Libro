@@ -1,6 +1,8 @@
-import { Col, Card, Button, ButtonGroup } from 'react-bootstrap'
-
 import { Link } from 'react-router-dom'
+
+import { Col, Card, Button, ButtonGroup } from 'react-bootstrap'
+import './Book-card.css'
+
 
 const BookCard = ({ title, author, image, _id, owner }) => {
 
@@ -9,7 +11,11 @@ const BookCard = ({ title, author, image, _id, owner }) => {
 
         <Col lg={4}>
 
-            <Card className="book-card">
+            <Card className="book-card text-center">
+
+                {/* <Link to={`/libros/${_id}`}>
+                    <Card.Img variant="top" src={image} />
+                </Link> */}
 
                 <Card.Img variant="top" src={image} />
 
@@ -19,8 +25,8 @@ const BookCard = ({ title, author, image, _id, owner }) => {
                     <Card.Subtitle>{author}</Card.Subtitle>
 
                     {
-                        <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
-                            <Link className="btn btn-dark" to={`/libros/${_id}`}>Ver detalles</Link>
+                        <ButtonGroup>
+                            <Link className="btn" to={`/libros/${_id}`}>Ver detalles</Link>
                         </ButtonGroup>
                     }
 

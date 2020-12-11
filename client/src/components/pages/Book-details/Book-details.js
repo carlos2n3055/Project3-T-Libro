@@ -74,7 +74,7 @@ class BookDetails extends Component {
 
         return (
             
-            <Container className="book-details">
+            <Container className="book-details paddingTop70">
 
                 {this.state.book
                     ?
@@ -88,7 +88,7 @@ class BookDetails extends Component {
 
                                 <img src={this.state.book.image} alt={this.state.book.title} />
                                 
-                                <h1>COMENTARIOS:</h1>
+                                <h1 className="paddingTop70">COMENTARIOS:</h1>
 
                                 {this.state.comments
                                     ?
@@ -180,14 +180,14 @@ class BookDetails extends Component {
                                 }
                                 
 
-                                {this.props.loggedUser ? <Button onClick={() => this.handleModalComments(true)} variant="dark" size="sm">Crear comentario</Button> : <></>}
+                                {this.props.loggedUser ? <Button onClick={() => this.handleModalComments(true)} variant="#272643" size="sm">Crear comentario</Button> : <></>}
                                 
 
                                 {this.props.loggedUser
                                     ?
                                     this.state.book.owner === this.props.loggedUser._id
                                     ?
-                                        <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Editar</Button>
+                                        <Button onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar</Button>
                                     :
                                     <></>
                                     :
@@ -197,7 +197,7 @@ class BookDetails extends Component {
 
                                 {this.state.book.exchange === true && this.props.loggedUser
                                     ?
-                                        <Link to="/libros" className="btn btn-sm btn-dark">Intercambiar</Link>
+                                        <Link to="/libros" className="btn btn-sm">Intercambiar</Link>
                                     :
                                     <></>
                                 }
@@ -205,12 +205,12 @@ class BookDetails extends Component {
                                 
                                 {this.state.book.sale === true && this.props.loggedUser
                                     ?
-                                        <Link to="/libros" className="btn btn-sm btn-dark">Comprar</Link>
+                                        <Link to="/libros" className="btn btn-sm">Comprar</Link>
                                     :
                                     <></>
                                 }
                                 
-                                <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
+                                <Link to="/libros" className="btn btn-sm">Volver</Link>
                                 
                             </Col>
 

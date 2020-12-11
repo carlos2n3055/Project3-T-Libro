@@ -110,7 +110,7 @@ class BookForm extends Component {
                         <Form.Control type="number" name="price" value={this.state.price} onChange={this.handleInputChange} />
                     </Form.Group>
 
-                    <Button variant="dark" type="submit">Crear un nuevo libro</Button>
+                    <Button variant="#272643" type="submit">Crear un nuevo libro</Button>
 
                 </Form>
 

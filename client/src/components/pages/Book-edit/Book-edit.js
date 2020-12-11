@@ -123,7 +123,7 @@ class BookEdit extends Component {
                                     <Form.Control type="number" name="price" value={this.state.book.price} onChange={this.handleInputChange} />
                                 </Form.Group>
 
-                                <Button variant="dark" type="submit">Guardar cambios</Button>
+                                <Button variant="#272643" type="submit">Guardar cambios</Button>
 
                         </Form>
 

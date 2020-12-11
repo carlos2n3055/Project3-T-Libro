@@ -1,0 +1,19 @@
+.book-card {
+    margin-bottom: 30px;
+    align-items: center;    
+}
+
+.book-card img {
+    width: 80%;
+    height: 390px;
+    margin-top: 20px;
+    object-fit: cover;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px 6px #A4BCC2;
+}
+
+.book-card .btn {
+    display: block;
+    margin-top: 15px;
+}

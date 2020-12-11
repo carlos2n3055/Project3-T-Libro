@@ -5,7 +5,7 @@ const Profile = ({ user }) => {
 
     return (
 
-        <Container>
+        <Container className="paddingTop70">
 
             <h1>¡Bienvenid@, {user.name} {user.lastname}!</h1>
 

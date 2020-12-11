@@ -1,4 +1,4 @@
-.book-card {
+/* .book-card {
     margin-bottom: 30px;
 }
 
@@ -6,4 +6,11 @@
     width: 50%;
     height: 250px;
     object-fit: cover;
+} */
+
+
+.bookList {
+    background-color: #e3f6f5;
+    padding-bottom: 35px;
+    margin: 0;
 }
