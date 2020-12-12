@@ -17,8 +17,7 @@ class BookEdit extends Component {
                 author: '',
                 description: '',
                 image: undefined,
-                photos: '',
-                status: '1',
+                rating: '1',
                 exchange: false,
                 sale: false,
                 price: ''
@@ -87,19 +86,18 @@ class BookEdit extends Component {
                                     <Form.Control type="text" name="description" value={this.state.book.description} onChange={this.handleInputChange} />
                                 </Form.Group>
 
-                                <Form.Group controlId="image">
+                                {/* <Form.Group controlId="image">
                                     <Form.Label>Imagen (URL)</Form.Label>
                                     <Form.Control type="text" name="image" value={this.state.book.image} onChange={this.handleInputChange} />
+                                </Form.Group> */}
+                            
+                                <Form.Group controlId="image">
+                                    <Form.File id="exampleFormControlFile1" label="Imagen" />
                                 </Form.Group>
 
-                                <Form.Group controlId="photos">
-                                    <Form.Label>Fotos</Form.Label>
-                                    <Form.Control type="text" name="photos" value={this.state.book.photos} onChange={this.handleInputChange} />
-                                </Form.Group>
-
-                                <Form.Group controlId="status">
+                                <Form.Group controlId="rating">
                                     <Form.Label>Valoración</Form.Label>
-                                    <Form.Control type="text" name="status" onChange={this.handleInputChange} as="select" >
+                                    <Form.Control type="text" name="rating" onChange={this.handleInputChange} as="select" >
                                         <option>Seleccione:</option>
                                         <option>1</option>
                                         <option>2</option>
@@ -107,7 +105,7 @@ class BookEdit extends Component {
                                         <option>4</option>
                                         <option>5</option>
                                     </Form.Control>
-                                    <p><small>Valoración actual: {this.state.book.status}</small></p>
+                                    <p><small>Valoración actual: {this.state.book.rating}</small></p>
                                 </Form.Group>
 
                                 <Form.Group controlId="exchange">

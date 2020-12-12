@@ -1,3 +1,35 @@
 .star img {
-    width: 10%;
+    width: 6%;
+}
+
+
+.star {
+    margin-top: 17px;
+}
+
+.bookImg {
+    width: 400px;
+    height: 500px;
+}
+
+
+.detailsAuthor {
+    text-align: center;
+}
+
+
+.detailsTitle {
+    text-align: center;
+    padding-top: 25px;
+}
+
+
+.btnDetails {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.btnSeparation {
+    margin-bottom: 30px;
 }

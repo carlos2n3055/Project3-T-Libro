@@ -4,6 +4,11 @@ html {
     background-color: #e3f6f5;
 }
 
+body {
+    font-family: 'Monserrat', sans-serif;
+    font: lighter;
+}
+
 main {
     background-color: #e3f6f5;
 }
