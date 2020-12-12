@@ -17,7 +17,6 @@ class BookForm extends Component {
                 author: '',
                 description: '',
                 image: undefined,
-                photos: '',
                 status: '1',
                 exchange: false,
                 sale: false,
@@ -80,11 +79,6 @@ class BookForm extends Component {
                         <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange} />
                     </Form.Group>
 
-                    <Form.Group controlId="photos">
-                        <Form.Label>Fotos</Form.Label>
-                        <Form.Control type="text" name="photos" value={this.state.photos} onChange={this.handleInputChange} />
-                    </Form.Group>
-
                     <Form.Group controlId="status">
                         <Form.Label>Valoración</Form.Label>
                         <Form.Control type="text" name="status" onChange={this.handleInputChange} as="select" >
@@ -110,7 +104,7 @@ class BookForm extends Component {
                         <Form.Control type="number" name="price" value={this.state.price} onChange={this.handleInputChange} />
                     </Form.Group>
 
-                    <Button variant="dark" type="submit">Crear un nuevo libro</Button>
+                    <Button variant="#272643" type="submit">Crear un nuevo libro</Button>
 
                 </Form>
 

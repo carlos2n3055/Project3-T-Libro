@@ -53,33 +53,27 @@ class Navigation extends Component {
 
                     <Nav className="ml-auto">
 
-                        <Link to="/">
-                            <Nav.Link as="div">Home</Nav.Link>
-                        </Link>
+                        <Link className="navHover" to="/">Home</Link>
 
-                        <Link to="/libros">
-                            <Nav.Link as="div">Libros</Nav.Link>
-                        </Link>
+                        <Link className="navHover" to="/libros">Libros</Link>
 
                         {
                             this.props.loggedUser
                                 ?
                                 <>
-                                    <Link to="/perfil">
-                                        <Nav.Link as="div">Perfil</Nav.Link>
-                                    </Link>
+                                    
+                                    <Link className="navHover" to="/perfil">Perfil</Link>
 
-                                    <Nav.Link as="div" onClick={this.logOut}>Cerrar sesión</Nav.Link>
+                                    <Link className="navHover" onClick={this.logOut} to="/">Cerrar sesión</Link>
+                                    
                                 </>    
                                 :
                                 <>
-                                    <Link to="/registro">
-                                        <Nav.Link as="div">Registro</Nav.Link>
-                                    </Link>
 
-                                    <Link to="/inicio-sesion">
-                                        <Nav.Link as="div">Inicio sesión</Nav.Link>
-                                    </Link>
+                                    <Link className="navHover" to="/registro">Registro</Link>
+
+                                    <Link className="navHover" to="/inicio-sesion">Inicio sesión</Link>
+
                                 </>
                         }
 

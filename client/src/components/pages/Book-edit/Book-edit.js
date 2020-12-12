@@ -17,7 +17,6 @@ class BookEdit extends Component {
                 author: '',
                 description: '',
                 image: undefined,
-                photos: '',
                 status: '1',
                 exchange: false,
                 sale: false,
@@ -92,11 +91,6 @@ class BookEdit extends Component {
                                     <Form.Control type="text" name="image" value={this.state.book.image} onChange={this.handleInputChange} />
                                 </Form.Group>
 
-                                <Form.Group controlId="photos">
-                                    <Form.Label>Fotos</Form.Label>
-                                    <Form.Control type="text" name="photos" value={this.state.book.photos} onChange={this.handleInputChange} />
-                                </Form.Group>
-
                                 <Form.Group controlId="status">
                                     <Form.Label>Valoración</Form.Label>
                                     <Form.Control type="text" name="status" onChange={this.handleInputChange} as="select" >
@@ -123,7 +117,7 @@ class BookEdit extends Component {
                                     <Form.Control type="number" name="price" value={this.state.book.price} onChange={this.handleInputChange} />
                                 </Form.Group>
 
-                                <Button variant="dark" type="submit">Guardar cambios</Button>
+                                <Button variant="#272643" type="submit">Guardar cambios</Button>
 
                         </Form>
 

@@ -1,6 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css'
-
 import React, { Component } from 'react'
 
 import { Switch, Route, Redirect } from 'react-router-dom'
@@ -16,6 +13,9 @@ import Login from './pages/Login/Login'
 import Profile from './pages/Profile/Profile'
 
 import AuthServices from './../service/auth.service'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
 
 
 
