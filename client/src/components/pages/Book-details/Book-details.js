@@ -74,41 +74,31 @@ class BookDetails extends Component {
 
         return (
             
-            <Container className="book-details">
+            <>
+                {this.state.book
+                    ?
+                    <>
+                    <h1 className="detailsTitle">{this.state.book.title}</h1>
+                    <p className="detailsAuthor text-muted">{this.state.book.author}</p>
+                    </>
+                    :
+                    <></>
+                }
+            
+            
+            <Container className="book-details paddingTop70">
 
                 {this.state.book
                     ?
                     <>
-                        <h1>{this.state.book.title}</h1>
-                        <p>{this.state.book.author}</p>
 
                         <Row>
 
-                            <Col md={{ span: 6, offset: 1 }} >
+                            {/* <Col md={{ span: 6, offset: 1 }} > */}
+                            <Col md={6} >
 
-                                <img src={this.state.book.image} alt={this.state.book.title} />
-                                
-                                <h1>COMENTARIOS:</h1>
+                                <img className="bookImg" src={this.state.book.image} alt={this.state.book.title} />
 
-                                {this.state.comments
-                                    ?
-                                    <>
-                                        {this.state.comments.map(elm => <p>{elm.description}. <small>({elm.user.name})</small></p>)}
-                                    </>
-                                    :
-                                    <p>Sin comentarios</p>
-                                    }
-
-                            </Col>
-
-                            <Col md={4}>
-
-                                <h3>Descripción</h3>
-
-                                <p>{this.state.book.description}</p>
-
-                                <hr />
-    
                                 {
                                     this.state.book.status === "1" 
                                         ?
@@ -179,15 +169,35 @@ class BookDetails extends Component {
                                         </Row>
                                 }
                                 
+                                <h3 className="paddingTop70">COMENTARIOS:</h3>
 
-                                {this.props.loggedUser ? <Button onClick={() => this.handleModalComments(true)} variant="dark" size="sm">Crear comentario</Button> : <></>}
+                                {this.state.comments
+                                    ?
+                                    <>
+                                        {this.state.comments.map(elm => <p>{elm.description}. <small>({elm.user.name})</small></p>)}
+                                    </>
+                                    :
+                                    <p>Sin comentarios</p>
+                                    }
+
+                            </Col>
+
+                            <Col md={6}>
+
+                                <h3>Descripción</h3>
+
+                                <p className="text-justify">{this.state.book.description}</p>
+
+                                <hr />
+
+                                {this.props.loggedUser ? <Button className="btnDetails" onClick={() => this.handleModalComments(true)} variant="#272643" size="sm">Crear comentario</Button> : <></>}
                                 
 
                                 {this.props.loggedUser
                                     ?
                                     this.state.book.owner === this.props.loggedUser._id
                                     ?
-                                        <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Editar</Button>
+                                        <Button className="btnDetails" onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar</Button>
                                     :
                                     <></>
                                     :
@@ -197,7 +207,7 @@ class BookDetails extends Component {
 
                                 {this.state.book.exchange === true && this.props.loggedUser
                                     ?
-                                        <Link to="/libros" className="btn btn-sm btn-dark">Intercambiar</Link>
+                                        <Link to="/libros" className="btn btnDetails btn-sm">Intercambiar</Link>
                                     :
                                     <></>
                                 }
@@ -205,12 +215,12 @@ class BookDetails extends Component {
                                 
                                 {this.state.book.sale === true && this.props.loggedUser
                                     ?
-                                        <Link to="/libros" className="btn btn-sm btn-dark">Comprar</Link>
+                                        <Link to="/libros" className="btn btnDetails btn-sm">Comprar</Link>
                                     :
                                     <></>
                                 }
                                 
-                                <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
+                                <Link to="/libros" className="btn btnDetails btn-sm">Volver</Link>
                                 
                             </Col>
 
@@ -240,7 +250,8 @@ class BookDetails extends Component {
                 
                 </Modal>
 
-            </Container>
+                </Container>
+            </>
         )
     }
 }

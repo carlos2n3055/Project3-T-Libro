@@ -1,9 +1,9 @@
-.book-card {
-    margin-bottom: 30px;
+.bookList {
+    background-color: #e3f6f5;
+    padding-bottom: 35px;
 }
 
-.book-card img {
-    width: 50%;
-    height: 250px;
-    object-fit: cover;
+
+.bookList h1 {
+    margin-bottom: 30px;
 }

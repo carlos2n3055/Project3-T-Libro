@@ -38,7 +38,7 @@ class Login extends Component {
 
         return (
 
-            <Container>
+            <Container className="paddingTop70">
 
                 <Row>
 
@@ -51,7 +51,7 @@ class Login extends Component {
                         <Form onSubmit={this.handleSubmit}>
 
                             <Form.Group controlId="email">
-                                <Form.Label>Correo electronico</Form.Label>
+                                <Form.Label>Correo electrónico</Form.Label>
                                 <Form.Control type="text" name="email" value={this.state.email} onChange={this.handleInputChange} />
                             </Form.Group>
 
@@ -60,7 +60,7 @@ class Login extends Component {
                                 <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                             </Form.Group>
 
-                            <Button variant="dark" type="submit">Iniciar sesión</Button>
+                            <Button variant="#272643" type="submit">Iniciar sesión</Button>
 
                         </Form>
 
