@@ -21,7 +21,7 @@ const bookSchema = new Schema({
         trim: true
     },
 
-    image: {
+    imageUrl: {
         type: String,
         default: "https://res.cloudinary.com/dc9ajab1i/image/upload/v1607451142/project3/bookDefault.png"
     },

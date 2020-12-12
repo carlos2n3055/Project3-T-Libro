@@ -97,7 +97,7 @@ class BookDetails extends Component {
 
                                 <Col md={6} >
 
-                                    <img className="bookImg" src={this.state.book.image} alt={this.state.book.title} />
+                                    <img className="bookImg" src={this.state.book.imageUrl} alt={this.state.book.title} />
 
                                     {
                                         this.state.book.rating === "1" 

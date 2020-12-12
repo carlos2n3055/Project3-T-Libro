@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import BooksService from '../../../service/books.service'
+import FilesService from './../../../service/upload.service'
 
 import { Form, Button } from 'react-bootstrap'
 
@@ -13,17 +14,21 @@ class BookForm extends Component {
         super(props)
 
         this.state = {
+            book: {
                 title: '',
                 author: '',
                 description: '',
-                image: undefined,
+                imageUrl: undefined,
                 rating: '1',
                 exchange: false,
                 sale: false,
                 price: '',
                 owner: this.props.loggedUser ? this.props.loggedUser._id : ''
+            },
+            uploadingActive: false     
         }
         this.booksService = new BooksService()
+        this.filesService = new FilesService()
     }
 
 
@@ -31,19 +36,38 @@ class BookForm extends Component {
 
         const { name } = e.target
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
-        this.setState({ [name]: value } )
+        this.setState({ book: { ...this.state.book, [name]: value } })
     }
-
+    
 
     handleSubmit = e => {
 
         e.preventDefault()
 
         this.booksService
-            .saveBook(this.state)
+            .saveBook(this.state.book)
             .then(res => {
                 this.props.updateList()
                 this.props.closeModal()
+            })
+            .catch(err => console.log(err))
+    }
+
+
+    handleImageUpload = e => {
+
+        const uploadData = new FormData()
+        uploadData.append('imageUrl', e.target.files[0])
+
+        this.setState({ uploadingActive: true })
+
+        this.filesService
+            .uploadImage(uploadData)
+            .then(response => {
+                this.setState({
+                    book: { ...this.state.book, imageUrl: response.data.secure_url },
+                    uploadingActive: false
+                })
             })
             .catch(err => console.log(err))
     }
@@ -74,10 +98,12 @@ class BookForm extends Component {
                         <Form.Control type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
                     </Form.Group>
 
-                    <Form.Group controlId="image">
-                        <Form.File id="exampleFormControlFile1" label="Imagen" name="image" value={this.state.image} onChange={this.handleInputChange} />
+                    <Form.Group controlId="imageUrl">
+                        <Form.Label>Imagen</Form.Label>
+                        {/* <Form.Label>Imagen (file) {this.state.uploadingActive && <Spinner />}</Form.Label> */}
+                        <Form.Control type="file" onChange={this.handleImageUpload} />
                     </Form.Group>
-
+                    
                     <Form.Group controlId="rating">
                         <Form.Label>Valoración</Form.Label>
                         <Form.Control type="text" name="rating" onChange={this.handleInputChange} as="select" >
@@ -103,7 +129,7 @@ class BookForm extends Component {
                         <Form.Control type="number" name="price" value={this.state.price} onChange={this.handleInputChange} />
                     </Form.Group>
 
-                    <Button variant="#272643" type="submit">Crear un nuevo libro</Button>
+                    <Button variant="#272643" type="submit" disabled={this.state.uploadingActive}>{this.state.uploadingActive ? 'Subiendo imagen...' : 'Crear un nuevo libro'}</Button>
 
                 </Form>
 

@@ -4,14 +4,14 @@ import { Col, Card, ButtonGroup } from 'react-bootstrap'
 import './Book-card.css'
 
 
-const BookCard = ({ title, author, image, _id, owner }) => {
+const BookCard = ({ title, author, imageUrl, _id, owner }) => {
 
 
     return (
 
         <Col className="book-card text-center" lg={4}>
 
-                <Card.Img variant="top" src={image} />
+                <Card.Img variant="top" src={imageUrl} />
 
                 <Card.Body>
 
