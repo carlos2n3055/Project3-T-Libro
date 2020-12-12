@@ -42,13 +42,13 @@ class BookList extends Component {
 
         return (
             <>
-                <Container className="bookList paddingTop70">
+                <Container fluid className="bookList paddingTop70">
 
-                    <h1>Listado de libros</h1>
+                    <h1>Libros disponibles</h1>
 
                     {this.props.loggedUser && <Button onClick={() => this.handleModal(true)} variant="#272643" size="sm">Crear un nuevo libro</Button>}
                     
-                    <Row>
+                    <Row >
                         {
                             this.state.books
                                 ?

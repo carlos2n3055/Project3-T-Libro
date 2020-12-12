@@ -17,7 +17,6 @@ class BookEdit extends Component {
                 author: '',
                 description: '',
                 image: undefined,
-                photos: '',
                 status: '1',
                 exchange: false,
                 sale: false,
@@ -90,11 +89,6 @@ class BookEdit extends Component {
                                 <Form.Group controlId="image">
                                     <Form.Label>Imagen (URL)</Form.Label>
                                     <Form.Control type="text" name="image" value={this.state.book.image} onChange={this.handleInputChange} />
-                                </Form.Group>
-
-                                <Form.Group controlId="photos">
-                                    <Form.Label>Fotos</Form.Label>
-                                    <Form.Control type="text" name="photos" value={this.state.book.photos} onChange={this.handleInputChange} />
                                 </Form.Group>
 
                                 <Form.Group controlId="status">
