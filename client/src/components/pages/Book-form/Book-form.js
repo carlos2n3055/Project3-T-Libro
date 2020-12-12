@@ -17,7 +17,7 @@ class BookForm extends Component {
                 author: '',
                 description: '',
                 image: undefined,
-                status: '1',
+                rating: '1',
                 exchange: false,
                 sale: false,
                 price: '',
@@ -75,13 +75,12 @@ class BookForm extends Component {
                     </Form.Group>
 
                     <Form.Group controlId="image">
-                        <Form.Label>Imagen (URL)</Form.Label>
-                        <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange} />
+                        <Form.File id="exampleFormControlFile1" label="Imagen" name="image" value={this.state.image} onChange={this.handleInputChange} />
                     </Form.Group>
 
-                    <Form.Group controlId="status">
+                    <Form.Group controlId="rating">
                         <Form.Label>Valoración</Form.Label>
-                        <Form.Control type="text" name="status" onChange={this.handleInputChange} as="select" >
+                        <Form.Control type="text" name="rating" onChange={this.handleInputChange} as="select" >
                             <option>Seleccione:</option>
                             <option>1</option>
                             <option>2</option>

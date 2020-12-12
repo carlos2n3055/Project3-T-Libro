@@ -30,6 +30,7 @@ class CommentForm extends Component {
             .saveComment(this.state)
             .then(res => { 
                 this.setState({ comment: res.data })
+                this.props.updateListComments()
                 this.props.closeModal()
             })
             .catch(err => console.log(err))
@@ -47,8 +48,7 @@ class CommentForm extends Component {
                 <Form onSubmit={this.handleSubmit}>
 
                     <Form.Group controlId="description">
-                        <Form.Label>Descripción</Form.Label>
-                        <Form.Control type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
+                        <Form.Control as="textarea" rows={6} type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
                     </Form.Group>
 
                     <Button variant="#272643" type="submit">Crear comentario</Button>

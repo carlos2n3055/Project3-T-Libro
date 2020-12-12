@@ -26,7 +26,7 @@ const bookSchema = new Schema({
         default: "https://res.cloudinary.com/dc9ajab1i/image/upload/v1607451142/project3/bookDefault.png"
     },
 
-    status: {
+    rating: {
         type: String,
         enum: ['1', '2', '3', '4', '5'],
         required: true
