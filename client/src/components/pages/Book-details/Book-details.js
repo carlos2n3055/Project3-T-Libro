@@ -188,9 +188,9 @@ class BookDetails extends Component {
 
                                     <p className="text-justify">{this.state.book.description}</p>
 
-                                        <hr/>
-                                        
-                                        <p className="btnSeparation">Precio: {this.state.book.price} €</p>
+                                    <hr />
+                                    
+                                    {this.state.book.sale === true && <p className="btnSeparation">Precio: {this.state.book.price} €</p>}
 
                                     {this.props.loggedUser ? <Button className="btnDetails" onClick={() => this.handleModalComments(true)} variant="#272643" size="sm">Crear comentario</Button> : <></>}
 

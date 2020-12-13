@@ -8,9 +8,7 @@ import sale from './sale.jpg'
 import comments from './comments.jpg'
 import register from './register.jpg'
 
-
-import BackgroundVideo from './../backgroundVideo/BackgroundVideo'
-
+import BackgroundVideo from '../BackgroundVideo/BackgroundVideo'
 
 
 
@@ -19,9 +17,7 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-           
         }
-        
     }
 
     render() {
@@ -42,12 +38,9 @@ class Home extends Component {
                 </header>
 
                 
-
                 <Container className="textOverVideo">
 
                     <Row className="main">
-
-                    
 
                         <Col lg={6}>
 
@@ -70,6 +63,7 @@ class Home extends Component {
                                     <p>Vende al mejor precio los libros que ya no quieras tener en casa  </p>
                                 </div>
                             </div>
+
                         </Col>
                         
                         <Col lg={6}>
@@ -94,7 +88,6 @@ class Home extends Component {
                                 </div>
                             </div>
 
-                            
                         </Col>
 
                     </Row>
@@ -106,8 +99,6 @@ class Home extends Component {
     }
 }
 
+
+
 export default Home
-
-
-
-
