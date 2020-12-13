@@ -103,11 +103,11 @@ class BookDetails extends Component {
                                         this.state.book.rating === "1" 
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGold} alt="firstStar" />
+                                                <img src={starGrey} alt="secondStar" />
+                                                <img src={starGrey} alt="thirdStar" />
+                                                <img src={starGrey} alt="fourthStar" />
+                                                <img src={starGrey} alt="fifthStar" />
                                             </Row>
                                             
                                             :
@@ -115,11 +115,11 @@ class BookDetails extends Component {
                                         this.state.book.rating === "2" 
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGold} alt="firstStar" />
+                                                <img src={starGold} alt="secondStar" />
+                                                <img src={starGrey} alt="thirdStar" />
+                                                <img src={starGrey} alt="fourthStar" />
+                                                <img src={starGrey} alt="fifthStar" />
                                             </Row>
                                             
                                             :
@@ -127,11 +127,11 @@ class BookDetails extends Component {
                                         this.state.book.rating === "3" 
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGold} alt="firstStar" />
+                                                <img src={starGold} alt="secondStar" />
+                                                <img src={starGold} alt="thirdStar" />
+                                                <img src={starGrey} alt="fourthStar" />
+                                                <img src={starGrey} alt="fifthStar" />
                                             </Row>
                                             
                                             :
@@ -139,11 +139,11 @@ class BookDetails extends Component {
                                         this.state.book.rating === "4" 
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGold} alt="firstStar" />
+                                                <img src={starGold} alt="secondStar" />
+                                                <img src={starGold} alt="thirdStar" />
+                                                <img src={starGold} alt="fourthStar" />
+                                                <img src={starGrey} alt="fifthStar" />
                                             </Row>
                                             
                                             :
@@ -151,21 +151,21 @@ class BookDetails extends Component {
                                         this.state.book.rating === "5"
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGold} alt="firstStar" />
+                                                <img src={starGold} alt="secondStar" />
+                                                <img src={starGold} alt="thirdStar" />
+                                                <img src={starGold} alt="fourthStar" />
+                                                <img src={starGold} alt="fifthStar" />
                                             </Row>
                             
                                             :
 
                                             <Row className="star">
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt="firstStar" />
+                                                <img src={starGrey} alt="secondStar" />
+                                                <img src={starGrey} alt="thirdStar" />
+                                                <img src={starGrey} alt="fourthStar" />
+                                                <img src={starGrey} alt="fifthStar" />
                                             </Row>
                                     }
 
