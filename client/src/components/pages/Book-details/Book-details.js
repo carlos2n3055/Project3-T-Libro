@@ -34,6 +34,20 @@ class BookDetails extends Component {
     }
 
 
+    commentsServ = () => {
+
+        const book_id = this.props.match.params.book_id
+
+        this.commentsService
+            .getComments()
+            .then(res => {
+                let commentsBook = res.data.filter(elm => elm.book._id === book_id)
+                this.setState({ comments: commentsBook })
+                })
+            .catch(err => console.log(err))
+    }
+            
+
     componentDidMount = () => {
 
         const book_id = this.props.match.params.book_id
@@ -43,23 +57,11 @@ class BookDetails extends Component {
             .then(res => this.setState({ book: res.data }))
             .catch(err => console.log(err))
         
-        this.commentsService
-            .getComments()
-            .then(res => {
-                let commentsBook = res.data.filter(elm => elm.book._id === book_id)
-                this.setState({ comments: commentsBook })
-            })
-            .catch(err => console.log(err))
+        this.commentsServ()
     }
 
 
-    refreshComments = () => {
-
-        this.commentsService
-            .getComments()
-            .then(res => this.setState({ comments: res.data }))
-            .catch(err => console.log(err))
-    }
+    refreshComments = () => this.commentsServ()
 
 
     handleModalComments = visible => this.setState({ showModalComments: visible })
@@ -85,170 +87,167 @@ class BookDetails extends Component {
                     <></>
                 }
             
-            
-            <Container className="book-details paddingTop70">
+                <Container className="book-details paddingTop70">
 
-                {this.state.book
-                    ?
-                    <>
+                    {this.state.book
+                        ?
+                        <>
 
-                        <Row>
+                            <Row>
 
-                            {/* <Col md={{ span: 6, offset: 1 }} > */}
-                            <Col md={6} >
+                                <Col md={6} >
 
-                                <img className="bookImg" src={this.state.book.image} alt={this.state.book.title} />
+                                    <img className="bookImg" src={this.state.book.imageUrl} alt={this.state.book.title} />
 
-                                {
-                                    this.state.book.status === "1" 
-                                        ?
-                                        <Row className="star">
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                        </Row>
-                                        
-                                        :
-
-                                    this.state.book.status === "2" 
-                                        ?
-                                        <Row className="star">
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                        </Row>
-                                        
-                                        :
+                                    {
+                                        this.state.book.rating === "1" 
+                                            ?
+                                            <Row className="star">
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                            </Row>
                                             
-                                    this.state.book.status === "3" 
-                                        ?
-                                        <Row className="star">
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                        </Row>
-                                        
-                                        :
-                            
-                                    this.state.book.status === "4" 
-                                        ?
-                                        <Row className="star">
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                        </Row>
-                                        
-                                        :
-                                                    
-                                    this.state.book.status === "5"
-                                        ?
-                                        <Row className="star">
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGold} alt={this.state.book.status} />
-                                            <img src={starGold} alt={this.state.book.status} />
-                                        </Row>
-                        
-                                        :
+                                            :
 
-                                        <Row className="star">
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                            <img src={starGrey} alt={this.state.book.status} />
-                                        </Row>
-                                }
+                                        this.state.book.rating === "2" 
+                                            ?
+                                            <Row className="star">
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                            </Row>
+                                            
+                                            :
+                                                
+                                        this.state.book.rating === "3" 
+                                            ?
+                                            <Row className="star">
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                            </Row>
+                                            
+                                            :
                                 
-                                <h3 className="paddingTop70">COMENTARIOS:</h3>
+                                        this.state.book.rating === "4" 
+                                            ?
+                                            <Row className="star">
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                            </Row>
+                                            
+                                            :
+                                                        
+                                        this.state.book.rating === "5"
+                                            ?
+                                            <Row className="star">
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGold} alt={this.state.book.rating} />
+                                            </Row>
+                            
+                                            :
 
-                                {this.state.comments
-                                    ?
-                                    <>
-                                        {this.state.comments.map(elm => <p>{elm.description}. <small>({elm.user.name})</small></p>)}
-                                    </>
-                                    :
-                                    <p>Sin comentarios</p>
+                                            <Row className="star">
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt={this.state.book.rating} />
+                                            </Row>
                                     }
 
-                            </Col>
+                                    <h3 className="paddingTop70">COMENTARIOS:</h3>
 
-                            <Col md={6}>
+                                    {this.state.comments
+                                        ?
+                                        <>
+                                            {this.state.comments.map(elm => <p>{elm.description}. <small>({elm.user.name})</small></p>)}
+                                        </>
+                                        :
+                                        <p>Sin comentarios</p>
+                                        }
 
-                                <h3>Descripción</h3>
+                                </Col>
 
-                                <p className="text-justify">{this.state.book.description}</p>
+                                <Col md={6}>
 
-                                <hr />
+                                    <h3>Descripción</h3>
 
-                                {this.props.loggedUser ? <Button className="btnDetails" onClick={() => this.handleModalComments(true)} variant="#272643" size="sm">Crear comentario</Button> : <></>}
-                                
+                                    <p className="text-justify">{this.state.book.description}</p>
 
-                                {this.props.loggedUser
-                                    ?
-                                    this.state.book.owner === this.props.loggedUser._id
-                                    ?
-                                        <Button className="btnDetails" onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar</Button>
-                                    :
-                                    <></>
-                                    :
-                                    <></>
-                                }
-                                
+                                        <hr/>
+                                        
+                                        <p className="btnSeparation">Precio: {this.state.book.price} €</p>
 
-                                {this.state.book.exchange === true && this.props.loggedUser
-                                    ?
-                                        <Link to="/libros" className="btn btnDetails btn-sm">Intercambiar</Link>
-                                    :
-                                    <></>
-                                }
+                                    {this.props.loggedUser ? <Button className="btnDetails" onClick={() => this.handleModalComments(true)} variant="#272643" size="sm">Crear comentario</Button> : <></>}
 
-                                
-                                {this.state.book.sale === true && this.props.loggedUser
-                                    ?
-                                        <Link to="/libros" className="btn btnDetails btn-sm">Comprar</Link>
-                                    :
-                                    <></>
-                                }
-                                
-                                <Link to="/libros" className="btn btnDetails btn-sm">Volver</Link>
-                                
-                            </Col>
+                                    {this.props.loggedUser
+                                        ?
+                                        this.state.book.owner === this.props.loggedUser._id
+                                        ?
+                                            <Button className="btnDetails" onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar</Button>
+                                        :
+                                        <></>
+                                        :
+                                        <></>
+                                    }
 
-                        </Row>
+                                    {this.state.book.exchange === true && this.props.loggedUser
+                                        ?
+                                            <Link to="/libros" className="btn btnDetails btn-sm">Intercambiar</Link>
+                                        :
+                                        <></>
+                                    }
+                                    
+                                    {this.state.book.sale === true && this.props.loggedUser
+                                        ?
+                                            <Link to="/libros" className="btn btnDetails btn-sm">Comprar</Link>
+                                        :
+                                        <></>
+                                    }
+                                    
+                                    <Link to="/libros" className="btn btnDetails btn-sm">Volver</Link>
+                                    
+                                </Col>
 
-                    </>
+                            </Row>
 
-                    :
+                        </>
 
-                    <h1>Cargando...</h1>
-                }
+                        :
 
-                <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                        <h1>Cargando...</h1>
+                    }
+
+                    <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                        
+                        <Modal.Body>
+                            <BookEdit closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} book_id={book_id} />
+                        </Modal.Body>
+
+                    </Modal>
+
+
+                    <Modal show={this.state.showModalComments} onHide={() => this.handleModalComments(false)}>
+
+                        <Modal.Body>
+                            <CommentForm {...this.props} closeModal={() => this.handleModalComments(false)} updateListComments={this.refreshComments} />
+                        </Modal.Body>
                     
-                    <Modal.Body>
-                        <BookEdit closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} book_id={book_id} />
-                    </Modal.Body>
-
-                </Modal>
-
-
-                <Modal show={this.state.showModalComments} onHide={() => this.handleModalComments(false)}>
-
-                    <Modal.Body>
-                        <CommentForm {...this.props} closeModal={() => this.handleModalComments(false)} updateListComments={this.refreshComments} />
-                    </Modal.Body>
-                
-                </Modal>
+                    </Modal>
 
                 </Container>
             </>

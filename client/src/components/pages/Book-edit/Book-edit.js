@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BooksService from '../../../service/books.service'
+import FilesService from './../../../service/upload.service'
 
 import { Form, Button } from 'react-bootstrap'
 
@@ -16,14 +17,16 @@ class BookEdit extends Component {
                 title: '',
                 author: '',
                 description: '',
-                image: undefined,
-                status: '1',
+                imageUrl: undefined,
+                rating: '1',
                 exchange: false,
                 sale: false,
                 price: ''
-            }  
+            },
+            uploadingActive: false
         }
         this.booksService = new BooksService()
+        this.filesService = new FilesService()
     }
 
 
@@ -42,7 +45,7 @@ class BookEdit extends Component {
 
         const { name } = e.target
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
-        this.setState({ book: { ...this.state.book, [name]: value }})
+        this.setState({ book: { ...this.state.book, [name]: value } })
     }
 
 
@@ -53,6 +56,25 @@ class BookEdit extends Component {
         this.booksService
             .editBook(this.props.book_id, this.state.book)
             .then(res => this.props.closeModal())
+            .catch(err => console.log(err))
+    }
+
+
+    handleImageUpload = e => {
+
+        const uploadData = new FormData()
+        uploadData.append('imageUrl', e.target.files[0])
+
+        this.setState({ uploadingActive: true })
+
+        this.filesService
+            .uploadImage(uploadData)
+            .then(response => {
+                this.setState({
+                    book: { ...this.state.book, imageUrl: response.data.secure_url },
+                    uploadingActive: false
+                })
+            })
             .catch(err => console.log(err))
     }
 
@@ -85,15 +107,16 @@ class BookEdit extends Component {
                                     <Form.Label>Descripción</Form.Label>
                                     <Form.Control type="text" name="description" value={this.state.book.description} onChange={this.handleInputChange} />
                                 </Form.Group>
-
-                                <Form.Group controlId="image">
-                                    <Form.Label>Imagen (URL)</Form.Label>
-                                    <Form.Control type="text" name="image" value={this.state.book.image} onChange={this.handleInputChange} />
+                            
+                                <Form.Group controlId="imageUrl">
+                                    <Form.Label>Imagen</Form.Label>
+                                    {/* <Form.Label>Imagen (file) {this.state.uploadingActive && <Spinner />}</Form.Label> */}
+                                    <Form.Control type="file" onChange={this.handleImageUpload} />
                                 </Form.Group>
 
-                                <Form.Group controlId="status">
+                                <Form.Group controlId="rating">
                                     <Form.Label>Valoración</Form.Label>
-                                    <Form.Control type="text" name="status" onChange={this.handleInputChange} as="select" >
+                                    <Form.Control type="text" name="rating" onChange={this.handleInputChange} as="select" >
                                         <option>Seleccione:</option>
                                         <option>1</option>
                                         <option>2</option>
@@ -101,7 +124,7 @@ class BookEdit extends Component {
                                         <option>4</option>
                                         <option>5</option>
                                     </Form.Control>
-                                    <p><small>Valoración actual: {this.state.book.status}</small></p>
+                                    <p><small>Valoración actual: {this.state.book.rating}</small></p>
                                 </Form.Group>
 
                                 <Form.Group controlId="exchange">
@@ -117,7 +140,7 @@ class BookEdit extends Component {
                                     <Form.Control type="number" name="price" value={this.state.book.price} onChange={this.handleInputChange} />
                                 </Form.Group>
 
-                                <Button variant="#272643" type="submit">Guardar cambios</Button>
+                                <Button variant="#272643" type="submit" disabled={this.state.uploadingActive}>{this.state.uploadingActive ? 'Subiendo imagen...' : 'Guardar cambios'}</Button>
 
                         </Form>
 
