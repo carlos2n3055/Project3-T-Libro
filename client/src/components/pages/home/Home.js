@@ -46,7 +46,7 @@ class Home extends Component {
 
                             <div className="info">
                                 <div>
-                                    <img src={exchange} />
+                                    <img src={exchange} alt="exchange"/>
                                 </div>
                                 <div className="infoText">
                                     <h4>Intercambia</h4>
@@ -56,7 +56,7 @@ class Home extends Component {
 
                             <div className="info">
                                 <div>
-                                    <img src={sale} />
+                                    <img src={sale} alt="sale"/>
                                 </div>   
                                 <div className="infoText">
                                     <h4>Vende</h4>
@@ -70,7 +70,7 @@ class Home extends Component {
 
                             <div className="info">
                                 <div>
-                                    <img src={comments} />
+                                    <img src={comments} alt="comments"/>
                                 </div>
                                 <div className="infoText">
                                     <h4>Comenta</h4>
@@ -80,7 +80,7 @@ class Home extends Component {
 
                             <div className="info">
                                 <div>
-                                    <img src={register} />
+                                    <img src={register} alt="register"/>
                                 </div>
                                 <div className="infoText">
                                     <h4>Registrate</h4>
