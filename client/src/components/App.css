@@ -2,6 +2,7 @@ html {
     min-height: 100%;
     position: relative;
     background-color: #e3f6f5;
+    font-family: 'Monserrat', sans-serif;
 }
 
 body {
@@ -11,6 +12,7 @@ body {
 
 main {
     background-color: #e3f6f5;
+    font-family: 'Monserrat', sans-serif;
 }
 
 

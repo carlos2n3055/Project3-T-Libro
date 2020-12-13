@@ -80,8 +80,8 @@ class BookDetails extends Component {
                 {this.state.book
                     ?
                     <>
-                    <h1 className="detailsTitle">{this.state.book.title}</h1>
-                    <p className="detailsAuthor text-muted">{this.state.book.author}</p>
+                        <h1 className="detailsTitle book-details">{this.state.book.title}</h1>
+                        <p className="detailsAuthor book-details text-muted">{this.state.book.author}</p>
                     </>
                     :
                     <></>
@@ -182,9 +182,9 @@ class BookDetails extends Component {
 
                                 </Col>
 
-                                <Col md={6}>
+                                <Col className= "book-details" md={6}>
 
-                                    <h3>Descripción</h3>
+                                    <h3 className="book-details">Descripción</h3>
 
                                     <p className="text-justify">{this.state.book.description}</p>
 
