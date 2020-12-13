@@ -11,11 +11,13 @@ import BookEdit from './pages/Book-edit/Book-edit'
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Profile from './pages/Profile/Profile'
+import Home from './pages/home/Home'
 
 import AuthServices from './../service/auth.service'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
+
 
 
 
@@ -60,6 +62,7 @@ class App extends Component {
             <Route path="/registro" render={props => <Signup storeUser={this.setTheUser} {...props} />} />
             <Route path="/inicio-sesion" render={props => <Login storeUser={this.setTheUser} {...props} />} />
             <Route path="/perfil" render={() => this.state.loggedInUser ? <Profile user={this.state.loggedInUser} /> : <Redirect to="/inicio-sesion" />} />
+            <Route path="/" exact render={() => <Home loggedUser={this.state.loggedInUser} />} />
 
           </Switch>
 

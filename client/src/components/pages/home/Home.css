@@ -1,0 +1,31 @@
+.homeText{
+    z-index: 1000;
+    position: absolute;
+    top: 25%;
+    left: 30%;
+    opacity: 0.8;
+
+}
+
+.homeText h1{
+    font-family: 'Rozha One', serif;   
+    flex-grow: 12;
+    font-size: 156px;
+    color:white; 
+}
+
+.homeText p {
+    color: white;
+    font-size: 20px;
+}
+
+.textOverVideo{
+    width: 100%;
+    object-fit: cover;
+    height: 77vh;
+}
+
+.main {
+    margin-top: 100px;
+}
+
