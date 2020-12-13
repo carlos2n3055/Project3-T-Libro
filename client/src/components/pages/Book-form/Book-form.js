@@ -86,16 +86,19 @@ class BookForm extends Component {
                     <Form.Group controlId="title">
                         <Form.Label>Titulo</Form.Label>
                         <Form.Control type="text" name="title" value={this.state.title} onChange={this.handleInputChange} />
+                        <p><small>*Campo requerido</small></p>
                     </Form.Group>
 
                     <Form.Group controlId="author">
                         <Form.Label>Autor</Form.Label>
                         <Form.Control type="text" name="author" value={this.state.author} onChange={this.handleInputChange} />
+                        <p><small>*Campo requerido</small></p>
                     </Form.Group>
 
                     <Form.Group controlId="description">
                         <Form.Label>Descripción</Form.Label>
                         <Form.Control type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
+                        <p><small>*Campo requerido</small></p>
                     </Form.Group>
 
                     <Form.Group controlId="imageUrl">
