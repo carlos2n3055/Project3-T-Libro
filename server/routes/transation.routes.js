@@ -12,7 +12,7 @@ const Transation = require('../models/transation.model')
 router.get('/getAllTransation/:owner_id', (req, res) => {
 
     Transation
-        .find({ owner: { _id: req.params.owner_id } })
+        .find({ owner: { _id: req.params.owner_id, status: false } })
         .populate('book_owner')
         .populate('book_buyer')
         .populate('owner')

@@ -8,7 +8,7 @@ const Comments = require('../models/comments.model')
 // ----- ENDPOINTS COMMENTS -----
 
 
-// Muestra todos los comentarios (GET)
+// Muestra todos los comentarios (GET)   //REFACTORIZAR PARA REALIZAR EL FILTRADO DE COMENTARIOS EN EL SERVIDOR
 router.get('/getAllComments', (req, res) => {
 
     Comments

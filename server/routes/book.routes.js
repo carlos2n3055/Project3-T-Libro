@@ -28,6 +28,16 @@ router.post('/newBook', (req, res) => {
 })
 
 
+// Muestra la lista de los libros del buyer (GET)
+router.get('/getBooksBuyer/:buyer_id', (req, res) => {
+
+    Book
+        .find({ owner: { _id: req.params.buyer_id } })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
+
 // Muestra los detalles de un libro (GET)
 router.get('/getOneBook/:book_id', (req, res) => {
 
@@ -47,6 +57,10 @@ router.get('/getOneBook/:book_id', (req, res) => {
 router.put('/editBook/:book_id', (req, res) => {
 
     const id = req.params.book_id
+    console.log('ESTAMOS EN EL SERVER Y ESTE ES EL ID DEL BOOK OWNER')
+    console.log(id)
+    console.log('ESTE ES EL ID DEL BUYER')
+    console.log(req.body)
 
     if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
         res.status(404).json({ message: 'Invalid ID' })

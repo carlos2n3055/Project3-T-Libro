@@ -31,6 +31,7 @@ class BookDetails extends Component {
             showModalComments: false,
             comments: undefined,
             transations: {
+                book_buyer: [],
                 book_owner: undefined,
                 buyer: undefined,
                 owner: undefined
@@ -64,15 +65,24 @@ class BookDetails extends Component {
 
         this.booksService
             .getBook(book_id)
-            .then(res => {
-                this.setState({ book: res.data })  // REFACTORIZAR LOS 2 THIS.SETSTATE
-                this.setState({ transations: { owner: this.state.book.owner, buyer: this.props.loggedUser._id, book_owner: this.props.match.params.book_id} })
-            })
+            .then(res => this.setState({ book: res.data }))
             .catch(err => console.log(err))
         
+        this.booksBuyer()
         this.commentsServ()
     }
+        
+        
+    booksBuyer = () => {
 
+        const buyer_id = this.props.loggedUser._id
+
+        this.booksService
+            .getBooksBuyer(buyer_id)
+            .then(res => this.setState({ transations: { owner: this.state.book.owner, buyer: this.props.loggedUser._id, book_buyer: res.data, book_owner: this.props.match.params.book_id } }))
+            .catch(err => console.log(err))
+    }
+        
 
     refreshComments = () => this.commentsServ()
 
@@ -84,7 +94,7 @@ class BookDetails extends Component {
 
 
     transation = () => {
-        console.log(this.state.transations)
+
         this.transationsService
             .saveTransation(this.state.transations)
             .then(res => this.setState({ showToast: true, toastText: 'Su petición se ha enviado al dueño del libro' }))

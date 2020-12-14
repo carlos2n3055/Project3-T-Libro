@@ -18,10 +18,15 @@ const transationSchema = new Schema({
         ref: "Book"
     },
 
-    book_buyer: {
+    book_buyer: [{
         type: Schema.Types.ObjectId,
         ref: "Book"
-    },
+    }],
+
+
+    //  book_buyer: [{
+    //     type: String
+    // }],
 
     status: {
         type: Boolean,
