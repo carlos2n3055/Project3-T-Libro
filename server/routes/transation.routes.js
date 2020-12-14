@@ -4,12 +4,14 @@ const mongoose = require('mongoose')
 
 const Transation = require('../models/transation.model')
 
+const { check_owner_Id } = require('./../middlewares/custom.middlewares')
+
 
 // ----- ENDPOINTS TRANSATION -----
 
 
 // Muestra todas las transacciones (GET) OK--------------------
-router.get('/getAllTransation/:owner_id', (req, res) => {
+router.get('/getAllTransation/:owner_id', check_owner_Id, (req, res) => {
 
     Transation
         .find({ owner: { _id: req.params.owner_id, status: false } })

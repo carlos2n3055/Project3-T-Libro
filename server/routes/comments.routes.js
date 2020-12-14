@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 
 const Comments = require('../models/comments.model')
 
+const { check_comment_Id } = require('./../middlewares/custom.middlewares')
+
 
 // ----- ENDPOINTS COMMENTS -----
 
@@ -21,12 +23,7 @@ router.get('/getAllComments', (req, res) => {
 
 
 // Muestra un comentario (GET)
-router.get('/getOneComment/:comment_id', (req, res) => {
-
-    if (!mongoose.Types.ObjectId.isValid(req.params.comment_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
+router.get('/getOneComment/:comment_id', check_comment_Id, (req, res) => {
 
     Comments
         .findById(req.params.comment_id)
@@ -46,12 +43,7 @@ router.post('/newComment', (req, res) => {
 
 
 // Borra de la BBDD un comentario (DELETE)
-router.delete('/deleteComment/:comment_id', (req, res) => {
-
-    if (!mongoose.Types.ObjectId.isValid(req.params.comment_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
+router.delete('/deleteComment/:comment_id', check_comment_Id, (req, res) => {
 
     Comments
         .findByIdAndDelete(req.params.comment_id, req.body)

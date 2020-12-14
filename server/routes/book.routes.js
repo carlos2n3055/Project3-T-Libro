@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 const Book = require('../models/book.model')
 
-const { check_book_Id } = require('./../middlewares/custom.middlewares')
+const { check_book_Id, check_buyer_Id } = require('./../middlewares/custom.middlewares')
 
 
 // ----- ENDPOINTS BOOKS -----
@@ -31,7 +31,7 @@ router.post('/newBook', (req, res) => {
 
 
 // Muestra la lista de los libros del buyer (GET)
-router.get('/getBooksBuyer/:buyer_id', (req, res) => {
+router.get('/getBooksBuyer/:buyer_id', check_buyer_Id, (req, res) => {
 
     Book
         .find({ owner: { _id: req.params.buyer_id } })
@@ -41,8 +41,7 @@ router.get('/getBooksBuyer/:buyer_id', (req, res) => {
 
 
 // Muestra los detalles de un libro (GET)
-// router.get('/getOneBook/:book_id', check_book_Id, (req, res) => {  // cuando funcione todo probar este middleware
-router.get('/getOneBook/:book_id', (req, res) => {
+router.get('/getOneBook/:book_id', check_book_Id, (req, res) => {
 
     Book
         .findById(req.params.book_id)
@@ -52,8 +51,7 @@ router.get('/getOneBook/:book_id', (req, res) => {
 
 
 // Edita en la BBDD un libro (PUT)
-// router.put('/editBook/:book_id', check_book_Id, (req, res) => {  // cuando funcione todo probar este middleware
-router.put('/editBook/:book_id', (req, res) => {
+router.put('/editBook/:book_id', check_book_Id, (req, res) => {
 
     const id = req.params.book_id
     console.log('ESTAMOS EN EL SERVER Y ESTE ES EL ID DEL BOOK OWNER')
@@ -69,8 +67,7 @@ router.put('/editBook/:book_id', (req, res) => {
 
 
 // Borra de la BBDD un libro (DELETE)
-// router.delete('/deleteBook/:book_id', check_book_Id, (req, res) => {  // cuando funcione todo probar este middleware
-router.delete('/deleteBook/:book_id', (req, res) => {
+router.delete('/deleteBook/:book_id', check_book_Id, (req, res) => {
 
     Book
         .findByIdAndDelete(req.params.book_id, req.body)
