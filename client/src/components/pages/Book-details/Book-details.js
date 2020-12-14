@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import BooksService from '../../../service/books.service'
 import CommentsService from '../../../service/comments.service'
+import TransationsService from '../../../service/transation.service'
+import Alert from './../../shared/Alert/Alert'
 
 import BookEdit from './../Book-edit/Book-edit'
 import CommentForm from './../Comment-form/Comment-form'
@@ -22,15 +24,23 @@ class BookDetails extends Component {
     constructor(props) {
 
         super(props)
-
+    
         this.state = {
             book: undefined,
             showModal: false,
             showModalComments: false,
-            comments: undefined
+            comments: undefined,
+            transations: {
+                book_owner: undefined,
+                buyer: undefined,
+                owner: undefined
+            },
+            showToast: false,
+            toastText: ''
         }
         this.booksService = new BooksService()
         this.commentsService = new CommentsService()
+        this.transationsService = new TransationsService()
     }
 
 
@@ -54,7 +64,10 @@ class BookDetails extends Component {
 
         this.booksService
             .getBook(book_id)
-            .then(res => this.setState({ book: res.data }))
+            .then(res => {
+                this.setState({ book: res.data })
+                this.setState({ transations: { owner: this.state.book.owner, buyer: this.props.loggedUser._id, book_owner: this.props.match.params.book_id} })
+            })
             .catch(err => console.log(err))
         
         this.commentsServ()
@@ -68,6 +81,18 @@ class BookDetails extends Component {
 
 
     handleModal = visible => this.setState({ showModal: visible })
+
+
+    transation = () => {
+        console.log(this.state.transations)
+        this.transationsService
+            .saveTransation(this.state.transations)
+            .then(res => this.setState({ showToast: true, toastText: 'Su petición se ha enviado al dueño del libro' }))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
+    }
+
+
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
 
     render() {
@@ -205,12 +230,22 @@ class BookDetails extends Component {
                                         <></>
                                     }
 
-                                    {this.state.book.exchange === true && this.props.loggedUser
+                                    {/* {this.state.book.exchange === true && this.props.loggedUser
                                         ?
                                             <Link to="/libros" className="btn btnDetails btn-sm">Intercambiar</Link>
                                         :
                                         <></>
+                                    } */}
+
+                                    {this.state.book.exchange === true && this.props.loggedUser
+                                        ?
+                                            <Button className="btnDetails" onClick={() => this.transation()} variant="#272643" size="sm">Intercambiar</Button>
+                                        :
+                                        <></>
                                     }
+
+
+
                                     
                                     {this.state.book.sale === true && this.props.loggedUser
                                         ?
@@ -248,6 +283,8 @@ class BookDetails extends Component {
                         </Modal.Body>
                     
                     </Modal>
+
+                    <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 
                 </Container>
             </>

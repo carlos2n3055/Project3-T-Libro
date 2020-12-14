@@ -6,7 +6,6 @@ import './Book-card.css'
 
 const BookCard = ({ title, author, imageUrl, _id, owner }) => {
 
-
     return (
 
         <Col className="book-card text-center" lg={4}>
