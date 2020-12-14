@@ -61,7 +61,7 @@ class Profile extends Component {
                         {this.state.transation.map(elm => {
                             return (
                                 <>
-                                    <p>{elm.buyer.name} está interesad@ en intercambiar tu libro {elm.book_owner.title} escoge el libro que te interese:</p>
+                                    <p>{elm.buyer.name} está interesad@ en intercambiar tu libro {elm.book_owner.title}, escoge el libro que te interese:</p>
 
                                     <Form onSubmit={this.handleSubmit}>
                                 

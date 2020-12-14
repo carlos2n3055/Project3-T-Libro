@@ -12,7 +12,6 @@ import AuthService from './../../../service/auth.service'
 class Navigation extends Component {
 
     constructor() {
-
         super()
         this.authService = new AuthService()
     }

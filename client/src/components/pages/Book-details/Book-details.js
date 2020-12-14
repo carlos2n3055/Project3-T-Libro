@@ -55,7 +55,7 @@ class BookDetails extends Component {
             .then(res => this.setState({ book: res.data }))
             .catch(err => console.log(err))
         
-        this.props.loggedUser && this.booksBuyer()
+        this.props.loggedUser && this.booksBuyer()  // Si hay un usuario logueado busca sus libros
         this.commentsServ()
     }
 
@@ -114,13 +114,11 @@ class BookDetails extends Component {
             
             <>
                 {this.state.book
-                    ?
+                    &&
                     <>
                         <h1 className="detailsTitle book-details">{this.state.book.title}</h1>
                         <p className="detailsAuthor book-details text-muted">{this.state.book.author}</p>
                     </>
-                    :
-                    <></>
                 }
             
                 <Container className="book-details paddingTop70">
@@ -228,17 +226,11 @@ class BookDetails extends Component {
                                     
                                     {this.state.book.sale === true && <p className="btnSeparation">Precio: {this.state.book.price} €</p>}
 
-                                    {this.props.loggedUser ? <Button className="btnDetails" onClick={() => this.handleModalComments(true)} variant="#272643" size="sm">Crear comentario</Button> : <></>}
+                                    {this.props.loggedUser && <Button className="btnDetails" onClick={() => this.handleModalComments(true)} variant="#272643" size="sm">Crear comentario</Button>}
 
-                                    {this.props.loggedUser
-                                        ?
-                                        this.state.book.owner === this.props.loggedUser._id
-                                        ?
-                                            <Button className="btnDetails" onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar</Button>
-                                        :
-                                        <></>
-                                        :
-                                        <></>
+                                    {this.props.loggedUser && this.state.book.owner === this.props.loggedUser._id
+                                        &&
+                                        <Button className="btnDetails" onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar</Button>
                                     }
 
                                     {/* {this.state.book.exchange === true && this.props.loggedUser
@@ -249,20 +241,13 @@ class BookDetails extends Component {
                                     } */}
 
                                     {this.state.book.exchange === true && this.props.loggedUser
-                                        ?
-                                            <Button className="btnDetails" onClick={() => this.transation()} variant="#272643" size="sm">Intercambiar</Button>
-                                        :
-                                        <></>
+                                        &&
+                                        <Button className="btnDetails" onClick={() => this.transation()} variant="#272643" size="sm">Intercambiar</Button>
                                     }
 
-
-
-                                    
                                     {this.state.book.sale === true && this.props.loggedUser
-                                        ?
+                                        &&
                                             <Link to="/libros" className="btn btnDetails btn-sm">Comprar</Link>
-                                        :
-                                        <></>
                                     }
                                     
                                     <Link to="/libros" className="btn btnDetails btn-sm">Volver</Link>
