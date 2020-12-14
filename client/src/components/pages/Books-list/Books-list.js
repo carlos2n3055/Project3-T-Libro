@@ -60,7 +60,7 @@ class BookList extends Component {
 
                 </Container>
 
-                <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                <Modal className="bookList" show={this.state.showModal} onHide={() => this.handleModal(false)}>
                     
                     <Modal.Body>
                         <BookForm closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} />

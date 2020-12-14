@@ -1,0 +1,49 @@
+.homeText{
+    z-index: 1000;
+    position: absolute;
+    top: 25%;
+    left: 30%;
+    opacity: 0.7;
+
+}
+
+.homeText h1{
+    font-family: 'Rozha One', serif;   
+    flex-grow: 12;
+    font-size: 156px;
+    color:white;
+    text-align: center;
+}
+
+.homeText p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
+.textOverVideo{
+    width: 100%;
+    object-fit: cover;
+    height: 77vh;
+}
+
+.main {
+    margin-top: 100px;
+    
+}
+.main img {
+    width: 300px;
+    height: 200px;
+}
+
+.info {
+    display: flex;
+    margin-bottom: 70px;
+    
+}
+
+.infoText {
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 20px;
+    text-align: justify;
+}

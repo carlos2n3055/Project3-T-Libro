@@ -9,7 +9,7 @@ const Profile = ({ user }) => {
 
             <h1>¡Bienvenid@, {user.name} {user.lastname}!</h1>
 
-            <img src={user.img} />
+            <img src={user.img} alt={user.name}/>
 
         </Container>
     )

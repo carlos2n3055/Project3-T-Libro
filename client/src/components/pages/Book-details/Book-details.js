@@ -80,8 +80,8 @@ class BookDetails extends Component {
                 {this.state.book
                     ?
                     <>
-                    <h1 className="detailsTitle">{this.state.book.title}</h1>
-                    <p className="detailsAuthor text-muted">{this.state.book.author}</p>
+                        <h1 className="detailsTitle book-details">{this.state.book.title}</h1>
+                        <p className="detailsAuthor book-details text-muted">{this.state.book.author}</p>
                     </>
                     :
                     <></>
@@ -103,11 +103,11 @@ class BookDetails extends Component {
                                         this.state.book.rating === "1" 
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGold} alt="firstStar" />
+                                                <img src={starGrey} alt="secondStar" />
+                                                <img src={starGrey} alt="thirdStar" />
+                                                <img src={starGrey} alt="fourthStar" />
+                                                <img src={starGrey} alt="fifthStar" />
                                             </Row>
                                             
                                             :
@@ -115,11 +115,11 @@ class BookDetails extends Component {
                                         this.state.book.rating === "2" 
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGold} alt="firstStar" />
+                                                <img src={starGold} alt="secondStar" />
+                                                <img src={starGrey} alt="thirdStar" />
+                                                <img src={starGrey} alt="fourthStar" />
+                                                <img src={starGrey} alt="fifthStar" />
                                             </Row>
                                             
                                             :
@@ -127,11 +127,11 @@ class BookDetails extends Component {
                                         this.state.book.rating === "3" 
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGold} alt="firstStar" />
+                                                <img src={starGold} alt="secondStar" />
+                                                <img src={starGold} alt="thirdStar" />
+                                                <img src={starGrey} alt="fourthStar" />
+                                                <img src={starGrey} alt="fifthStar" />
                                             </Row>
                                             
                                             :
@@ -139,11 +139,11 @@ class BookDetails extends Component {
                                         this.state.book.rating === "4" 
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGold} alt="firstStar" />
+                                                <img src={starGold} alt="secondStar" />
+                                                <img src={starGold} alt="thirdStar" />
+                                                <img src={starGold} alt="fourthStar" />
+                                                <img src={starGrey} alt="fifthStar" />
                                             </Row>
                                             
                                             :
@@ -151,21 +151,21 @@ class BookDetails extends Component {
                                         this.state.book.rating === "5"
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
-                                                <img src={starGold} alt={this.state.book.rating} />
+                                                <img src={starGold} alt="firstStar" />
+                                                <img src={starGold} alt="secondStar" />
+                                                <img src={starGold} alt="thirdStar" />
+                                                <img src={starGold} alt="fourthStar" />
+                                                <img src={starGold} alt="fifthStar" />
                                             </Row>
                             
                                             :
 
                                             <Row className="star">
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
-                                                <img src={starGrey} alt={this.state.book.rating} />
+                                                <img src={starGrey} alt="firstStar" />
+                                                <img src={starGrey} alt="secondStar" />
+                                                <img src={starGrey} alt="thirdStar" />
+                                                <img src={starGrey} alt="fourthStar" />
+                                                <img src={starGrey} alt="fifthStar" />
                                             </Row>
                                     }
 
@@ -182,15 +182,15 @@ class BookDetails extends Component {
 
                                 </Col>
 
-                                <Col md={6}>
+                                <Col className= "book-details" md={6}>
 
-                                    <h3>Descripción</h3>
+                                    <h3 className="book-details">Descripción</h3>
 
                                     <p className="text-justify">{this.state.book.description}</p>
 
-                                        <hr/>
-                                        
-                                        <p className="btnSeparation">Precio: {this.state.book.price} €</p>
+                                    <hr />
+                                    
+                                    {this.state.book.sale === true && <p className="btnSeparation">Precio: {this.state.book.price} €</p>}
 
                                     {this.props.loggedUser ? <Button className="btnDetails" onClick={() => this.handleModalComments(true)} variant="#272643" size="sm">Crear comentario</Button> : <></>}
 

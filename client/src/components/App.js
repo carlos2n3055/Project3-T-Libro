@@ -11,7 +11,7 @@ import BookEdit from './pages/Book-edit/Book-edit'
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Profile from './pages/Profile/Profile'
-
+import Home from './pages/Home/Home'
 import AuthServices from './../service/auth.service'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -22,10 +22,9 @@ import './App.css'
 class App extends Component {
 
   constructor() {
-
     super()
     this.state = { loggedInUser: undefined }
-    this.authServices = new AuthServices
+    this.authServices = new AuthServices()
   }
 
 
@@ -53,6 +52,7 @@ class App extends Component {
 
           <Switch>
 
+            <Route path="/" exact render={() => <Home loggedUser={this.state.loggedInUser} />} />
             <Route path="/libros" exact render={() => <BookList loggedUser={this.state.loggedInUser} />} />
             <Route path="/libros/:book_id" exact render={props => <BookDetails {...props} loggedUser={this.state.loggedInUser} />} />
             <Route path="/crear" render={() => <BookForm />} />
