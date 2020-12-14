@@ -32,15 +32,20 @@ class Profile extends Component {
     handleSubmit = e => {
     
         e.preventDefault()
-        console.log(this.state)
+
+        console.log('ESTAS VIENDO EL THIS.STATE')
+        console.log(this.props.user._id) // id del usuario que esta logueado dentro de su perfil
+        console.log('ESTAS SON LAS PROPS')
+        console.log(this.props) // solo nos pasamos el user logueado
+
         this.booksService
-            .editBook(this.state.transation.book_owner._id, this.state.transation.buyer._id)
+            .editBook(this.state.transation.book_owner._id, this.state.transation.buyer._id) // Tenemos que enviar el id del libro del owner y el id del buyer. 
             .then(res => this.props.closeModal())
             .catch(err => console.log(err))
     }
 
 
-    handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
+    handleInputChange = e => this.setState({ ...this.state.transation, ...this.state.book, [e.target.name]: e.target.value })
 
 
     render() {
@@ -61,7 +66,7 @@ class Profile extends Component {
                         {this.state.transation.map(elm => {
                             return (
                                 <>
-                                    <p>{elm.buyer.name} está interesad@ en intercambiar tu libro {elm.book_owner.title}, escoge el libro que te interese:</p>
+                                    <p><strong>{elm.buyer.name}</strong> está interesad@ en intercambiar tu libro <strong>{elm.book_owner.title}</strong>, escoge el libro que te interese:</p>
 
                                     <Form onSubmit={this.handleSubmit}>
                                 
@@ -79,6 +84,10 @@ class Profile extends Component {
                                 </>
                             )
                         })}
+
+
+
+                        
                     </>
                     :
                     <p>error</p>
