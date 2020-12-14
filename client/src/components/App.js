@@ -12,7 +12,6 @@ import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Profile from './pages/Profile/Profile'
 import Home from './pages/Home/Home'
-
 import AuthServices from './../service/auth.service'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
