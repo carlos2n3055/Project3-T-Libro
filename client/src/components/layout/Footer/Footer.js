@@ -4,7 +4,7 @@ const Footer = () => {
 
     return (
         <footer>
-            <div class="footer py-2">
+            <div className="footer py-2">
                 <p>Copyright © 2020 T-LIBRO</p>
 
                 <p>Creado por:

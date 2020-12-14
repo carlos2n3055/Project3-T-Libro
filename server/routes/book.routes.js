@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 
 const Book = require('../models/book.model')
 
+const { check_book_Id } = require('./../middlewares/custom.middlewares')
+
 
 // ----- ENDPOINTS BOOKS -----
 
@@ -39,12 +41,8 @@ router.get('/getBooksBuyer/:buyer_id', (req, res) => {
 
 
 // Muestra los detalles de un libro (GET)
+// router.get('/getOneBook/:book_id', check_book_Id, (req, res) => {  // cuando funcione todo probar este middleware
 router.get('/getOneBook/:book_id', (req, res) => {
-
-    if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
 
     Book
         .findById(req.params.book_id)
@@ -54,6 +52,7 @@ router.get('/getOneBook/:book_id', (req, res) => {
 
 
 // Edita en la BBDD un libro (PUT)
+// router.put('/editBook/:book_id', check_book_Id, (req, res) => {  // cuando funcione todo probar este middleware
 router.put('/editBook/:book_id', (req, res) => {
 
     const id = req.params.book_id
@@ -61,11 +60,6 @@ router.put('/editBook/:book_id', (req, res) => {
     console.log(id)
     console.log('ESTE ES EL ID DEL BUYER')
     console.log(req.body)
-
-    if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
 
     Book
         .findByIdAndUpdate(id, req.body)
@@ -75,12 +69,8 @@ router.put('/editBook/:book_id', (req, res) => {
 
 
 // Borra de la BBDD un libro (DELETE)
+// router.delete('/deleteBook/:book_id', check_book_Id, (req, res) => {  // cuando funcione todo probar este middleware
 router.delete('/deleteBook/:book_id', (req, res) => {
-
-    if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
 
     Book
         .findByIdAndDelete(req.params.book_id, req.body)

@@ -54,53 +54,39 @@ class Profile extends Component {
                 <img src={this.props.user.img} alt={this.props.user.name} />
             
                 <h3>Tus transacciones:</h3>
+
                 {this.state.transation
                     ?
                     <>
-                        
-                        
                         {this.state.transation.map(elm => {
                             return (
                                 <>
-                                <p>{elm.buyer.name} está interesad@ en intercambiar tu libro {elm.book_owner.title} escoge el libro que te interese:</p>
+                                    <p>{elm.buyer.name} está interesad@ en intercambiar tu libro {elm.book_owner.title} escoge el libro que te interese:</p>
 
-                                <Form onSubmit={this.handleSubmit}>
-                            
-                                    <Form.Group controlId="buyer_book">
-                                        <Form.Label>Seleccionar libro</Form.Label>
-                                        <Form.Control type="text" name="buyer_book" value={this.state.buyer_book} onChange={this.handleInputChange} as="select" >
-                                            <option>Seleccione:</option>
-                                                {elm.book_buyer.map(...element)(element => <option>{ element._id }</option>)}
-                                        </Form.Control>
-                                    </Form.Group>
-                                        
-                                    <Button variant="#272643" size="sm" type="submit">Intercambiar</Button>
+                                    <Form onSubmit={this.handleSubmit}>
                                 
-                                </Form>
-
-
-
-
-
-
-                            </>
+                                        <Form.Group controlId="buyer_book">
+                                            <Form.Label>Seleccionar libro</Form.Label>
+                                            <Form.Control type="text" name="buyer_book" value={this.state.buyer_book} onChange={this.handleInputChange} as="select" >
+                                                <option>Seleccione:</option>
+                                                    {elm.book_buyer.map(element => <option>{ element._id }</option>)}
+                                            </Form.Control>
+                                        </Form.Group>
+                                            
+                                        <Button variant="#272643" size="sm" type="submit">Intercambiar</Button>
+                                    
+                                    </Form>
+                                </>
                             )
                         })}
                     </>
                     :
                     <p>error</p>
-                    
-                    
-                
-                
-                
-                
                 }
-                
 
+            </Container>
 
-        </Container>
-    )
+        )
 
     }
     

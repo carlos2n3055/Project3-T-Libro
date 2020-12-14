@@ -16,6 +16,7 @@ import starGrey from './starGrey.png'
 
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import './Book-details.css'
+import { Next } from 'react-bootstrap/esm/PageItem'
 
 
 
@@ -43,6 +44,31 @@ class BookDetails extends Component {
         this.commentsService = new CommentsService()
         this.transationsService = new TransationsService()
     }
+       
+
+    componentDidMount = () => {
+
+        const book_id = this.props.match.params.book_id
+
+        this.booksService
+            .getBook(book_id)
+            .then(res => this.setState({ book: res.data }))
+            .catch(err => console.log(err))
+        
+        this.props.loggedUser && this.booksBuyer()
+        this.commentsServ()
+    }
+
+
+    booksBuyer = () => {
+
+    const buyer_id = this.props.loggedUser._id
+
+    this.booksService
+        .getBooksBuyer(buyer_id)
+        .then(res => this.setState({ transations: { owner: this.state.book.owner, buyer: this.props.loggedUser._id, book_buyer: res.data, book_owner: this.props.match.params.book_id } }))
+        .catch(err => console.log(err))
+    }
 
 
     commentsServ = () => {
@@ -55,31 +81,6 @@ class BookDetails extends Component {
                 let commentsBook = res.data.filter(elm => elm.book._id === book_id)   
                 this.setState({ comments: commentsBook })
             })
-            .catch(err => console.log(err))
-    }
-            
-
-    componentDidMount = () => {
-
-        const book_id = this.props.match.params.book_id
-
-        this.booksService
-            .getBook(book_id)
-            .then(res => this.setState({ book: res.data }))
-            .catch(err => console.log(err))
-        
-        this.booksBuyer()
-        this.commentsServ()
-    }
-        
-        
-    booksBuyer = () => {
-
-        const buyer_id = this.props.loggedUser._id
-
-        this.booksService
-            .getBooksBuyer(buyer_id)
-            .then(res => this.setState({ transations: { owner: this.state.book.owner, buyer: this.props.loggedUser._id, book_buyer: res.data, book_owner: this.props.match.params.book_id } }))
             .catch(err => console.log(err))
     }
         
