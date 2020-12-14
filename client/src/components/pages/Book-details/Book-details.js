@@ -37,13 +37,13 @@ class BookDetails extends Component {
     commentsServ = () => {
 
         const book_id = this.props.match.params.book_id
-
+        
         this.commentsService
             .getComments()
             .then(res => {
-                let commentsBook = res.data.filter(elm => elm.book._id === book_id)
+                let commentsBook = res.data.filter(elm => elm.book._id === book_id)   
                 this.setState({ comments: commentsBook })
-                })
+            })
             .catch(err => console.log(err))
     }
             
