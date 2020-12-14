@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import AuthService from './../../../service/auth.service'
 
+import Alert from './../../shared/Alert/Alert'
+
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
 
@@ -10,17 +12,21 @@ class Signup extends Component {
     constructor() {
         super()
         this.state = {
-            name: '',
-            lastname: '',
-            img: '',
-            email: '',
-            password: ''
+            formInfo: {
+                name: '',
+                lastname: '',
+                img: '',
+                email: '',
+                password: ''
+            },
+            showToast: false,
+            toastText: ''
         }
         this.authService = new AuthService()
     }
 
 
-    handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
+    handleInputChange = e => this.setState({ formInfo: { ...this.state.formInfo, [e.target.name]: e.target.value } })
 
 
     handleSubmit = e => {
@@ -28,10 +34,13 @@ class Signup extends Component {
         e.preventDefault()
 
         this.authService
-            .signup(this.state)
+            .signup(this.state.formInfo)
             .then(() => this.props.history.push('/inicio-sesion'))
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
+
+
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
 
     render() {
@@ -77,6 +86,8 @@ class Signup extends Component {
                     </Col>
 
                 </Row>
+
+                <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 
             </Container>
         )
