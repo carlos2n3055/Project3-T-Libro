@@ -65,7 +65,7 @@ class BookDetails extends Component {
         this.booksService
             .getBook(book_id)
             .then(res => {
-                this.setState({ book: res.data })
+                this.setState({ book: res.data })  // REFACTORIZAR LOS 2 THIS.SETSTATE
                 this.setState({ transations: { owner: this.state.book.owner, buyer: this.props.loggedUser._id, book_owner: this.props.match.params.book_id} })
             })
             .catch(err => console.log(err))
