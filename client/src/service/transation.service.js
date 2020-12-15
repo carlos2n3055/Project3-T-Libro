@@ -11,5 +11,5 @@ export default class TransationService {
 
     getTransations = owner_id => this.apiHandler.get(`/getAllTransation/${owner_id}`)
     saveTransation = transationInfo => this.apiHandler.post(`/newTransation`, transationInfo)
-
+    closeTransation = trans_id => this.apiHandler.put(`/closeTransation/${trans_id}`)
 }

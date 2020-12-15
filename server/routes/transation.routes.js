@@ -49,6 +49,25 @@ router.post('/newTransation', (req, res) => {
 })
 
 
+// Cierra una transacción en la BBDD (PUT)
+router.put('/closeTransation/:trans_id', (req, res) => {
+
+    // const trans_id = req.params.transation_id
+
+    const trans_id = req.params.trans_id
+
+    // if (!mongoose.Types.ObjectId.isValid(req.params.trans_id)) {
+    //     res.status(404).json({ message: 'Invalid ID' })
+    //     return
+    // }
+
+    Transation
+        .findByIdAndUpdate(trans_id, { status: true })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
+
 // Edita en la BBDD una transaccion (PUT)
 router.put('/editTransation/:trans_id', (req, res) => {
 

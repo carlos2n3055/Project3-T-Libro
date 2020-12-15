@@ -18,7 +18,7 @@ class Profile extends Component {
             book: {
                 owner: '' //heyling ID
             },
-            transation_id: '', //OK
+            transation_id: '', //id transation
             book_owner_id: '', // el dominio mental
             book_buyer_select_id: '', // los futbolisimos
             owner_id: this.props.user._id  //carlos
@@ -61,7 +61,18 @@ class Profile extends Component {
 
         this.booksService
             .editBookOwner(this.state.book_buyer_select_id, ownerId) 
-            .then(res => console.log('ok'))
+            .then(res => this.closeTransation())
+            .catch(err => console.log(err))
+    }
+
+
+    closeTransation = () => {
+
+        const transId = this.state.transation_id
+
+        this.transitionService
+            .closeTransation(transId)
+            .then(res => console.log('okokokok'))  // implementar alert para indicar transaccion correcta
             .catch(err => console.log(err))
     }
 
