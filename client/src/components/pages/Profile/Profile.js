@@ -42,11 +42,26 @@ class Profile extends Component {
     
         e.preventDefault()
         
-        const userId = this.state.book
+        const buyerId = this.state.book
+        const ownerId = this.state.owner_id
 
         this.booksService
-            .editBookOwnerTransation(this.state.book_owner_id, userId) 
-            .then(res => this.props.closeModal())
+            .editBookOwner(this.state.book_owner_id, buyerId) 
+            .then(res => {
+                this.setState({ book: { owner: ownerId } })
+                this.changeOwnerIdInBookBuyer()
+            })
+            .catch(err => console.log(err))
+    }
+
+
+    changeOwnerIdInBookBuyer = () => {
+
+        const ownerId = this.state.book
+
+        this.booksService
+            .editBookOwner(this.state.book_buyer_select_id, ownerId) 
+            .then(res => console.log('ok'))
             .catch(err => console.log(err))
     }
 
@@ -84,7 +99,7 @@ class Profile extends Component {
                                             <Form.Label>Seleccionar libro</Form.Label>
                                             <Form.Control type="text" name="book_buyer_select_id" value={this.state.buyer_book} onChange={(e) => this.handleInputChange(elm._id, elm.book_owner._id, elm.buyer._id, elm.owner._id, e)} as="select" >
                                                 <option>Seleccione:</option>
-                                                {elm.book_buyer.map(element => <option value={element._id}>{element.title}</option>)}
+                                                {elm.book_buyer.map((element, idx) => <option key={idx} value={element._id}>{element.title}</option>)}
                                             </Form.Control>
                                         </Form.Group>
                                             

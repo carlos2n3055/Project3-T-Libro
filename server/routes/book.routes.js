@@ -63,8 +63,8 @@ router.put('/editBook/:book_id', check_book_Id, (req, res) => {
 })
 
 
-// Cambiamos en la BBDD el id del Owner del libro (PUT)
-router.put('/editBookOwnerTransation/:book_id', check_book_Id, (req, res) => {
+// Cambiamos en la BBDD el id del propietario del libro (PUT)
+router.put('/editBookOwner/:book_id', check_book_Id, (req, res) => {
 
     const book_id = req.params.book_id
     const userId = req.body.owner
@@ -74,7 +74,7 @@ router.put('/editBookOwnerTransation/:book_id', check_book_Id, (req, res) => {
         .populate('owner')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
-})      
+})
 
 
 // Borra de la BBDD un libro (DELETE)
