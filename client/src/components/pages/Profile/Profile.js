@@ -59,7 +59,7 @@ class Profile extends Component {
 
         return (
             
-            <Container className="paddingTop70">
+            <Container className="paddingTop70 perfil">
 
                 <h1>¡Hola, {this.props.user.name} {this.props.user.lastname}!</h1>
 
@@ -83,13 +83,12 @@ class Profile extends Component {
                                             <Form.Control type="text" name="owner_book" value={elm.book_owner.title}  />
                                            
                                         </Form.Group> */}
-
                                 
                                         <Form.Group controlId="buyer_book">
                                             <Form.Label>Seleccionar libro</Form.Label>
                                             <Form.Control type="text" name="buyer_book" value={this.state.buyer_book} onChange={this.handleInputChange} as="select" >
                                                 <option>Seleccione:</option>
-                                                {elm.book_buyer.map(element => <option value={element._id} >{ element.title }</option>)}
+                                                {elm.book_buyer.map(element => <option value={element._id}>{element.title}</option>)}
                                             </Form.Control>
                                         </Form.Group>
                                             
