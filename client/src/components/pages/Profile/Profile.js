@@ -4,6 +4,8 @@ import { Container, Form, Button } from 'react-bootstrap'
 import TransationService from './../../../service/transation.service'
 import BooksService from '../../../service/books.service'
 
+import Alert from './../../shared/Alert/Alert'
+
 import './Profile.css'
 
 
@@ -16,12 +18,14 @@ class Profile extends Component {
         this.state = {
             transation: undefined,
             book: {
-                owner: '' //heyling ID
+                owner: ''
             },
-            transation_id: '', //id transation
-            book_owner_id: '', // el dominio mental
-            book_buyer_select_id: '', // los futbolisimos
-            owner_id: this.props.user._id  //carlos
+            transation_id: '',
+            book_owner_id: '',
+            book_buyer_select_id: '',
+            owner_id: this.props.user._id,
+            showToast: false,
+            toastText: ''
         }
         
         this.transitionService = new TransationService()
@@ -34,7 +38,7 @@ class Profile extends Component {
         this.transitionService
             .getTransations(this.props.user._id)
             .then(res => this.setState({ transation: res.data }))
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
 
@@ -51,7 +55,7 @@ class Profile extends Component {
                 this.setState({ book: { owner: ownerId } })
                 this.changeOwnerIdInBookBuyer()
             })
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
 
@@ -62,7 +66,7 @@ class Profile extends Component {
         this.booksService
             .editBookOwner(this.state.book_buyer_select_id, ownerId) 
             .then(res => this.closeTransation())
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
 
@@ -72,8 +76,8 @@ class Profile extends Component {
 
         this.transitionService
             .closeTransation(transId)
-            .then(res => console.log('okokokok'))  // implementar alert para indicar transaccion correcta
-            .catch(err => console.log(err))
+            .then(res => this.setState({ showToast: true, toastText: 'El intercambio se ha completado correctamente.' }))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
 
@@ -81,6 +85,9 @@ class Profile extends Component {
    
         this.setState({ book_buyer_select_id: e.target.value, transation_id: transactionId, book_owner_id: bookOwnerId, book: { owner: buyerId }, owner_id: ownerId }, console.log(this.state) )
     }
+
+
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
 
     render() {
@@ -125,6 +132,8 @@ class Profile extends Component {
                     :
                     <p>error</p>
                 }
+
+                <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 
             </Container>
 
