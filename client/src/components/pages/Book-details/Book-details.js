@@ -55,7 +55,7 @@ class BookDetails extends Component {
             .catch(err => console.log(err))
         
         this.props.loggedUser && this.booksBuyer()  // Si hay un usuario logueado busca sus libros
-        this.commentsServ()
+        this.commentsBook()
     }
 
 
@@ -70,21 +70,18 @@ class BookDetails extends Component {
     }
 
 
-    commentsServ = () => {
+    commentsBook = () => {
 
         const book_id = this.props.match.params.book_id
         
         this.commentsService
-            .getComments()
-            .then(res => {
-                let commentsBook = res.data.filter(elm => elm.book._id === book_id)   
-                this.setState({ comments: commentsBook })
-            })
+            .getComments(book_id)
+            .then(res => this.setState({ comments: res.data }))
             .catch(err => console.log(err))
     }
         
 
-    refreshComments = () => this.commentsServ()
+    refreshComments = () => this.commentsBook()
 
 
     handleModalComments = visible => this.setState({ showModalComments: visible })

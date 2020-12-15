@@ -4,17 +4,17 @@ const mongoose = require('mongoose')
 
 const Comments = require('../models/comments.model')
 
-const { check_comment_Id } = require('./../middlewares/custom.middlewares')
+const { check_comment_Id, check_book_Id } = require('./../middlewares/custom.middlewares')
 
 
 // ----- ENDPOINTS COMMENTS -----
 
 
-// Muestra todos los comentarios (GET)   //REFACTORIZAR PARA REALIZAR EL FILTRADO DE COMENTARIOS EN EL SERVIDOR
-router.get('/getAllComments', (req, res) => {
+// Muestra todos los comentarios (GET)
+router.get('/getAllComments/:book_id', check_book_Id, (req, res) => {
 
     Comments
-        .find()
+        .find({ book: { _id: req.params.book_id }})
         .populate('book')
         .populate('user')
         .then(response => res.json(response))
