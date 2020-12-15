@@ -23,11 +23,6 @@ const transationSchema = new Schema({
         ref: "Book"
     }],
 
-
-    //  book_buyer: [{
-    //     type: String
-    // }],
-
     status: {
         type: Boolean,
         default: false

@@ -41,7 +41,7 @@ router.get('/getAllTransation/:owner_id', check_owner_Id, (req, res) => {
 
 // Guarda en la BBDD una transaccion (POST) OK-------------------------OKOKOK
 router.post('/newTransation', (req, res) => {
-    
+    console.log(req.body)
     Transation
         .create(req.body)
         .then(response => res.json(response))
@@ -49,21 +49,21 @@ router.post('/newTransation', (req, res) => {
 })
 
 
-// // Edita en la BBDD una transaccion (PUT)
-// router.put('/editTransation/:trans_id', (req, res) => {
+// Edita en la BBDD una transaccion (PUT)
+router.put('/editTransation/:trans_id', (req, res) => {
 
-//     const id = req.params.trans_id
+    const id = req.params.trans_id
 
-//     if (!mongoose.Types.ObjectId.isValid(req.params.trans_id)) {
-//         res.status(404).json({ message: 'Invalid ID' })
-//         return
-//     }
+    if (!mongoose.Types.ObjectId.isValid(req.params.trans_id)) {
+        res.status(404).json({ message: 'Invalid ID' })
+        return
+    }
 
-//     Transation
-//         .findByIdAndUpdate(id, req.body)
-//         .then(response => res.json(response))
-//         .catch(err => res.status(500).json(err))
-// })
+    Transation
+        .findByIdAndUpdate(id, req.body)
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
 
 
 

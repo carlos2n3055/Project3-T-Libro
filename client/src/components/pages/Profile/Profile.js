@@ -4,6 +4,8 @@ import { Container, Form, Button } from 'react-bootstrap'
 import TransationService from './../../../service/transation.service'
 import BooksService from '../../../service/books.service'
 
+import './Profile.css'
+
 
 class Profile extends Component {
 
@@ -37,7 +39,7 @@ class Profile extends Component {
 
         console.log('ESTAS VIENDO EL THIS.STATE')
         console.log(this.props.user._id) // id del usuario que esta logueado dentro de su perfil
-        console.log('ESTAS SON LAS PROPS')
+        console.log('ESTO ES THIS.STATE AQUIIIIIIIIII')
         console.log(this.state) // solo nos pasamos el user logueado
 
         this.booksService
@@ -47,16 +49,19 @@ class Profile extends Component {
     }
 
 
-    handleInputChange = e => this.setState({ ...this.state.transation, ...this.state.book, [e.target.name]: e.target.value })
+    handleInputChange = e => {
+        console.log("este es el target")
+        console.log(e.target)
+        this.setState({ ...this.state.transation, ...this.state.book, [e.target.name]: e.target.value })
 
-
+    }
     render() {
 
         return (
             
             <Container className="paddingTop70">
 
-                <h1>¡Bienvenid@, {this.props.user.name} {this.props.user.lastname}!</h1>
+                <h1>¡Hola, {this.props.user.name} {this.props.user.lastname}!</h1>
 
                 <img src={this.props.user.img} alt={this.props.user.name} />
             
@@ -70,13 +75,21 @@ class Profile extends Component {
                                 <>
                                     <p><strong>{elm.buyer.name}</strong> está interesad@ en intercambiar tu libro <strong>{elm.book_owner.title}</strong>, escoge el libro que te interese:</p>
 
+
                                     <Form onSubmit={this.handleSubmit}>
+
+                                        {/* <Form.Group className="ocultar" controlId="owner_book">
+                                            <Form.Label>Titulo</Form.Label>
+                                            <Form.Control type="text" name="owner_book" value={elm.book_owner.title}  />
+                                           
+                                        </Form.Group> */}
+
                                 
                                         <Form.Group controlId="buyer_book">
                                             <Form.Label>Seleccionar libro</Form.Label>
                                             <Form.Control type="text" name="buyer_book" value={this.state.buyer_book} onChange={this.handleInputChange} as="select" >
                                                 <option>Seleccione:</option>
-                                                    {elm.book_buyer.map(element => <option value={element._id}>{ element.title }</option>)}
+                                                {elm.book_buyer.map(element => <option value={element._id} >{ element.title }</option>)}
                                             </Form.Control>
                                         </Form.Group>
                                             
