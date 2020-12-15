@@ -3,7 +3,7 @@
     position: absolute;
     top: 25%;
     left: 30%;
-    opacity: 0.8;
+    opacity: 0.7;
 
 }
 
@@ -11,13 +11,14 @@
     font-family: 'Rozha One', serif;   
     flex-grow: 12;
     font-size: 156px;
-    color:white; 
+    color:white;
+    text-align: center;
 }
 
 .homeText p {
-    color: white;
-    font-size: 20px;
     font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: white;
 }
 
 .textOverVideo{
@@ -42,8 +43,7 @@
 }
 
 .infoText {
+    font-family: 'Montserrat', sans-serif;
     margin-left: 20px;
     text-align: justify;
-    font-family: 'Montserrat', sans-serif;
 }
-

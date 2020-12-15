@@ -1,7 +1,8 @@
 import React from 'react'
 
+import './BackgroundVideo.css'
 
-import classes from "./BackgroundVideo.css"
+
 
 const BackgroundVideo = () => {
 
@@ -20,10 +21,6 @@ const BackgroundVideo = () => {
     )
 }
 
+
+
 export default BackgroundVideo
-
-
-
-
-
-

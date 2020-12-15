@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt")
 const User = require("../models/user.model")
 
 
+
 // ----- ENPOINTS AUTH -----
 
 
@@ -14,13 +15,13 @@ router.post('/signup', (req, res) => {
 
     const { name, lastname, email, password } = req.body
 
-    if (!email || !password) {
-        res.status(400).json({ message: 'Rellena todos los campos' })
+    if (!name || !lastname || !email || !password) {
+        res.status(400).json({ message: 'Fill in all fields' })
         return
     }
 
     if (password.length < 4) {
-        res.status(400).json({ message: 'Contraseña insegura' })
+        res.status(400).json({ message: 'Insecure password, please insert minimum 4 characters' })
         return
     }
 
@@ -29,7 +30,7 @@ router.post('/signup', (req, res) => {
         .then(foundUser => {
 
             if (foundUser) {
-                res.status(400).json({ message: 'El usuario ya existe' })
+                res.status(400).json({ message: 'User already exists' })
                 return
             }
 

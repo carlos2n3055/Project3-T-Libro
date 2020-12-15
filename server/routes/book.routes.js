@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 
 const Book = require('../models/book.model')
 
+const { check_book_Id, check_buyer_Id } = require('./../middlewares/custom.middlewares')
+
 
 // ----- ENDPOINTS BOOKS -----
 
@@ -28,13 +30,18 @@ router.post('/newBook', (req, res) => {
 })
 
 
-// Muestra los detalles de un libro (GET)
-router.get('/getOneBook/:book_id', (req, res) => {
+// Muestra la lista de los libros del buyer (GET)
+router.get('/getBooksBuyer/:buyer_id', check_buyer_Id, (req, res) => {
 
-    if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
+    Book
+        .find({ owner: { _id: req.params.buyer_id } })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
+
+// Muestra los detalles de un libro (GET)
+router.get('/getOneBook/:book_id', check_book_Id, (req, res) => {
 
     Book
         .findById(req.params.book_id)
@@ -44,14 +51,13 @@ router.get('/getOneBook/:book_id', (req, res) => {
 
 
 // Edita en la BBDD un libro (PUT)
-router.put('/editBook/:book_id', (req, res) => {
+router.put('/editBook/:book_id', check_book_Id, (req, res) => {
 
     const id = req.params.book_id
-
-    if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
+    console.log('ESTAMOS EN EL SERVER Y ESTE ES EL ID DEL BOOK OWNER')
+    console.log(id)
+    console.log('ESTE ES EL ID DEL BUYER')
+    console.log(req.body)
 
     Book
         .findByIdAndUpdate(id, req.body)
@@ -60,12 +66,7 @@ router.put('/editBook/:book_id', (req, res) => {
 })      
 
 // Borra de la BBDD un libro (DELETE)
-router.delete('/deleteBook/:book_id', (req, res) => {
-
-    if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
+router.delete('/deleteBook/:book_id', check_book_Id, (req, res) => {
 
     Book
         .findByIdAndDelete(req.params.book_id, req.body)

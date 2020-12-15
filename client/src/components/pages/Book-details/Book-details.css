@@ -1,6 +1,12 @@
 .book-details {
+    margin-bottom: 200px;
+}
+
+
+.book-details-font {
     font-family: 'Montserrat', sans-serif;
 }
+
 
 .star img {
     width: 6%;

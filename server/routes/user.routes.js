@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const User = require('../models/user.model')
 const Book = require('../models/book.model')
 
+const { check_user_Id } = require('./../middlewares/custom.middlewares')
+
 
 // ----- ENDPOINTS USER -----
 
@@ -20,12 +22,7 @@ router.get('/getAllUsers', (req, res) => {
 
 
 // Muestra los datos de un usuario (GET)
-router.get('/getOneUser/:user_id', (req, res) => {
-
-    if (!mongoose.Types.ObjectId.isValid(req.params.user_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
+router.get('/getOneUser/:user_id', check_user_Id, (req, res) => {
 
     User
         .findById(req.params.user_id)
@@ -36,7 +33,7 @@ router.get('/getOneUser/:user_id', (req, res) => {
 
 
 // Actualiza los datos de un usuario en la BBDD (PUT)
-router.put('/editUser/:user_id', (req, res) => {
+router.put('/editUser/:user_id', check_user_Id, (req, res) => {
 
     User
         .findByIdAndUpdate(req.params.user_id, req.body)
