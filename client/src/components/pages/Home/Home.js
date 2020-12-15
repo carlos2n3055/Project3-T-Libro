@@ -8,7 +8,7 @@ import sale from './sale.jpg'
 import comments from './comments.jpg'
 import register from './register.jpg'
 
-import BackgroundVideo from '../backgroundVideo/BackgroundVideo'
+import BackgroundVideo from '../BackgroundVideo/BackgroundVideo'
 
 
 

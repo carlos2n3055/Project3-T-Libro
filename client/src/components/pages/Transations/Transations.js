@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import TransationService from './../../../service/transation.service'
 
+import Alert from './../../shared/Alert/Alert'
+
 //import Loader from './../../shared/Spinner/Loader'  //SI DA TIEMPO PONEMOS SPINNER
 
 import { Container, Row, Button, Modal } from 'react-bootstrap'
@@ -13,7 +15,9 @@ class Transations extends Component {
     constructor() {
         super()
         this.state = {
-            transation: undefined
+            transation: undefined,
+            showToast: false,
+            toastText: ''
         }
         this.transitionService = new TransationService()
     }
@@ -29,6 +33,9 @@ class Transations extends Component {
 
 
     handleModal = visible => this.setState({ showModal: visible })
+
+
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
 
     render() {
@@ -50,6 +57,8 @@ class Transations extends Component {
                     </Modal.Body>
                     
                 </Modal>
+
+                <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 
             </>
         )
