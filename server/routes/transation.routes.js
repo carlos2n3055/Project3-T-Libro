@@ -14,7 +14,7 @@ const { check_owner_Id, check_trans_Id } = require('./../middlewares/custom.midd
 router.get('/getAllTransation/:owner_id', check_owner_Id, (req, res) => {
 
     Transation
-        .find({ owner: { _id: req.params.owner_id, status: false } })
+        .find({ owner: { _id: req.params.owner_id }, status: false })
         .populate('book_owner')
         .populate('book_buyer')
         .populate('owner')
