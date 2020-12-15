@@ -20,7 +20,7 @@ router.get('/getAllBooks', (req, res) => {
 
 // Guarda en la BBDD un nuevo libro (POST)
 router.post('/newBook', (req, res) => {
-    
+
     Book
         .create(req.body)
         .then(response => res.json(response))
@@ -57,8 +57,7 @@ router.put('/editBook/:book_id', (req, res) => {
         .findByIdAndUpdate(id, req.body)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
-})
-
+})      
 
 // Borra de la BBDD un libro (DELETE)
 router.delete('/deleteBook/:book_id', (req, res) => {

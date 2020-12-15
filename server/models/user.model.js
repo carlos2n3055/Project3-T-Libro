@@ -32,6 +32,14 @@ const userSchema = new Schema({
         trim: true
     },
 
+    // en céntimos
+    money: {
+        type: Number,
+        required: true,
+        trim: true,
+        default: 0
+    },
+
     books: [
         {
             type: Schema.Types.ObjectId,

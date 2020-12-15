@@ -12,12 +12,12 @@ const commentsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    
+
     book: {
         type: Schema.Types.ObjectId,
         ref: "Book"
     }
-    
+
 }, {
     timestamps: true
 })

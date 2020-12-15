@@ -182,9 +182,9 @@ class BookDetails extends Component {
 
                                 </Col>
 
-                                <Col className= "book-details" md={6}>
+                                <Col classNamebook-details md={6}>
 
-                                    <h3 className="book-details">Descripción</h3>
+                                    <h3>Descripción</h3>
 
                                     <p className="text-justify">{this.state.book.description}</p>
 
