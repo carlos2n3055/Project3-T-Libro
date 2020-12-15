@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import CommentsService from '../../../service/comments.service'
+import Alert from './../../shared/Alert/Alert'
 
 import { Form, Button } from 'react-bootstrap'
 
@@ -13,7 +14,9 @@ class CommentForm extends Component {
         this.state = {
             description: '',
             book: this.props.match.params.book_id ? this.props.match.params.book_id : '',
-            user: this.props.loggedUser ? this.props.loggedUser._id : ''
+            user: this.props.loggedUser ? this.props.loggedUser._id : '',
+            showToast: false,
+            toastText: ''
         }
         this.commentsService = new CommentsService()
     }
@@ -33,8 +36,10 @@ class CommentForm extends Component {
                 this.props.updateListComments()
                 this.props.closeModal()
             })
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
+
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
 
     render() {
@@ -52,6 +57,8 @@ class CommentForm extends Component {
                     </Form.Group>
 
                     <Button variant="#272643" type="submit">Crear comentario</Button>
+
+                    <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 
                 </Form>
 

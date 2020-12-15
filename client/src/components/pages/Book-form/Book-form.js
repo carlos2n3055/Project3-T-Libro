@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import BooksService from '../../../service/books.service'
 import FilesService from './../../../service/upload.service'
+import Alert from './../../shared/Alert/Alert'
 
 import { Form, Button } from 'react-bootstrap'
 
@@ -25,6 +26,8 @@ class BookForm extends Component {
                 price: '',
                 owner: this.props.loggedUser ? this.props.loggedUser._id : ''
             },
+            showToast: false,
+            toastText: '',
             uploadingActive: false     
         }
         this.booksService = new BooksService()
@@ -50,7 +53,7 @@ class BookForm extends Component {
                 this.props.updateList()
                 this.props.closeModal()
             })
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
 
@@ -69,8 +72,11 @@ class BookForm extends Component {
                     uploadingActive: false
                 })
             })
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
+
+
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
 
     render() {
@@ -133,6 +139,8 @@ class BookForm extends Component {
                     </Form.Group>
 
                     <Button variant="#272643" type="submit" disabled={this.state.uploadingActive}>{this.state.uploadingActive ? 'Subiendo imagen...' : 'Crear un nuevo libro'}</Button>
+
+                    <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 
                 </Form>
 
