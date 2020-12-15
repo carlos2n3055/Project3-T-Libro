@@ -6,6 +6,7 @@ import BookCard from './Book-card'
 //import Loader from './../../shared/Spinner/Loader'  //SI DA TIEMPO PONEMOS SPINNER
 import BookForm from './../Book-form/Book-form'
 import Popup from './../../shared/Popup/Popup'
+import Alert from './../../shared/Alert/Alert'
 
 import { Container, Row, Button } from 'react-bootstrap'
 import './Book-list.css'
@@ -18,7 +19,9 @@ class BookList extends Component {
         super()
         this.state = {
             books: undefined,
-            showModal: false
+            showModal: false,
+            showToast: false,
+            toastText: ''
         }
         this.booksService = new BooksService()
     }
@@ -32,11 +35,14 @@ class BookList extends Component {
         this.booksService
             .getBooks()
             .then(res => this.setState({ books: res.data }))
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
 
     handleModal = visible => this.setState({ showModal: visible })
+
+
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
 
     render() {
@@ -66,7 +72,9 @@ class BookList extends Component {
                     
                     <BookForm closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} />
                   
-                </Popup> 
+                </Popup>
+
+                <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 
             </>
         )

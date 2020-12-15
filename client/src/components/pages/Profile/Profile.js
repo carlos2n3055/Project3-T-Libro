@@ -15,8 +15,13 @@ class Profile extends Component {
 
         this.state = {
             transation: undefined,
-            book: undefined
+            book: undefined,
+            transationSelect: {
+                idTrans: ''
+            },
+            book_buyer: ''
         }
+        
         this.transitionService = new TransationService()
         this.booksService = new BooksService()
     }
@@ -49,12 +54,16 @@ class Profile extends Component {
     }
 
 
-    handleInputChange = e => {
-        console.log("este es el target")
-        console.log(e.target)
-        this.setState({ ...this.state.transation, ...this.state.book, [e.target.name]: e.target.value })
-
+    handleInputChange = (idTransaction, e) => {
+        console.log("ID TRANSACTION")
+        console.log(idTransaction)
+        console.log("EEEEEEEEE")
+         console.log(e.target.value)
+        
+        this.setState({ ...this.state.transation, ...this.state.book, transationSelect: { idTrans: idTransaction }, book_buyer: { [e.target.name]: e.target.value } })
     }
+
+
     render() {
 
         return (
@@ -77,16 +86,10 @@ class Profile extends Component {
 
 
                                     <Form onSubmit={this.handleSubmit}>
-
-                                        {/* <Form.Group className="ocultar" controlId="owner_book">
-                                            <Form.Label>Titulo</Form.Label>
-                                            <Form.Control type="text" name="owner_book" value={elm.book_owner.title}  />
-                                           
-                                        </Form.Group> */}
                                 
                                         <Form.Group controlId="buyer_book">
                                             <Form.Label>Seleccionar libro</Form.Label>
-                                            <Form.Control type="text" name="buyer_book" value={this.state.buyer_book} onChange={this.handleInputChange} as="select" >
+                                            <Form.Control type="text" name="buyer_book" value={this.state.buyer_book} onChange={(e) => this.handleInputChange(elm._id, e)} as="select" >
                                                 <option>Seleccione:</option>
                                                 {elm.book_buyer.map(element => <option value={element._id}>{element.title}</option>)}
                                             </Form.Control>
@@ -98,9 +101,6 @@ class Profile extends Component {
                                 </>
                             )
                         })}
-
-
-
                         
                     </>
                     :

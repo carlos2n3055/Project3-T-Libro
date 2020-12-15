@@ -53,7 +53,7 @@ class BookDetails extends Component {
         this.booksService
             .getBook(book_id)
             .then(res => this.setState({ book: res.data }))
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
         
         this.props.loggedUser && this.booksBuyer()  // Si hay un usuario logueado busca sus libros
         this.commentsBook()
@@ -67,7 +67,7 @@ class BookDetails extends Component {
     this.booksService
         .getBooksBuyer(buyer_id)
         .then(res => this.setState({ transations: { owner: this.state.book.owner, buyer: this.props.loggedUser._id, book_buyer: res.data, book_owner: this.props.match.params.book_id } }))
-        .catch(err => console.log(err))
+        .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
 
@@ -78,7 +78,7 @@ class BookDetails extends Component {
         this.commentsService
             .getComments(book_id)
             .then(res => this.setState({ comments: res.data }))
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
         
 

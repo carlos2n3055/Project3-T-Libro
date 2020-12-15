@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import BooksService from '../../../service/books.service'
 import FilesService from './../../../service/upload.service'
+import Alert from './../../shared/Alert/Alert'
 
 import { Form, Button } from 'react-bootstrap'
 
@@ -23,7 +24,9 @@ class BookEdit extends Component {
                 sale: false,
                 price: ''
             },
-            uploadingActive: false
+            uploadingActive: false,
+            showToast: false,
+            toastText: ''
         }
         this.booksService = new BooksService()
         this.filesService = new FilesService()
@@ -37,7 +40,7 @@ class BookEdit extends Component {
         this.booksService
             .getBook(book_id)
             .then(res => this.setState({ book: res.data }))
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
 
@@ -56,7 +59,7 @@ class BookEdit extends Component {
         this.booksService
             .editBook(this.props.book_id, this.state.book)
             .then(res => this.props.closeModal())
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
 
@@ -75,8 +78,11 @@ class BookEdit extends Component {
                     uploadingActive: false
                 })
             })
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
+
+
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
 
     render() {
@@ -141,6 +147,8 @@ class BookEdit extends Component {
                                 </Form.Group>
 
                                 <Button variant="#272643" type="submit" disabled={this.state.uploadingActive}>{this.state.uploadingActive ? 'Subiendo imagen...' : 'Guardar cambios'}</Button>
+
+                            <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 
                         </Form>
 

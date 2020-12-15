@@ -28,7 +28,7 @@ class Transations extends Component {
         this.transitionService
             .getTransations()
             .then(res => this.setState({ transation: res.data }))
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
 
