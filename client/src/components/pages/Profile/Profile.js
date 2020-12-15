@@ -15,11 +15,13 @@ class Profile extends Component {
 
         this.state = {
             transation: undefined,
-            book: undefined,
-            transationSelect: {
-                idTrans: ''
+            book: {
+                owner: '' //heyling ID
             },
-            book_buyer: ''
+            transation_id: '', //OK
+            book_owner_id: '', // el dominio mental
+            book_buyer_select_id: '', // los futbolisimos
+            owner_id: this.props.user._id  //carlos
         }
         
         this.transitionService = new TransationService()
@@ -39,28 +41,19 @@ class Profile extends Component {
     handleSubmit = e => {
     
         e.preventDefault()
-
-        const one = this.state.transation 
-
-        console.log('ESTAS VIENDO EL THIS.STATE')
-        console.log(this.props.user._id) // id del usuario que esta logueado dentro de su perfil
-        console.log('ESTO ES THIS.STATE AQUIIIIIIIIII')
-        console.log(this.state) // solo nos pasamos el user logueado
+        
+        const userId = this.state.book
 
         this.booksService
-            .editBook(this.state.transation.book_owner._id, this.state.transation.buyer._id) // Tenemos que enviar el id del libro del owner y el id del buyer. 
+            .editBookOwnerTransation(this.state.book_owner_id, userId) 
             .then(res => this.props.closeModal())
             .catch(err => console.log(err))
     }
 
 
-    handleInputChange = (idTransaction, e) => {
-        console.log("ID TRANSACTION")
-        console.log(idTransaction)
-        console.log("EEEEEEEEE")
-         console.log(e.target.value)
-        
-        this.setState({ ...this.state.transation, ...this.state.book, transationSelect: { idTrans: idTransaction }, book_buyer: { [e.target.name]: e.target.value } })
+    handleInputChange = (transactionId, bookOwnerId, buyerId, ownerId, e) => {
+   
+        this.setState({ book_buyer_select_id: e.target.value, transation_id: transactionId, book_owner_id: bookOwnerId, book: { owner: buyerId }, owner_id: ownerId }, console.log(this.state) )
     }
 
 
@@ -87,9 +80,9 @@ class Profile extends Component {
 
                                     <Form onSubmit={this.handleSubmit}>
                                 
-                                        <Form.Group controlId="buyer_book">
+                                        <Form.Group controlId="book_buyer_select_id">
                                             <Form.Label>Seleccionar libro</Form.Label>
-                                            <Form.Control type="text" name="buyer_book" value={this.state.buyer_book} onChange={(e) => this.handleInputChange(elm._id, e)} as="select" >
+                                            <Form.Control type="text" name="book_buyer_select_id" value={this.state.buyer_book} onChange={(e) => this.handleInputChange(elm._id, elm.book_owner._id, elm.buyer._id, elm.owner._id, e)} as="select" >
                                                 <option>Seleccione:</option>
                                                 {elm.book_buyer.map(element => <option value={element._id}>{element.title}</option>)}
                                             </Form.Control>
