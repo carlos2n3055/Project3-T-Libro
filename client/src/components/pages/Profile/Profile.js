@@ -33,10 +33,12 @@ class Profile extends Component {
     
         e.preventDefault()
 
+        const one = this.state.transation 
+
         console.log('ESTAS VIENDO EL THIS.STATE')
         console.log(this.props.user._id) // id del usuario que esta logueado dentro de su perfil
         console.log('ESTAS SON LAS PROPS')
-        console.log(this.props) // solo nos pasamos el user logueado
+        console.log(this.state) // solo nos pasamos el user logueado
 
         this.booksService
             .editBook(this.state.transation.book_owner._id, this.state.transation.buyer._id) // Tenemos que enviar el id del libro del owner y el id del buyer. 
@@ -74,7 +76,7 @@ class Profile extends Component {
                                             <Form.Label>Seleccionar libro</Form.Label>
                                             <Form.Control type="text" name="buyer_book" value={this.state.buyer_book} onChange={this.handleInputChange} as="select" >
                                                 <option>Seleccione:</option>
-                                                    {elm.book_buyer.map(element => <option>{ element._id }</option>)}
+                                                    {elm.book_buyer.map(element => <option value={element._id}>{ element.title }</option>)}
                                             </Form.Control>
                                         </Form.Group>
                                             

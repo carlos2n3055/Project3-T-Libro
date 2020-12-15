@@ -5,6 +5,7 @@ import BooksService from '../../../service/books.service'
 import CommentsService from '../../../service/comments.service'
 import TransationsService from '../../../service/transation.service'
 import Alert from './../../shared/Alert/Alert'
+import Popup from './../../shared/Popup/Popup'
 
 import BookEdit from './../Book-edit/Book-edit'
 import CommentForm from './../Comment-form/Comment-form'
@@ -14,7 +15,7 @@ import starGrey from './starGrey.png'
 
 //import Loader from './../../shared/Spinner/Loader'  // SI DA TIEMPO PONER SPINNER
 
-import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import './Book-details.css'
 
 
@@ -212,15 +213,9 @@ class BookDetails extends Component {
 
                                 </Col>
 
-<<<<<<< HEAD
-                                <Col classNamebook-details md={6}>
-
-                                    <h3>Descripción</h3>
-=======
                                 <Col className= "book-details-font" md={6}>
 
                                     <h3 className="book-details-font">Descripción</h3>
->>>>>>> d393ca1a6310432bfcbc72d795248d41e4dc79b9
 
                                     <p className="text-justify">{this.state.book.description}</p>
 
@@ -234,13 +229,6 @@ class BookDetails extends Component {
                                         &&
                                         <Button className="btnDetails" onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar</Button>
                                     }
-
-                                    {/* {this.state.book.exchange === true && this.props.loggedUser
-                                        ?
-                                            <Link to="/libros" className="btn btnDetails btn-sm">Intercambiar</Link>
-                                        :
-                                        <></>
-                                    } */}
 
                                     {this.state.book.exchange === true && this.props.loggedUser
                                         &&
@@ -265,22 +253,18 @@ class BookDetails extends Component {
                         <h1>Cargando...</h1>
                     }
 
-                    <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
-                        
-                        <Modal.Body>
-                            <BookEdit closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} book_id={book_id} />
-                        </Modal.Body>
-
-                    </Modal>
+                    <Popup show={this.state.showModal} handleModal={this.handleModal} >
+                      
+                        <BookEdit closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} book_id={book_id} />
+                       
+                    </Popup>
 
 
-                    <Modal show={this.state.showModalComments} onHide={() => this.handleModalComments(false)}>
+                    <Popup show={this.state.showModalComments} handleModal= {this.handleModalComments}>
 
-                        <Modal.Body>
-                            <CommentForm {...this.props} closeModal={() => this.handleModalComments(false)} updateListComments={this.refreshComments} />
-                        </Modal.Body>
+                      <CommentForm {...this.props} closeModal={() => this.handleModalComments(false)} updateListComments={this.refreshComments} />
                     
-                    </Modal>
+                    </Popup>
 
                     <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 

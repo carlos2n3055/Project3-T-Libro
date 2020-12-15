@@ -5,8 +5,9 @@ import BooksService from '../../../service/books.service'
 import BookCard from './Book-card'
 //import Loader from './../../shared/Spinner/Loader'  //SI DA TIEMPO PONEMOS SPINNER
 import BookForm from './../Book-form/Book-form'
+import Popup from './../../shared/Popup/Popup'
 
-import { Container, Row, Button, Modal } from 'react-bootstrap'
+import { Container, Row, Button } from 'react-bootstrap'
 import './Book-list.css'
 
 
@@ -60,13 +61,12 @@ class BookList extends Component {
 
                 </Container>
 
-                <Modal className="font" show={this.state.showModal} onHide={() => this.handleModal(false)}>
+               
+                <Popup show={this.state.showModal} handleModal={this.handleModal} >
                     
-                    <Modal.Body>
-                        <BookForm closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} />
-                    </Modal.Body>
-                    
-                </Modal>
+                    <BookForm closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} />
+                  
+                </Popup> 
 
             </>
         )
