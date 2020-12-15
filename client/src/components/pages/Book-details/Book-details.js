@@ -16,7 +16,6 @@ import starGrey from './starGrey.png'
 
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import './Book-details.css'
-import { Next } from 'react-bootstrap/esm/PageItem'
 
 
 
@@ -116,12 +115,12 @@ class BookDetails extends Component {
                 {this.state.book
                     &&
                     <>
-                        <h1 className="detailsTitle book-details">{this.state.book.title}</h1>
-                        <p className="detailsAuthor book-details text-muted">{this.state.book.author}</p>
+                        <h1 className="detailsTitle book-details-font">{this.state.book.title}</h1>
+                        <p className="detailsAuthor book-details-font text-muted">{this.state.book.author}</p>
                     </>
                 }
             
-                <Container className="book-details paddingTop70">
+                <Container className="book-details book-details-font paddingTop70">
 
                     {this.state.book
                         ?
@@ -208,7 +207,7 @@ class BookDetails extends Component {
                                     {this.state.comments
                                         ?
                                         <>
-                                            {this.state.comments.map(elm => <p>{elm.description}. <small>({elm.user.name})</small></p>)}
+                                            {this.state.comments.map(elm => <p key={elm._id}>{elm.description}. <small>({elm.user.name})</small></p>)}
                                         </>
                                         :
                                         <p>Sin comentarios</p>
@@ -216,9 +215,9 @@ class BookDetails extends Component {
 
                                 </Col>
 
-                                <Col className= "book-details" md={6}>
+                                <Col className= "book-details-font" md={6}>
 
-                                    <h3 className="book-details">Descripción</h3>
+                                    <h3 className="book-details-font">Descripción</h3>
 
                                     <p className="text-justify">{this.state.book.description}</p>
 
