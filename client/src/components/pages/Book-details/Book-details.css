@@ -2,16 +2,13 @@
     margin-bottom: 200px;
 }
 
-
 .book-details-font {
     font-family: 'Montserrat', sans-serif;
 }
 
-
 .star img {
     width: 6%;
 }
-
 
 .star {
     margin-top: 17px;
@@ -22,25 +19,20 @@
     height: 500px;
 }
 
-
 .detailsAuthor {
     text-align: center;
 }
-
 
 .detailsTitle {
     text-align: center;
     padding-top: 25px;
 }
 
-
 .btnDetails {
     margin-left: 8px;
     margin-right: 8px;
 }
 
-
 .btnSeparation {
     margin-bottom: 30px;
 }
-

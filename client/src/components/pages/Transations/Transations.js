@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 
+// Services
 import TransationService from './../../../service/transation.service'
 
+// Components
 import Alert from './../../shared/Alert/Alert'
 
-//import Loader from './../../shared/Spinner/Loader'  //SI DA TIEMPO PONEMOS SPINNER
-
+// Styles
 import { Container, Row, Button, Modal } from 'react-bootstrap'
 
 

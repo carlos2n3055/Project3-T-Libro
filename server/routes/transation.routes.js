@@ -29,10 +29,10 @@ router.get('/getAllTransation/:owner_id', check_owner_id, (req, res) => {
 // Guarda en la BBDD una nueva transacción (POST)
 router.post('/newTransation', (req, res) => {
 
-    const info = req.body
+    const transation_info = req.body
 
     Transation
-        .create(info)
+        .create(transation_info)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
@@ -41,10 +41,10 @@ router.post('/newTransation', (req, res) => {
 // Actualiza en la BBDD la propiedad "buy" a "true" de una transacción para indicar que es una transacción de venta (PUT)
 router.put('/changeTransationBuy/:trans_id', check_trans_id, (req, res) => {
 
-    const trans_id = req.params.trans_id
+    const transation_id = req.params.trans_id
 
     Transation
-        .findByIdAndUpdate(trans_id, { buy: true })
+        .findByIdAndUpdate(transation_id, { buy: true })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
@@ -53,10 +53,10 @@ router.put('/changeTransationBuy/:trans_id', check_trans_id, (req, res) => {
 // Actualiza en la BBDD la propiedad "status" a "true" de una transacción para indicar que se cierra una transacción (PUT)
 router.put('/closeTransation/:trans_id', check_trans_id, (req, res) => {
 
-    const trans_id = req.params.trans_id
+    const transation_id = req.params.trans_id
 
     Transation
-        .findByIdAndUpdate(trans_id, { status: true })
+        .findByIdAndUpdate(transation_id, { status: true })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
@@ -65,11 +65,11 @@ router.put('/closeTransation/:trans_id', check_trans_id, (req, res) => {
 // Edita en la BBDD una transacción (PUT)
 router.put('/editTransation/:trans_id', check_trans_id, (req, res) => {
 
-    const trans_id = req.params.trans_id
-    const info = req.body
+    const transation_id = req.params.trans_id
+    const transation_info = req.body
 
     Transation
-        .findByIdAndUpdate(trans_id, info)
+        .findByIdAndUpdate(transation_id, transation_info)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

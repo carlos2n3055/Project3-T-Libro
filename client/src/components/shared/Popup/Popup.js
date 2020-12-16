@@ -1,5 +1,7 @@
 import { Modal } from 'react-bootstrap'
 
+
+
 const Popup = ({ show, title, handleModal, children }) => {
 
     return (
@@ -14,6 +16,9 @@ const Popup = ({ show, title, handleModal, children }) => {
         </Modal>
 
     )
+    
 }
+
+
 
 export default Popup

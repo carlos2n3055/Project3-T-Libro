@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 
-import { Col, Container, Row } from 'react-bootstrap'
-import './Home.css'
-
+// Components
 import exchange from './exchange.jpeg'
 import sale from './sale.jpg'
 import comments from './comments.jpg'
 import register from './register.jpg'
-
 import BackgroundVideo from '../BackgroundVideo/BackgroundVideo'
+
+// Styles
+import { Col, Container, Row } from 'react-bootstrap'
+import './Home.css'
 
 
 

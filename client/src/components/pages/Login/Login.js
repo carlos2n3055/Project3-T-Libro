@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
+
+// Services
 import AuthService from './../../../service/auth.service'
 
+// Components
 import Alert from './../../shared/Alert/Alert'
 
+// Styles
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
 

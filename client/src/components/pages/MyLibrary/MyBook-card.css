@@ -3,7 +3,6 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-
 .myBook-card img {
     width: 40%;
     height: 300px;
@@ -13,9 +12,7 @@
     box-shadow: 10px 10px 7px 7px #A4BCC2;
 }
 
-
 .myBook-card .btn {
     display: inline-block;
     margin-top: 15px;
 }
-

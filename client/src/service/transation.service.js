@@ -10,7 +10,8 @@ export default class TransationService {
     }
 
     getTransations = owner_id => this.apiHandler.get(`/getAllTransation/${owner_id}`)
-    saveTransation = transationInfo => this.apiHandler.post(`/newTransation`, transationInfo)
-    changeTransationBuy = trans_id => this.apiHandler.put(`/changeTransationBuy/${trans_id}`)
-    closeTransation = trans_id => this.apiHandler.put(`/closeTransation/${trans_id}`)
+    saveTransation = transation_info => this.apiHandler.post(`/newTransation`, transation_info)
+    changeTransationBuy = transation_id => this.apiHandler.put(`/changeTransationBuy/${transation_id}`)
+    closeTransation = transation_id => this.apiHandler.put(`/closeTransation/${transation_id}`)
+    editTransation = (transation_id, transation_info) => this.apiHandler.put(`/editTransation/${transation_id}`, transation_info)
 }

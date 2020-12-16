@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 
+// Services
 import BooksService from '../../../service/books.service'
 
+// Components
 import BookCard from './Book-card'
-//import Loader from './../../shared/Spinner/Loader'  //SI DA TIEMPO PONEMOS SPINNER
 import BookForm from './../Book-form/Book-form'
 import Popup from './../../shared/Popup/Popup'
 import Alert from './../../shared/Alert/Alert'
 
+// Styles
 import { Container, Row, Button } from 'react-bootstrap'
 import './Book-list.css'
 

@@ -37,10 +37,10 @@ router.get('/getOneUser/:user_id', check_user_id, (req, res) => {
 router.put('/editUser/:user_id', check_user_id, (req, res) => {
 
     const user_id = req.params.user_id
-    const info = req.body
+    const user_info = req.body
 
     User
-        .findByIdAndUpdate(user_id, info)
+        .findByIdAndUpdate(user_id, user_info)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

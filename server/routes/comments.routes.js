@@ -39,10 +39,10 @@ router.get('/getOneComment/:comment_id', check_comment_id, (req, res) => {
 // Guarda en la BBDD un nuevo comentario (POST)
 router.post('/newComment', (req, res) => {
 
-    const info = req.body
+    const comment_info = req.body
     
     Comments
-        .create(info)
+        .create(comment_info)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

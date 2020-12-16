@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 
+// Services
 import CommentsService from '../../../service/comments.service'
+
+// Components
 import Alert from './../../shared/Alert/Alert'
 
+// Styles
 import { Form, Button } from 'react-bootstrap'
 
 

@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 
+// Services
 import BooksService from '../../../service/books.service'
 import FilesService from './../../../service/upload.service'
+
+// Components
 import Alert from './../../shared/Alert/Alert'
 
+// Styles
 import { Form, Button } from 'react-bootstrap'
 
 
@@ -106,7 +110,6 @@ class BookForm extends Component {
 
                     <Form.Group controlId="imageUrl">
                         <Form.Label>Imagen</Form.Label>
-                        {/* <Form.Label>Imagen (file) {this.state.uploadingActive && <Spinner />}</Form.Label> */}
                         <Form.Control type="file" onChange={this.handleImageUpload} />
                     </Form.Group>
                     

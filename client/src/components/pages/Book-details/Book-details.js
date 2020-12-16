@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+// Services
 import BooksService from '../../../service/books.service'
 import CommentsService from '../../../service/comments.service'
 import TransationsService from '../../../service/transation.service'
+
+// Components
 import Alert from './../../shared/Alert/Alert'
 import Popup from './../../shared/Popup/Popup'
-
 import CommentForm from './../Comment-form/Comment-form'
 
 import starGold from './starGold.png'
 import starGrey from './starGrey.png'
 
-//import Loader from './../../shared/Spinner/Loader'  // SI DA TIEMPO PONER SPINNER
-
+// Styles
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import './Book-details.css'
 

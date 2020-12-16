@@ -9,8 +9,8 @@ export default class CommentService {
         })
     }
 
-    getComments = bookId => this.apiHandler.get(`/getAllComments/${bookId}`)
-    getComment = commentId => this.apiHandler.get(`/getOneComment/${commentId}`)
-    saveComment = commentInfo => this.apiHandler.post(`/newComment`, commentInfo)
-    deleteComment = commentId => this.apiHandler.delete(`/deleteComment/${commentId}`)
+    getComments = book_id => this.apiHandler.get(`/getAllComments/${book_id}`)
+    getComment = comment_id => this.apiHandler.get(`/getOneComment/${comment_id}`)
+    saveComment = comment_info => this.apiHandler.post(`/newComment`, comment_info)
+    deleteComment = comment_id => this.apiHandler.delete(`/deleteComment/${comment_id}`)
 }

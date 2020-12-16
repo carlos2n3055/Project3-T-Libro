@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 
+// Services
+import BooksService from '../../../service/books.service'
+
+// Components
 import BookEdit from './../Book-edit/Book-edit'
 import Popup from './../../shared/Popup/Popup'
 import Alert from './../../shared/Alert/Alert'
 
-import BooksService from '../../../service/books.service'
-
+// Styles
 import { Col, Card, Button } from 'react-bootstrap'
 import './MyBook-card.css'
+
 
 
 class MyBookCard extends Component {
@@ -83,4 +87,3 @@ class MyBookCard extends Component {
 
 
 export default MyBookCard
- 

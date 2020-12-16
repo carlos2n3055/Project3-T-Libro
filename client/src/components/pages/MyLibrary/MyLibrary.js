@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 
+// Services
 import BooksService from '../../../service/books.service'
 
+// Components
 import MyBookCard from './MyBook-card'
-//import Loader from './../../shared/Spinner/Loader'  //SI DA TIEMPO PONEMOS SPINNER
 // import BookForm from './../Book-form/Book-form'
 // import Popup from './../../shared/Popup/Popup'
-// import Alert from './../../shared/Alert/Alert'
+import Alert from './../../shared/Alert/Alert'
 
+// Styles
 import { Container, Row, Button } from 'react-bootstrap'
 import './MyLibrary.css'
 
@@ -18,10 +20,10 @@ class MyLibrary extends Component {
     constructor() {
         super()
         this.state = {
-            books: undefined
+            books: undefined,
             // showModal: false,
-            // showToast: false,
-            // toastText: ''
+            showToast: false,
+            toastText: ''
         }
         this.booksService = new BooksService()
     }
@@ -37,15 +39,14 @@ class MyLibrary extends Component {
         this.booksService
             .getMyBooks(owner_id)
             .then(res => this.setState({ books: res.data }))
-            // .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
 
     // handleModal = visible => this.setState({ showModal: visible })
 
 
-    // handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
 
     render() {
@@ -75,9 +76,9 @@ class MyLibrary extends Component {
                     
                     <BookForm closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} />
                   
-                </Popup>
+                </Popup> */}
 
-                <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} /> */}
+                <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 
             </>
         )

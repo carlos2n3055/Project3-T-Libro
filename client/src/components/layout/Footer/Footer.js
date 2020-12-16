@@ -1,5 +1,7 @@
 import './Footer.css'
 
+
+
 const Footer = () => {
 
     return (
@@ -16,6 +18,7 @@ const Footer = () => {
             </div>  
         </footer>
     )
+
 }
 
 

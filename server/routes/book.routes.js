@@ -23,8 +23,10 @@ router.get('/getAllBooks', (req, res) => {
 // Guarda en la BBDD un nuevo libro (POST)
 router.post('/newBook', (req, res) => {
 
+    const book_info = req.body
+
     Book
-        .create(req.body)
+        .create(book_info)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
@@ -70,10 +72,10 @@ router.get('/getOneBook/:book_id', check_book_id, (req, res) => {
 router.put('/editBook/:book_id', check_book_id, (req, res) => {
 
     const book_id = req.params.book_id
-    const info = req.body
+    const book_info = req.body
    
     Book
-        .findByIdAndUpdate(book_id, info)
+        .findByIdAndUpdate(book_id, book_info)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

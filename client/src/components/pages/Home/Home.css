@@ -4,7 +4,6 @@
     top: 25%;
     left: 30%;
     opacity: 0.7;
-
 }
 
 .homeText h1{
@@ -29,8 +28,8 @@
 
 .main {
     margin-top: 100px;
-    
 }
+
 .main img {
     width: 300px;
     height: 200px;
@@ -39,7 +38,6 @@
 .info {
     display: flex;
     margin-bottom: 70px;
-    
 }
 
 .infoText {
