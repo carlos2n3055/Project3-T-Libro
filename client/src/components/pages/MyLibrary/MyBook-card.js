@@ -56,12 +56,12 @@ class MyBookCard extends Component {
 
                 <Card.Body>
 
-                    <Card.Title as="h3">{this.props.title}</Card.Title>
-                    <Card.Subtitle as="h5" className="text-muted">{this.props.author}</Card.Subtitle>
+                    <Card.Title as="h4">{this.props.title}</Card.Title>
+                    <Card.Subtitle as="h6" className="text-muted">{this.props.author}</Card.Subtitle>
 
-                    <Button className="btnDetails" onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar</Button>
+                    <Button className="btnDetails cardDetails" onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar</Button>
 
-                    <Button className="btnDetails" onClick={this.deleteBook} variant="#272643" size="sm">Eliminar</Button>
+                    <Button className="btnDetails cardDetails" onClick={this.deleteBook} variant="#272643" size="sm">Eliminar</Button>
 
                 </Card.Body>
                 
