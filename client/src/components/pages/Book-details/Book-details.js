@@ -222,8 +222,8 @@ class BookDetails extends Component {
 
                                     {this.props.loggedUser && <Button className="btnDetails" onClick={() => this.handleModalComments(true)} variant="#272643" size="sm">Crear comentario</Button>}
 
-                                    {this.state.book.exchange === true && this.props.loggedUser
-                                        &&
+                                    {this.state.book.exchange === true && this.props.loggedUser && this.props.loggedUser._id !== this.state.book.owner._id ?
+                                        
                                         <Button className="btnDetails" onClick={() => this.transation()} variant="#272643" size="sm">Intercambiar</Button>
                                     }
 
