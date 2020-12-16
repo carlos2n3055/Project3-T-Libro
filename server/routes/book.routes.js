@@ -10,11 +10,11 @@ const { check_book_id, check_buyer_id, check_owner_id } = require('./../middlewa
 // ----- ENDPOINTS BOOKS -----
 
 
-// Muestra la lista de los libros (GET)
+// Muestra la lista de los libros para intercambio o venta (GET)
 router.get('/getAllBooks', (req, res) => {
 
     Book
-        .find()
+        .find({ $or: [{ exchange: true }, { sale: true }] })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
