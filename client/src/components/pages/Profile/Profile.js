@@ -87,7 +87,30 @@ class Profile extends Component {
         this.transitionService
             .closeTransation(transId)
             .then(res => {
-                this.setState({ showToast: true, toastText: 'El intercambio se ha completado correctamente.' })
+                this.setState({ showToast: true, toastText: 'La transacción se ha completado correctamente.' })
+                this.refreshTransations()
+            })
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
+    }
+
+    
+    handleOnClickBuy = (transactionId, bookOwnerId, buyerId) => {
+
+        const buyer_id = { owner: buyerId }
+
+        this.booksService
+            .editBookOwner(bookOwnerId, buyer_id) 
+            .then(res => this.closeTransationBuy(transactionId))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
+    }
+
+
+    closeTransationBuy = (transId) => {
+
+        this.transitionService
+            .closeTransation(transId)
+            .then(res => {
+                this.setState({ showToast: true, toastText: 'La transacción se ha completado correctamente.' })
                 this.refreshTransations()
             })
             .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
@@ -142,26 +165,41 @@ class Profile extends Component {
                     ?
                     <>
                         {this.state.transation.map(elm => {
+                            
                             return (
-                                <>
-                                    <p><em><strong>{elm.buyer.name}</strong></em> está interesad@ en intercambiar tu libro <em><strong>{elm.book_owner.title}</strong></em>, escoge un libro suyo que te interese para el intercambio:</p>
 
-
-                                    <Form onSubmit={this.handleSubmit}>
-                                
-                                        <Form.Group controlId="book_buyer_select_id">
-                                            <Form.Label>Seleccionar libro</Form.Label>
-                                            <Form.Control type="text" name="book_buyer_select_id" value={this.state.buyer_book} onChange={(e) => this.handleInputChange(elm._id, elm.book_owner._id, elm.buyer._id, elm.owner._id, e)} as="select" >
-                                                <option>Seleccione:</option>
-                                                {elm.book_buyer.map((element, idx) => <option key={idx} value={element._id}>{element.title}</option>)}
-                                            </Form.Control>
-                                        </Form.Group>
-                                            
-                                        <Button variant="#272643" size="sm" type="submit">Intercambiar</Button>
+                                elm.buy === false
+                                    ?
                                     
-                                    </Form>
-                                </>
+                                    <>
+                                        <p><em><strong>{elm.buyer.name}</strong></em> está interesad@ en intercambiar tu libro <em><strong>{elm.book_owner.title}</strong></em>, escoge un libro suyo que te interese para el intercambio:</p>
+
+
+                                        <Form onSubmit={this.handleSubmit}>
+                                    
+                                            <Form.Group controlId="book_buyer_select_id">
+                                                <Form.Label>Seleccionar libro</Form.Label>
+                                                <Form.Control type="text" name="book_buyer_select_id" value={this.state.buyer_book} onChange={(e) => this.handleInputChange(elm._id, elm.book_owner._id, elm.buyer._id, elm.owner._id, e)} as="select" >
+                                                    <option>Seleccione:</option>
+                                                    {elm.book_buyer.map((element, idx) => <option key={idx} value={element._id}>{element.title}</option>)}
+                                                </Form.Control>
+                                            </Form.Group>
+                                                
+                                            <Button variant="#272643" size="sm" type="submit">Intercambiar</Button>
+                                        
+                                        </Form>
+                                    </>
+
+                                    :
+
+                                    <>
+                                        <p><em><strong>{elm.buyer.name}</strong></em> ha comprado tu libro <em><strong>{elm.book_owner.title}</strong></em>, se te ha enviado todos los datos a <em><strong>{elm.owner.email}</strong></em></p>
+                                
+                                        <Button className="btnDetails" onClick={() => this.handleOnClickBuy(elm._id, elm.book_owner._id, elm.buyer._id)} variant="#272643" size="sm">Aceptar</Button>
+
+                                    </>    
                             )
+        
                         })}
                         
                     </>

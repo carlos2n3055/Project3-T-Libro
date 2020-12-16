@@ -33,7 +33,8 @@ class BookDetails extends Component {
                 book_buyer: [],
                 book_owner: undefined,
                 buyer: undefined,
-                owner: undefined
+                owner: undefined,
+                buy: false
             },
             showToast: false,
             toastText: ''
@@ -92,7 +93,25 @@ class BookDetails extends Component {
 
         this.transationsService
             .saveTransation(this.state.transations)
-            .then(res => this.setState({ showToast: true, toastText: 'Su petición se ha enviado al dueño del libro' }))
+            .then(res => this.setState({ showToast: true, toastText: 'Su petición se ha enviado al dueño del libro.' }))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
+    }
+
+
+    buy = () => {
+
+        this.transationsService
+            .saveTransation(this.state.transations)
+            .then(res => this.changeTransationBuy(res.data._id))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
+    }
+
+
+    changeTransationBuy = (trans_id) => {
+
+        this.transationsService
+            .changeTransationBuy(trans_id)
+            .then(res => this.setState({ showToast: true, toastText: 'Su compra se ha realizado con éxito. El dueño se pondrá en contacto con usted.' }))
             .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
@@ -222,14 +241,14 @@ class BookDetails extends Component {
 
                                     {this.props.loggedUser && <Button className="btnDetails" onClick={() => this.handleModalComments(true)} variant="#272643" size="sm">Crear comentario</Button>}
 
-                                    {this.state.book.exchange === true && this.props.loggedUser && this.props.loggedUser._id !== this.state.book.owner._id ?
-                                        
+                                    {this.state.book.exchange === true && this.props.loggedUser
+                                        &&
                                         <Button className="btnDetails" onClick={() => this.transation()} variant="#272643" size="sm">Intercambiar</Button>
                                     }
 
                                     {this.state.book.sale === true && this.props.loggedUser
                                         &&
-                                            <Link to="/libros" className="btn btnDetails btn-sm">Comprar</Link>
+                                        <Button className="btnDetails" onClick={() => this.buy()} variant="#272643" size="sm">Comprar</Button>
                                     }
                                     
                                     <Link to="/libros" className="btn btnDetails btn-sm">Volver</Link>

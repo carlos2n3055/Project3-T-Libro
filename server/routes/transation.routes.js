@@ -34,6 +34,18 @@ router.post('/newTransation', (req, res) => {
 })
 
 
+// Actualiza en la BBDD la propiedad buy de una transacción (PUT)---------------------------------------------------
+router.put('/changeTransationBuy/:trans_id', (req, res) => {
+
+    const trans_id = req.params.trans_id
+
+    Transation
+        .findByIdAndUpdate(trans_id, { buy: true })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
+
 // Cierra una transacción en la BBDD (PUT)
 router.put('/closeTransation/:trans_id', check_trans_Id, (req, res) => {
 

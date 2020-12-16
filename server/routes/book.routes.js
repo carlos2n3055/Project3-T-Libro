@@ -73,7 +73,7 @@ router.put('/editBook/:book_id', check_book_Id, (req, res) => {
 })
 
 
-// Cambia en la BBDD el id del propietario del libro (PUT)
+// Cambia en la BBDD el id de la propiedad owner del libro (PUT)
 router.put('/editBookOwner/:book_id', check_book_Id, (req, res) => {
 
     const book_id = req.params.book_id

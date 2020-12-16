@@ -26,6 +26,11 @@ const transationSchema = new Schema({
     status: {
         type: Boolean,
         default: false
+    },
+
+    buy: {
+        type: Boolean,
+        default: false
     }
     
 }, {
