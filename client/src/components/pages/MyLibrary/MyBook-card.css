@@ -5,8 +5,8 @@
 
 
 .myBook-card img {
-    width: 50%;
-    height: 390px;
+    width: 40%;
+    height: 300px;
     margin-top: 20px;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
@@ -15,6 +15,7 @@
 
 
 .myBook-card .btn {
-    display: block;
+    display: inline-block;
     margin-top: 15px;
 }
+

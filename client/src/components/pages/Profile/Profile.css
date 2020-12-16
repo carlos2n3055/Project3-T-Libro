@@ -1,32 +1,47 @@
 .profile {
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 200px;
-    margin-top: 30px;
-    margin-left: 30px;
-    display: inline-block;
+    margin-left: 45px;
+    /* display: inline-block; */
+   
 }
 
-.profile h1 {
-    size: 30px;
+.profile h2 {
+    padding-top: 30px;
+    margin-left: 45px;
     color: #272643;
 }
 
 .profile img {
-    width: 200px;
+    margin-left: 30px;
+    width: 300px;
     margin-top: 40px;
-    justify-content: center;
+    
 }
 
-.form {
+/* .form {
     width: 30%;
-}
+} */
 
-.trans {
-    margin-top: 40px;
-}
 
-.library {
+
+/* .myLibrary {
     display: flex;
     justify-content: right;
     align-items: baseline;
+} */
+
+
+
+/* .profileImgBtn {
+    
+    display: flex;
+    align-items: center;
 }
+ */
+
+ .profileImgBtn Button {
+     display: block;
+    
+
+ }
