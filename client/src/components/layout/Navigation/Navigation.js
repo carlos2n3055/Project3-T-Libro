@@ -7,12 +7,18 @@ import logo from './logo.png'
 
 import AuthService from './../../../service/auth.service'
 
+import Alert from './../../shared/Alert/Alert'
+
 
 
 class Navigation extends Component {
 
     constructor() {
         super()
+        this.state = {
+            showToast: false,
+            toastText: ''
+        }
         this.authService = new AuthService()
     }
 
@@ -21,8 +27,11 @@ class Navigation extends Component {
         this.authService
             .logout()
             .then(res => this.props.storeUser(undefined))
-            .catch(err => console.log(err))
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
+
+
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
 
     render() {
@@ -79,6 +88,8 @@ class Navigation extends Component {
                     </Nav>
 
                 </Navbar.Collapse>
+
+                <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 
             </Navbar>
         )

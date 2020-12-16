@@ -92,7 +92,7 @@ class Profile extends Component {
 
     handleInputChange = (transactionId, bookOwnerId, buyerId, ownerId, e) => {
    
-        this.setState({ book_buyer_select_id: e.target.value, transation_id: transactionId, book_owner_id: bookOwnerId, book: { owner: buyerId }, owner_id: ownerId }, console.log(this.state) )
+        this.setState({ book_buyer_select_id: e.target.value, transation_id: transactionId, book_owner_id: bookOwnerId, book: { owner: buyerId }, owner_id: ownerId })
     }
 
 
