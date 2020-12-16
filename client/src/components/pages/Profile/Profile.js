@@ -33,11 +33,17 @@ class Profile extends Component {
     }
 
 
-    componentDidMount = () => {
+    componentDidMount = () => this.refreshTransations()
+
+
+    refreshTransations = () => {
 
         this.transitionService
             .getTransations(this.props.user._id)
-            .then(res => this.setState({ transation: res.data }))
+            .then(res => {
+                res.data[0] && this.setState({ showToast: true, toastText: 'ATENCION. Tiene solicitudes de intercambio o venta pendientes.' })
+                this.setState({ transation: res.data })
+            })
             .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
@@ -76,7 +82,10 @@ class Profile extends Component {
 
         this.transitionService
             .closeTransation(transId)
-            .then(res => this.setState({ showToast: true, toastText: 'El intercambio se ha completado correctamente.' }))
+            .then(res => {
+                this.setState({ showToast: true, toastText: 'El intercambio se ha completado correctamente.' })
+                this.refreshTransations()
+            })
             .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 
