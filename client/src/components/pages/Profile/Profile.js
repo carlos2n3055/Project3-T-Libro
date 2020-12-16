@@ -120,7 +120,11 @@ class Profile extends Component {
 
                 {/* <Button variant="#272643" size="sm" type="submit">Mi biblioteca</Button> */}
 
-                <Link variant="#272643" size="sm" to="/libros">Mi biblioteca</Link>
+                <h3>Mi biblioteca</h3>
+
+                <Link variant="#272643" size="sm" to="/miBiblioteca">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Book_PNG2116.png" alt="Logo biblioteca"/>
+                </Link>
             
                 <h4>Tus transacciones:</h4>
 

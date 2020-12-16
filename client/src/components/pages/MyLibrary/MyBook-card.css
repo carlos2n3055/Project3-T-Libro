@@ -1,0 +1,20 @@
+.myBook-card {
+    margin-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.myBook-card img {
+    width: 50%;
+    height: 390px;
+    margin-top: 20px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    box-shadow: 10px 10px 7px 7px #A4BCC2;
+}
+
+
+.myBook-card .btn {
+    display: block;
+    margin-top: 15px;
+}

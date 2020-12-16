@@ -7,7 +7,6 @@ import TransationsService from '../../../service/transation.service'
 import Alert from './../../shared/Alert/Alert'
 import Popup from './../../shared/Popup/Popup'
 
-import BookEdit from './../Book-edit/Book-edit'
 import CommentForm from './../Comment-form/Comment-form'
 
 import starGold from './starGold.png'
@@ -28,7 +27,6 @@ class BookDetails extends Component {
     
         this.state = {
             book: undefined,
-            showModal: false,
             showModalComments: false,
             comments: undefined,
             transations: {
@@ -88,9 +86,6 @@ class BookDetails extends Component {
 
 
     handleModalComments = visible => this.setState({ showModalComments: visible })
-
-
-    handleModal = visible => this.setState({ showModal: visible })
 
 
     transation = () => {
@@ -227,11 +222,6 @@ class BookDetails extends Component {
 
                                     {this.props.loggedUser && <Button className="btnDetails" onClick={() => this.handleModalComments(true)} variant="#272643" size="sm">Crear comentario</Button>}
 
-                                    {this.props.loggedUser && this.state.book.owner === this.props.loggedUser._id
-                                        &&
-                                        <Button className="btnDetails" onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar</Button>
-                                    }
-
                                     {this.state.book.exchange === true && this.props.loggedUser
                                         &&
                                         <Button className="btnDetails" onClick={() => this.transation()} variant="#272643" size="sm">Intercambiar</Button>
@@ -254,13 +244,6 @@ class BookDetails extends Component {
 
                         <h1>Cargando...</h1>
                     }
-
-                    <Popup show={this.state.showModal} handleModal={this.handleModal} title="Editar libro">
-                      
-                        <BookEdit closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} book_id={book_id} />
-                       
-                    </Popup>
-
 
                     <Popup show={this.state.showModalComments} handleModal= {this.handleModalComments} title="Crear comentario">
 

@@ -40,6 +40,16 @@ router.get('/getBooksBuyer/:buyer_id', check_buyer_Id, (req, res) => {
 })
 
 
+// Muestra la lista de los libros del usuario logueado (GET)
+router.get('/getMyBooks/:owner_id', (req, res) => {
+
+    Book
+        .find({ owner: { _id: req.params.owner_id } })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
+
 // Muestra los detalles de un libro (GET)
 router.get('/getOneBook/:book_id', check_book_Id, (req, res) => {
 

@@ -10,6 +10,7 @@ export default class BookService {
     }
 
     getBooks = () => this.apiHandler.get('/getAllBooks')
+    getMyBooks = owner_id => this.apiHandler.get(`/getMyBooks/${owner_id}`)
     getBook = bookId => this.apiHandler.get(`/getOneBook/${bookId}`)
     getBooksBuyer = buyer_id => this.apiHandler.get(`/getBooksBuyer/${buyer_id}`)
     saveBook = bookInfo => this.apiHandler.post(`/newBook`, bookInfo)

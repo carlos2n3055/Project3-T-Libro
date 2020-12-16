@@ -58,7 +58,10 @@ class BookEdit extends Component {
 
         this.booksService
             .editBook(this.props.book_id, this.state.book)
-            .then(res => this.props.closeModal())
+            .then(res => {
+                this.props.closeModal()
+                this.props.updateMyList()
+            })
             .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
     }
 

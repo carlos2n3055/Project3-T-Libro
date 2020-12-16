@@ -12,6 +12,8 @@ import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Profile from './pages/Profile/Profile'
 import Home from './pages/Home/Home'
+import MyLibrary from './pages/MyLibrary/MyLibrary'
+
 import AuthServices from './../service/auth.service'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -60,6 +62,7 @@ class App extends Component {
             <Route path="/registro" render={props => <Signup storeUser={this.setTheUser} {...props} />} />
             <Route path="/inicio-sesion" render={props => <Login storeUser={this.setTheUser} {...props} />} />
             <Route path="/perfil" render={() => this.state.loggedInUser ? <Profile user={this.state.loggedInUser} /> : <Redirect to="/inicio-sesion" />} />
+            <Route path="/miBiblioteca" exact render={props => <MyLibrary {...props} loggedUser={this.state.loggedInUser} />} />
 
           </Switch>
 
