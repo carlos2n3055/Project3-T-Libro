@@ -54,7 +54,7 @@ class MyLibrary extends Component {
             <>
                 <Container fluid className="myBookList paddingTop70">
 
-                    <h1>Mis libros</h1>
+                    <h2>Mis libros</h2>
 
                     {/* {this.props.loggedUser && <Button onClick={() => this.handleModal(true)} variant="#272643" size="sm">Crear un nuevo libro</Button>} */}
                     

@@ -50,7 +50,7 @@ class Home extends Component {
                                 </div>
                                 <div className="infoText">
                                     <h4>Intercambia</h4>
-                                    <p>Intercambia tus libros que ya te hayas leido y ocupan espacio, por aquellos que te llamen la atención </p>
+                                    <p>Los libros que ya hayas leído y ocupan espacio, por aquellos que sean de tu interés. </p>
                                 </div>
                             </div>
 
@@ -60,7 +60,7 @@ class Home extends Component {
                                 </div>   
                                 <div className="infoText">
                                     <h4>Vende</h4>
-                                    <p>Vende al mejor precio los libros que ya no quieras tener en casa  </p>
+                                    <p>Al mejor precio los libros que ya no quieras tener en casa. </p>
                                 </div>
                             </div>
 
@@ -74,7 +74,7 @@ class Home extends Component {
                                 </div>
                                 <div className="infoText">
                                     <h4>Comenta</h4>
-                                    <p>Comparte con la comunidad tu opinion de los libros que ya has leido </p>
+                                    <p>Comparte con la comunidad tu opinión de los libros que hayas leído. </p>
                                 </div>
                             </div>
 
@@ -84,7 +84,7 @@ class Home extends Component {
                                 </div>
                                 <div className="infoText">
                                     <h4>Registrate</h4>
-                                    <p>Para poder disfrutar de tu aplicacion tienes que registrarte y logearte </p>
+                                    <p>Para poder disfrutar de tu aplicación. </p>
                                 </div>
                             </div>
 

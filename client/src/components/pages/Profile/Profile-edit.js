@@ -85,7 +85,7 @@ class ProfileEdit extends Component {
                     ?
                     <>
 
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form className="cardProfile" onSubmit={this.handleSubmit}>
 
                             <Form.Group controlId="name">
                                 <Form.Label>Nombre</Form.Label>
