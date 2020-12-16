@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 import BookEdit from './../Book-edit/Book-edit'
 import Popup from './../../shared/Popup/Popup'
+import Alert from './../../shared/Alert/Alert'
 
-import { Col, Card, ButtonGroup, Button } from 'react-bootstrap'
+import BooksService from '../../../service/books.service'
+
+import { Col, Card, Button } from 'react-bootstrap'
 import './MyBook-card.css'
 
 
@@ -15,11 +17,31 @@ class MyBookCard extends Component {
         super(props)
     
         this.state = {
-            showModal: false
-            // showToast: false,
-            // toastText: ''
+            showModal: false,
+            showToast: false,
+            toastText: ''
         }
+        this.booksService = new BooksService()
     }
+
+
+    deleteBook = () => {
+
+        const book_id = this.props._id
+
+        this.booksService
+            .deleteBook(book_id)
+            .then(res => {
+                this.props.updateList()
+                this.setState({ showToast: true, toastText: "Tu libro se ha eliminado con éxito." })
+            })
+            .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
+
+    }
+
+
+    handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
+
 
     handleModal = visible => this.setState({ showModal: visible })
 
@@ -38,10 +60,8 @@ class MyBookCard extends Component {
                     <Card.Subtitle as="h5" className="text-muted">{this.props.author}</Card.Subtitle>
 
                     <Button className="btnDetails" onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar</Button>
-                
-                    {/* <ButtonGroup>
-                        <Link className="btn" to={`/libros/${_id}`}>Eliminar</Link>
-                    </ButtonGroup> */}
+
+                    <Button className="btnDetails" onClick={this.deleteBook} variant="#272643" size="sm">Eliminar</Button>
 
                 </Card.Body>
                 
@@ -50,6 +70,8 @@ class MyBookCard extends Component {
                     <BookEdit closeModal={() => this.handleModal(false)} updateMyList={this.props.updateList} loggedUser={this.props.loggedUser} book_id={this.props._id} />
                         
                 </Popup>
+
+                <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 
             </Col>
         )

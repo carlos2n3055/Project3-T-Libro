@@ -90,8 +90,10 @@ router.put('/editBookOwner/:book_id', check_book_Id, (req, res) => {
 // Borra de la BBDD un libro (DELETE)
 router.delete('/deleteBook/:book_id', check_book_Id, (req, res) => {
 
+    const book_id = req.params.book_id
+
     Book
-        .findByIdAndDelete(req.params.book_id, req.body)
+        .findByIdAndDelete(book_id)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

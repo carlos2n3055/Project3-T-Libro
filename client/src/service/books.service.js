@@ -16,5 +16,5 @@ export default class BookService {
     saveBook = bookInfo => this.apiHandler.post(`/newBook`, bookInfo)
     editBook = (book_id, bookInfo) => this.apiHandler.put(`/editBook/${book_id}`, bookInfo)
     editBookOwner = (book_id, userId) => this.apiHandler.put(`/editBookOwner/${book_id}`, userId)
-    deleteBook = bookId => this.apiHandler.delete(`/deleteBook/${bookId}`)
+    deleteBook = book_id => this.apiHandler.delete(`/deleteBook/${book_id}`)
 }
