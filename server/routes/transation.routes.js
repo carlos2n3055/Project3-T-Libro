@@ -4,17 +4,19 @@ const mongoose = require('mongoose')
 
 const Transation = require('../models/transation.model')
 
-const { check_owner_Id, check_trans_Id } = require('./../middlewares/custom.middlewares')
+const { check_owner_id, check_trans_id } = require('./../middlewares/custom.middlewares')
 
 
 // ----- ENDPOINTS TRANSATION -----
 
 
-// Muestra todas las transacciones del usuario logueado (GET)
-router.get('/getAllTransation/:owner_id', check_owner_Id, (req, res) => {
+// Muestra todas las transacciones del usuario logueado(owner) (GET)
+router.get('/getAllTransation/:owner_id', check_owner_id, (req, res) => {
+
+    const owner_id = req.params.owner_id
 
     Transation
-        .find({ owner: { _id: req.params.owner_id }, status: false })
+        .find({ owner: { _id: owner_id }, status: false })
         .populate('book_owner')
         .populate('book_buyer')
         .populate('owner')
@@ -27,15 +29,17 @@ router.get('/getAllTransation/:owner_id', check_owner_Id, (req, res) => {
 // Guarda en la BBDD una nueva transacción (POST)
 router.post('/newTransation', (req, res) => {
 
+    const info = req.body
+
     Transation
-        .create(req.body)
+        .create(info)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
 
 
-// Actualiza en la BBDD la propiedad buy de una transacción (PUT)---------------------------------------------------
-router.put('/changeTransationBuy/:trans_id', (req, res) => {
+// Actualiza en la BBDD la propiedad "buy" a "true" de una transacción para indicar que es una transacción de venta (PUT)
+router.put('/changeTransationBuy/:trans_id', check_trans_id, (req, res) => {
 
     const trans_id = req.params.trans_id
 
@@ -46,8 +50,8 @@ router.put('/changeTransationBuy/:trans_id', (req, res) => {
 })
 
 
-// Cierra una transacción en la BBDD (PUT)
-router.put('/closeTransation/:trans_id', check_trans_Id, (req, res) => {
+// Actualiza en la BBDD la propiedad "status" a "true" de una transacción para indicar que se cierra una transacción (PUT)
+router.put('/closeTransation/:trans_id', check_trans_id, (req, res) => {
 
     const trans_id = req.params.trans_id
 
@@ -58,13 +62,14 @@ router.put('/closeTransation/:trans_id', check_trans_Id, (req, res) => {
 })
 
 
-// Edita en la BBDD una transaccion (PUT)
-router.put('/editTransation/:trans_id', check_trans_Id, (req, res) => {
+// Edita en la BBDD una transacción (PUT)
+router.put('/editTransation/:trans_id', check_trans_id, (req, res) => {
 
     const trans_id = req.params.trans_id
+    const info = req.body
 
     Transation
-        .findByIdAndUpdate(trans_id, req.body)
+        .findByIdAndUpdate(trans_id, info)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

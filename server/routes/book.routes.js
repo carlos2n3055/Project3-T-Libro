@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 const Book = require('../models/book.model')
 
-const { check_book_Id, check_buyer_Id } = require('./../middlewares/custom.middlewares')
+const { check_book_id, check_buyer_id, check_owner_id } = require('./../middlewares/custom.middlewares')
 
 
 // ----- ENDPOINTS BOOKS -----
@@ -31,37 +31,43 @@ router.post('/newBook', (req, res) => {
 
 
 // Muestra la lista de los libros del buyer (GET)
-router.get('/getBooksBuyer/:buyer_id', check_buyer_Id, (req, res) => {
+router.get('/getBooksBuyer/:buyer_id', check_buyer_id, (req, res) => {
+
+    const buyer_id = req.params.buyer_id
 
     Book
-        .find({ owner: { _id: req.params.buyer_id } })
+        .find({ owner: { _id: buyer_id } })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
 
 
-// Muestra la lista de los libros del usuario logueado (GET)
-router.get('/getMyBooks/:owner_id', (req, res) => {
+// Muestra la lista de los libros del usuario logueado(owner) (GET)
+router.get('/getMyBooks/:owner_id', check_owner_id, (req, res) => {
+
+    const owner_id = req.params.owner_id
 
     Book
-        .find({ owner: { _id: req.params.owner_id } })
+        .find({ owner: { _id: owner_id } })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
 
 
 // Muestra los detalles de un libro (GET)
-router.get('/getOneBook/:book_id', check_book_Id, (req, res) => {
+router.get('/getOneBook/:book_id', check_book_id, (req, res) => {
+
+    const book_id = req.params.book_id
 
     Book
-        .findById(req.params.book_id)
+        .findById(book_id)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
 
 
 // Edita en la BBDD un libro (PUT)
-router.put('/editBook/:book_id', check_book_Id, (req, res) => {
+router.put('/editBook/:book_id', check_book_id, (req, res) => {
 
     const book_id = req.params.book_id
     const info = req.body
@@ -73,14 +79,14 @@ router.put('/editBook/:book_id', check_book_Id, (req, res) => {
 })
 
 
-// Cambia en la BBDD el id de la propiedad owner del libro (PUT)
-router.put('/editBookOwner/:book_id', check_book_Id, (req, res) => {
+// Cambia en la BBDD el id de la propiedad "owner" del libro (PUT)
+router.put('/editBookOwner/:book_id', check_book_id, (req, res) => {
 
     const book_id = req.params.book_id
-    const userId = req.body.owner
+    const new_owner_id = req.body.owner
 
     Book
-        .findByIdAndUpdate(book_id, { owner: { _id: userId } })
+        .findByIdAndUpdate(book_id, { owner: { _id: new_owner_id } })
         .populate('owner')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
@@ -88,7 +94,7 @@ router.put('/editBookOwner/:book_id', check_book_Id, (req, res) => {
 
 
 // Borra de la BBDD un libro (DELETE)
-router.delete('/deleteBook/:book_id', check_book_Id, (req, res) => {
+router.delete('/deleteBook/:book_id', check_book_id, (req, res) => {
 
     const book_id = req.params.book_id
 

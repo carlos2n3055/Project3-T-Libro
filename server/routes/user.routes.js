@@ -3,9 +3,8 @@ const router = express.Router()
 const mongoose = require('mongoose')
 
 const User = require('../models/user.model')
-const Book = require('../models/book.model')
 
-const { check_user_Id } = require('./../middlewares/custom.middlewares')
+const { check_user_id } = require('./../middlewares/custom.middlewares')
 
 
 // ----- ENDPOINTS USER -----
@@ -22,7 +21,7 @@ router.get('/getAllUsers', (req, res) => {
 
 
 // Muestra los datos de un usuario (GET)
-router.get('/getOneUser/:user_id', check_user_Id, (req, res) => {
+router.get('/getOneUser/:user_id', check_user_id, (req, res) => {
 
     const user_id = req.params.user_id
 
@@ -35,12 +34,13 @@ router.get('/getOneUser/:user_id', check_user_Id, (req, res) => {
 
 
 // Actualiza los datos de un usuario en la BBDD (PUT)
-router.put('/editUser/:user_id', check_user_Id, (req, res) => {
+router.put('/editUser/:user_id', check_user_id, (req, res) => {
 
     const user_id = req.params.user_id
+    const info = req.body
 
     User
-        .findByIdAndUpdate(user_id, req.body)
+        .findByIdAndUpdate(user_id, info)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
