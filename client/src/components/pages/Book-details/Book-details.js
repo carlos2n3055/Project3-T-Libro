@@ -52,10 +52,12 @@ class BookDetails extends Component {
 
         this.booksService
             .getBook(book_id)
-            .then(res => this.setState({ book: res.data }))
+            .then(res => {
+                this.setState({ book: res.data })
+                this.props.loggedUser && this.booksBuyer()
+            })
             .catch(err => this.setState({ showToast: true, toastText: err.response.data.message }))
         
-        this.props.loggedUser && this.booksBuyer()  // Si hay un usuario logueado busca sus libros
         this.commentsBook()
     }
 

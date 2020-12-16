@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 import TransationService from './../../../service/transation.service'
 import BooksService from '../../../service/books.service'
@@ -117,7 +118,9 @@ class Profile extends Component {
 
                 <Button className="btnDetails" onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar perfil</Button>
 
-                <Button variant="#272643" size="sm" type="submit">Mi biblioteca</Button>
+                {/* <Button variant="#272643" size="sm" type="submit">Mi biblioteca</Button> */}
+
+                <Link variant="#272643" size="sm" to="/libros">Mi biblioteca</Link>
             
                 <h4>Tus transacciones:</h4>
 
