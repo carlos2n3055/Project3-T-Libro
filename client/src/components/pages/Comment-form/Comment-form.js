@@ -46,9 +46,6 @@ class CommentForm extends Component {
 
         return (
             <>
-                <h4>Crear comentario</h4>
-
-                <hr />
 
                 <Form onSubmit={this.handleSubmit}>
 

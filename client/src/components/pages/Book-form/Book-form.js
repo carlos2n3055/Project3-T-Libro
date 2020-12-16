@@ -83,9 +83,6 @@ class BookForm extends Component {
 
         return (
             <>
-                <h1>Crear nuevo libro</h1>
-
-                <hr />
 
                 <Form onSubmit={this.handleSubmit}>
 

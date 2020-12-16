@@ -68,7 +68,7 @@ class BookList extends Component {
                 </Container>
 
                
-                <Popup show={this.state.showModal} handleModal={this.handleModal} >
+                <Popup show={this.state.showModal} handleModal={this.handleModal} title="Crear nuevo libro" >
                     
                     <BookForm closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} />
                   

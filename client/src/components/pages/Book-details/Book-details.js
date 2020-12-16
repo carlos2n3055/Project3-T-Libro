@@ -253,14 +253,14 @@ class BookDetails extends Component {
                         <h1>Cargando...</h1>
                     }
 
-                    <Popup show={this.state.showModal} handleModal={this.handleModal} >
+                    <Popup show={this.state.showModal} handleModal={this.handleModal} title="Editar libro">
                       
                         <BookEdit closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} book_id={book_id} />
                        
                     </Popup>
 
 
-                    <Popup show={this.state.showModalComments} handleModal= {this.handleModalComments}>
+                    <Popup show={this.state.showModalComments} handleModal= {this.handleModalComments} title="Crear comentario">
 
                       <CommentForm {...this.props} closeModal={() => this.handleModalComments(false)} updateListComments={this.refreshComments} />
                     

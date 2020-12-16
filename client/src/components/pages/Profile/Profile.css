@@ -1,11 +1,32 @@
-.perfil {
-    font-family: 'Montserrat', sans-serif; 
+.profile {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 200px;
+    margin-top: 30px;
+    margin-left: 30px;
+    display: inline-block;
 }
 
-.perfil h1 {
-    size: 50px;
+.profile h1 {
+    size: 30px;
+    color: #272643;
 }
 
-.perfil img {
-    width: 250px;
+.profile img {
+    width: 200px;
+    margin-top: 40px;
+    justify-content: center;
+}
+
+.form {
+    width: 30%;
+}
+
+.trans {
+    margin-top: 40px;
+}
+
+.library {
+    display: flex;
+    justify-content: right;
+    align-items: baseline;
 }

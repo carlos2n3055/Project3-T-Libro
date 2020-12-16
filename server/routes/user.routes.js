@@ -24,8 +24,10 @@ router.get('/getAllUsers', (req, res) => {
 // Muestra los datos de un usuario (GET)
 router.get('/getOneUser/:user_id', check_user_Id, (req, res) => {
 
+    const user_id = req.params.user_id
+
     User
-        .findById(req.params.user_id)
+        .findById(user_id)
         .populate('book')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
@@ -35,8 +37,10 @@ router.get('/getOneUser/:user_id', check_user_Id, (req, res) => {
 // Actualiza los datos de un usuario en la BBDD (PUT)
 router.put('/editUser/:user_id', check_user_Id, (req, res) => {
 
+    const user_id = req.params.user_id
+
     User
-        .findByIdAndUpdate(req.params.user_id, req.body)
+        .findByIdAndUpdate(user_id, req.body)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

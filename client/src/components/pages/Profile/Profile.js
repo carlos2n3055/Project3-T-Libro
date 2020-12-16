@@ -3,6 +3,8 @@ import { Container, Form, Button } from 'react-bootstrap'
 
 import TransationService from './../../../service/transation.service'
 import BooksService from '../../../service/books.service'
+import ProfileEdit from './../Profile/Profile-edit'
+import Popup from './../../shared/Popup/Popup'
 
 import Alert from './../../shared/Alert/Alert'
 
@@ -25,7 +27,8 @@ class Profile extends Component {
             book_buyer_select_id: '',
             owner_id: this.props.user._id,
             showToast: false,
-            toastText: ''
+            toastText: '',
+            showModal: false
         }
         
         this.transitionService = new TransationService()
@@ -99,17 +102,24 @@ class Profile extends Component {
     handleToast = (visible, text) => this.setState({ showToast: visible, toastText: text })
 
 
+    handleModal = visible => this.setState({ showModal: visible })
+
+
     render() {
 
         return (
             
-            <Container className="paddingTop70 perfil">
+            <Container className="paddingTop70 profile">
 
                 <h1>¡Hola, {this.props.user.name} {this.props.user.lastname}!</h1>
 
                 <img src={this.props.user.img} alt={this.props.user.name} />
+
+                <Button className="btnDetails" onClick={() => this.handleModal(true)} variant="#272643" size="sm">Editar perfil</Button>
+
+                <Button variant="#272643" size="sm" type="submit">Mi biblioteca</Button>
             
-                <h3>Tus transacciones:</h3>
+                <h4>Tus transacciones:</h4>
 
                 {this.state.transation
                     ?
@@ -141,6 +151,12 @@ class Profile extends Component {
                     :
                     <p>error</p>
                 }
+
+                <Popup show={this.state.showModal} handleModal={this.handleModal} title="Editar Perfil" >
+
+                    <ProfileEdit closeModal={() => this.handleModal(false)} loggedUser={this.props.user._id} />
+
+                </Popup>
 
                 <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
 

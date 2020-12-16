@@ -93,9 +93,6 @@ class BookEdit extends Component {
                 {this.state.book
                     ?
                     <>
-                        <h1>Editar libro</h1>
-
-                        <hr />
 
                         <Form onSubmit={this.handleSubmit}>
 
