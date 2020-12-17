@@ -81,7 +81,7 @@ router.put('/editBook/:book_id', check_book_id, (req, res) => {
 })
 
 
-// Cambia en la BBDD el id de la propiedad "owner" del libro (PUT)
+// Cambia en la BBDD el id de la propiedad "owner" del libro y se cambian "exchange" y "sale" a "false" para sacarlos de la lista de libros disponibles. Se resetea "price=0" (PUT)
 router.put('/editBookOwner/:book_id', check_book_id, (req, res) => {
 
     const book_id = req.params.book_id
