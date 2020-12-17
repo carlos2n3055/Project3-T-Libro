@@ -4,7 +4,8 @@ export default class TransationService {
 
     constructor() {
         this.apiHandler = axios.create({
-            baseURL: 'http://localhost:5000/api/transation',
+            // baseURL: 'http://localhost:5000/api/transation',
+            baseURL: `${process.env.REACT_APP_API_URL}/transation`,
             withCredentials: true
         })
     }
