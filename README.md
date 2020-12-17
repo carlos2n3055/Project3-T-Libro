@@ -2,20 +2,23 @@
 
 ## ----- BACKEND (SERVER) -----
 ​
-### Book: Endpoints books (GET/POST/PUT/DELETE)
+### Books: Endpoints books (GET/POST/PUT/DELETE)
 ​
 ​
 La Base URL de la API de los libros es `http://localhost:5000/api/books`, con los siguientes endpoints:
 ​
   | Path        | Method           | Description  |
   | ------------- | ------------- | ------------- |
-  | `/getAllBooks`  | GET | Muestra todos los libros |
+  | `/getAllBooks` | GET | Muestra la lista de los libros para intercambio o venta |
+  | `/getBooksBuyer/:buyer_id` | GET | Muestra la lista de los libros del buyer |
+  | `/getMyBooks/:owner_id` | GET | Muestra la lista de los libros del usuario logueado(owner) |
   | `/getOneBook/:book_id` | GET | Muestra los detalles de un libro |
-  | `/newBook` | POST | Crea un nuevo libro |
-  | `/editBook/:book_id` | PUT | Edita un libro |
-  | `/deleteBook/:book_id` | DELETE | Elimina un libro |
- 
-  
+  | `/newBook` | POST | Guarda en la BBDD un nuevo libro |
+  | `/editBook/:book_id` | PUT | Edita en la BBDD un libro |
+  | `/deleteBook/:book_id` | DELETE | Borra de la BBDD un libro |
+  | `/editBookOwner/:book_id` | PUT | Cambia en la BBDD el id de la propiedad "owner" del libro y se cambian "exchange" y "sale" a "false" para sacarlos de la lista de libros disponibles. Se resetea "price=0" |
+
+
   
   ### Users: Endpoints users (GET/PUT)
 ​
@@ -24,9 +27,9 @@ La Base URL de la API de los libros es `http://localhost:5000/api/books`, con lo
 ​
   | Path        | Method           | Description  |
   | ------------- | ------------- | ------------- |
-  | `/getAllUsers` | GET | Muestra todos los usuarios |
-  | `/getOneUser/:user_id` | GET | Muestra los detalles de un usuario |
-  | `/editUser/:user_id` | PUT | Edita los datos del usuario |
+  | `/getAllUsers` | GET | Muestra la lista de todos los usuarios |
+  | `/getOneUser/:user_id` | GET | Muestra los datos de un usuario |
+  | `/editUser/:user_id` | PUT | Actualiza los datos de un usuario en la BBDD |
   
 
 
@@ -44,11 +47,40 @@ La Base URL de la API de los libros es `http://localhost:5000/api/books`, con lo
 
 
 
-  
+### Comments: Endpoints comments (GET/POST/DELETE)
+​
+​
+ La Base URL de la API de los comentarios es `http://localhost:5000/api/comments`, con los siguientes endpoints:
+​
+  | Path        | Method           | Description  |
+  | ------------- | ------------- | ------------- |
+  | `/getAllComments/:book_id` | GET | Muestra todos los comentarios de un libro |
+  | `/getOneComment/:comment_id` | GET | Muestra un comentario |
+  | `/newComment` | POST | Guarda en la BBDD un nuevo comentario |
+  | `/deleteComment/:comment_id` | DELETE | Borra de la BBDD un comentario |
+
+
+
+### Transations: Endpoints transations (GET/POST/PUT)
+​
+​
+ La Base URL de la API de las transacciones es `http://localhost:5000/api/transation`, con los siguientes endpoints:
+​
+  | Path        | Method           | Description  |
+  | ------------- | ------------- | ------------- |
+  | `/getAllTransation/:owner_id` | GET | Muestra todas las transacciones del usuario logueado(owner) |
+  | `/newTransation` | POST | Guarda en la BBDD una nueva transacción |
+  | `/editTransation/:trans_id` | PUT | Edita en la BBDD una transacción |
+  | `/changeTransationBuy/:trans_id` | PUT | Actualiza en la BBDD la propiedad "buy" a "true" de una transacción para indicar que es una transacción de venta |
+  | `/closeTransation/:trans_id` | PUT | Actualiza en la BBDD la propiedad "status" a "true" de una transacción para indicar que se cierra una transacción |
+
+
+
+
   ## ----- FRONTEND (CLIENT) -----
 ​
 ​
-La Base URL de la aplicacion de los libros es `http://localhost:3000`, con los siguientes endpoints:
+La Base URL de la aplicacion T-Libro es `http://localhost:3000`, con los siguientes endpoints:
 ​
   | Path        | Component           | Description  |
   | ------------- | ------------- | ------------- |
@@ -61,6 +93,7 @@ La Base URL de la aplicacion de los libros es `http://localhost:3000`, con los s
   | `/inicio-sesion` | Login | Vista para iniciar sesion |
   | `/perfil` | Profile | Vista del perfil del usuario  |
   | `/editar-perfil/:perfil_id` | User-edit | Vista del formulario para editar los datos usuario |
+  | `/miBiblioteca` | MyLibrary | Vista de los libros del usuario logueado  |
  
 
   ## ----- COMPONENTS SCHEME -----
@@ -70,14 +103,19 @@ La Base URL de la aplicacion de los libros es `http://localhost:3000`, con los s
   
 * Components
 
+
   + pages
+
+    + BackgroundVideo
+      + BackgroundVideo.js
+      + BackgroundVideo.css
+
     + Book-details
       + Book-details.js
       + Book-details.css
     
     + Book-edit
       + Book-edit.js
-      + Book-edit.css
     
     + Book-form
       + Book-form.js
@@ -86,28 +124,60 @@ La Base URL de la aplicacion de los libros es `http://localhost:3000`, con los s
       + Book-list.js
       + Book-list.css
       + Book-card.js
+      + Book-card.css
     
-    + Signup
-      + Signup.js
-      
+    + Comment-form
+      + Comment-form.js
+
+    + Home
+      + Home.js
+      + Home.css
+
     + Login
       + Login.js
-      
+
+    + MyLibrary
+      + MyLibrary.js
+      + MyLibrary.css
+      + MyBook-card.js
+      + MyBook-card.css
+
     + Profile
       + Profile.js
-      + User-edit.js
+      + Profile.css
+      + Profile-edit.js
+      + Profile-edit.css
+
+    + Signup
+      + Signup.js
+
+    + Transations
+      + Transations.js
     
+
   + layout
     + Navigation
-      + Navigation.js	
+      + Navigation.js
+      + Navigation.css
     
     + Footer
       + Footer.js
+      + Footer.css
       
+
   + shared
+    + Alert
+      + Alert.js
+
+    + Popup
+      + Popup.js
+
+
  	 
 * service
-
 	+ auth.service.js
 	+ book.service.js
-	+ user.server.js
+  + comments.service.js
+  + transation.service.js
+  + upload.service.js
+	+ users.service.js
