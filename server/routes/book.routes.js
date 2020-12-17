@@ -88,7 +88,7 @@ router.put('/editBookOwner/:book_id', check_book_id, (req, res) => {
     const new_owner_id = req.body.owner
 
     Book
-        .findByIdAndUpdate(book_id, { owner: { _id: new_owner_id } })
+        .findByIdAndUpdate(book_id, { owner: { _id: new_owner_id }, exchange: false, sale: false, price: 0 })
         .populate('owner')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
