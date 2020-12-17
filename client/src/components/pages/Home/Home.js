@@ -75,7 +75,7 @@ class Home extends Component {
                                 </div>
                                 <div className="infoText">
                                     <h4>Comenta</h4>
-                                    <p>Comparte con la comunidad tu opinión de los libros que hayas leído. </p>
+                                    <p>Y comparte con la comunidad tu opinión de los libros que hayas leído. </p>
                                 </div>
                             </div>
 

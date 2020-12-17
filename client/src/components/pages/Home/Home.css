@@ -33,6 +33,7 @@
 .main img {
     width: 300px;
     height: 200px;
+    border-radius: 10%;
 }
 
 .info {
@@ -42,6 +43,6 @@
 
 .infoText {
     font-family: 'Montserrat', sans-serif;
-    margin-left: 20px;
+    margin-left: 40px;
     text-align: justify;
 }

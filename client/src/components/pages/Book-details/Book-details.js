@@ -11,8 +11,12 @@ import Alert from './../../shared/Alert/Alert'
 import Popup from './../../shared/Popup/Popup'
 import CommentForm from './../Comment-form/Comment-form'
 
-import starGold from './starGold.png'
-import starGrey from './starGrey.png'
+import oneStar from './oneStar.png'
+import twoStars from './twoStars.png'
+import threeStars from './threeStars.png'
+import fourStars from './fourStars.png'
+import fiveStars from './fiveStars.png'
+import starsGrey from './starsGrey.png'
 
 // Styles
 import { Container, Row, Col, Button } from 'react-bootstrap'
@@ -151,11 +155,7 @@ class BookDetails extends Component {
                                         this.state.book.rating === "1" 
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt="firstStar" />
-                                                <img src={starGrey} alt="secondStar" />
-                                                <img src={starGrey} alt="thirdStar" />
-                                                <img src={starGrey} alt="fourthStar" />
-                                                <img src={starGrey} alt="fifthStar" />
+                                                <img src={oneStar} alt="oneStar" />
                                             </Row>
                                             
                                             :
@@ -163,11 +163,7 @@ class BookDetails extends Component {
                                         this.state.book.rating === "2" 
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt="firstStar" />
-                                                <img src={starGold} alt="secondStar" />
-                                                <img src={starGrey} alt="thirdStar" />
-                                                <img src={starGrey} alt="fourthStar" />
-                                                <img src={starGrey} alt="fifthStar" />
+                                                <img src={twoStars} alt="twoStars" />
                                             </Row>
                                             
                                             :
@@ -175,11 +171,7 @@ class BookDetails extends Component {
                                         this.state.book.rating === "3" 
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt="firstStar" />
-                                                <img src={starGold} alt="secondStar" />
-                                                <img src={starGold} alt="thirdStar" />
-                                                <img src={starGrey} alt="fourthStar" />
-                                                <img src={starGrey} alt="fifthStar" />
+                                                <img src={threeStars} alt="threeStars" />
                                             </Row>
                                             
                                             :
@@ -187,11 +179,7 @@ class BookDetails extends Component {
                                         this.state.book.rating === "4" 
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt="firstStar" />
-                                                <img src={starGold} alt="secondStar" />
-                                                <img src={starGold} alt="thirdStar" />
-                                                <img src={starGold} alt="fourthStar" />
-                                                <img src={starGrey} alt="fifthStar" />
+                                                <img src={fourStars} alt="fourStars" />
                                             </Row>
                                             
                                             :
@@ -199,21 +187,13 @@ class BookDetails extends Component {
                                         this.state.book.rating === "5"
                                             ?
                                             <Row className="star">
-                                                <img src={starGold} alt="firstStar" />
-                                                <img src={starGold} alt="secondStar" />
-                                                <img src={starGold} alt="thirdStar" />
-                                                <img src={starGold} alt="fourthStar" />
-                                                <img src={starGold} alt="fifthStar" />
+                                                <img src={fiveStars} alt="fiveStars" />
                                             </Row>
                             
                                             :
 
                                             <Row className="star">
-                                                <img src={starGrey} alt="firstStar" />
-                                                <img src={starGrey} alt="secondStar" />
-                                                <img src={starGrey} alt="thirdStar" />
-                                                <img src={starGrey} alt="fourthStar" />
-                                                <img src={starGrey} alt="fifthStar" />
+                                                <img src={starsGrey} alt="starsGrey" />
                                             </Row>
                                     }
 
